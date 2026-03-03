@@ -44,6 +44,9 @@ class CheckpointRoutes(BaseModelRoutes):
         # Checkpoint roots and Unet roots
         registrar.add_prefixed_route('GET', '/api/lm/{prefix}/checkpoints_roots', prefix, self.get_checkpoints_roots)
         registrar.add_prefixed_route('GET', '/api/lm/{prefix}/unet_roots', prefix, self.get_unet_roots)
+
+        # Cycler routes
+        registrar.add_prefixed_route('POST', '/api/lm/{prefix}/cycler-list', prefix, self.get_cycler_list)
     
     def _validate_civitai_model_type(self, model_type: str) -> bool:
         """Validate CivitAI model type for Checkpoint"""
@@ -130,3 +133,26 @@ class CheckpointRoutes(BaseModelRoutes):
                 "success": False,
                 "error": str(e)
             }, status=500)
+
+    async def get_cycler_list(self, request: web.Request) -> web.Response:
+        """Get filtered and sorted Checkpoint list for cycler widget"""
+        try:
+            json_data = await request.json()
+
+            # Parse parameters
+            pool_config = json_data.get("pool_config")
+            sort_by = json_data.get("sort_by", "filename")
+
+            # Get cycler list from service
+            ckpt_list = await self.service.get_cycler_list(
+                pool_config=pool_config,
+                sort_by=sort_by
+            )
+
+            return web.json_response(
+                {"success": True, "loras": ckpt_list, "count": len(ckpt_list)}
+            )
+
+        except Exception as e:
+            logger.error(f"Error getting cycler list: {e}", exc_info=True)
+            return web.json_response({"success": False, "error": str(e)}, status=500)

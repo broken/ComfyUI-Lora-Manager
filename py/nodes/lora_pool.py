@@ -34,8 +34,8 @@ class LoraPoolLM:
             },
         }
 
-    RETURN_TYPES = ("POOL_CONFIG",)
-    RETURN_NAMES = ("POOL_CONFIG",)
+    RETURN_TYPES = ("POOL_CONFIG", "INT")
+    RETURN_NAMES = ("POOL_CONFIG", "POOL_SIZE")
 
     FUNCTION = "process"
     OUTPUT_NODE = False
@@ -69,7 +69,28 @@ class LoraPoolLM:
         # Log for debugging
         logger.debug(f"[LoraPoolLM] Processing filters: {filters}")
 
-        return (filters,)
+        # Calculate pool size by fetching the cycler list manually
+        # Note: In a true async environment this would be await, but process is sync in ComfyUI nodes (typically)
+        # BUT since we don't have an async process function here, we'll need to figure out a sync way 
+        # Actually ComfyUI runs functions in threads. Let's use asyncio to run the async func.
+        import asyncio
+        from ..services.service_registry import ServiceRegistry
+        from ..services.lora_service import LoraService
+
+        async def get_count():
+            scanner = await ServiceRegistry.get_lora_scanner()
+            service = LoraService(scanner)
+            cycler_list = await service.get_cycler_list(pool_config=filters)
+            return len(cycler_list)
+            
+        try:
+            loop = asyncio.get_event_loop()
+            pool_size = loop.run_until_complete(get_count())
+        except Exception as e:
+            logger.error(f"[LoraPoolLM] Error getting pool size: {e}")
+            pool_size = 0
+
+        return (filters, pool_size)
 
     @staticmethod
     def _default_config():

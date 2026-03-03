@@ -3,10 +3,15 @@ import PrimeVue from 'primevue/config'
 import LoraPoolWidget from '@/components/LoraPoolWidget.vue'
 import LoraRandomizerWidget from '@/components/LoraRandomizerWidget.vue'
 import LoraCyclerWidget from '@/components/LoraCyclerWidget.vue'
+import ModelPoolWidget from '@/components/ModelPoolWidget.vue'
+import ModelCyclerWidget from '@/components/ModelCyclerWidget.vue'
 import JsonDisplayWidget from '@/components/JsonDisplayWidget.vue'
 import AutocompleteTextWidget from '@/components/AutocompleteTextWidget.vue'
-import type { LoraPoolConfig, RandomizerConfig, CyclerConfig } from './composables/types'
-import {
+import type { 
+  LoraPoolConfig, RandomizerConfig, CyclerConfig, 
+  ModelPoolConfig 
+} from './composables/types'
+import { 
   setupModeChangeHandler,
   createModeChangeCallback,
   LORA_PROVIDER_NODE_TYPES
@@ -305,6 +310,137 @@ function createLoraCyclerWidget(node) {
 }
 
 // @ts-ignore
+function createModelPoolWidget(node) {
+  const container = document.createElement('div')
+  container.id = `model-pool-widget-${node.id}`
+  container.style.width = '100%'
+  container.style.height = '100%'
+  container.style.display = 'flex'
+  container.style.flexDirection = 'column'
+  container.style.overflow = 'hidden'
+
+  forwardMiddleMouseToCanvas(container)
+
+  let internalValue: ModelPoolConfig | undefined
+
+  const widget = node.addDOMWidget(
+    'pool_config',
+    'MODEL_POOL_CONFIG',
+    container,
+    {
+      getValue() {
+        return internalValue
+      },
+      setValue(v: ModelPoolConfig) {
+        internalValue = v
+      },
+      serialize: true,
+      getMinHeight() {
+        return LORA_POOL_WIDGET_MIN_HEIGHT
+      }
+    }
+  )
+
+  const vueApp = createApp(ModelPoolWidget, {
+    widget,
+    node
+  })
+
+  vueApp.use(PrimeVue, {
+    unstyled: true,
+    ripple: false
+  })
+
+  vueApp.mount(container)
+  vueApps.set(node.id + 40000, vueApp) // Offset
+
+  widget.computeLayoutSize = () => {
+    const minWidth = LORA_POOL_WIDGET_MIN_WIDTH
+    const minHeight = LORA_POOL_WIDGET_MIN_HEIGHT
+
+    return { minHeight, minWidth }
+  }
+
+  widget.onRemove = () => {
+    const vueApp = vueApps.get(node.id + 40000)
+    if (vueApp) {
+      vueApp.unmount()
+      vueApps.delete(node.id + 40000)
+    }
+  }
+
+  return { widget }
+}
+
+// @ts-ignore
+function createModelCyclerWidget(node) {
+  const container = document.createElement('div')
+  container.id = `model-cycler-widget-${node.id}`
+  container.style.width = '100%'
+  container.style.height = '100%'
+  container.style.display = 'flex'
+  container.style.flexDirection = 'column'
+  container.style.overflow = 'hidden'
+
+  forwardMiddleMouseToCanvas(container)
+
+  let internalValue: CyclerConfig | undefined
+
+  const widget = node.addDOMWidget(
+    'cycler_config',
+    'MODEL_CYCLER_CONFIG',
+    container,
+    {
+      getValue() {
+        return internalValue
+      },
+      setValue(v: CyclerConfig) {
+        internalValue = v
+      },
+      serialize: true,
+      getMinHeight() {
+        return LORA_CYCLER_WIDGET_MIN_HEIGHT
+      }
+    }
+  )
+
+  // Add method to get pool config from connected node
+  node.getPoolConfig = () => getPoolConfigFromConnectedNode(node)
+
+  const vueApp = createApp(ModelCyclerWidget, {
+    widget,
+    node,
+    api
+  })
+
+  vueApp.use(PrimeVue, {
+    unstyled: true,
+    ripple: false
+  })
+
+  vueApp.mount(container)
+  vueApps.set(node.id + 50000, vueApp) // Offset
+
+  widget.computeLayoutSize = () => {
+    const minWidth = LORA_CYCLER_WIDGET_MIN_WIDTH
+    const minHeight = LORA_CYCLER_WIDGET_MIN_HEIGHT
+    const maxHeight = LORA_CYCLER_WIDGET_MAX_HEIGHT
+
+    return { minHeight, minWidth, maxHeight }
+  }
+
+  widget.onRemove = () => {
+    const vueApp = vueApps.get(node.id + 50000)
+    if (vueApp) {
+      vueApp.unmount()
+      vueApps.delete(node.id + 50000)
+    }
+  }
+
+  return { widget }
+}
+
+// @ts-ignore
 function createJsonDisplayWidget(node) {
   const container = document.createElement('div')
   container.id = `json-display-widget-${node.id}`
@@ -513,6 +649,14 @@ app.registerExtension({
       // @ts-ignore
       CYCLER_CONFIG(node) {
         return createLoraCyclerWidget(node)
+      },
+      // @ts-ignore
+      MODEL_POOL_CONFIG(node) {
+        return createModelPoolWidget(node)
+      },
+      // @ts-ignore
+      MODEL_CYCLER_CONFIG(node) {
+        return createModelCyclerWidget(node)
       },
       // @ts-ignore
       async LORAS(node: any) {

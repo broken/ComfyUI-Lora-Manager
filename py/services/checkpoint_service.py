@@ -54,3 +54,134 @@ class CheckpointService(BaseModelService):
     def find_duplicate_filenames(self) -> Dict:
         """Find Checkpoints with conflicting filenames"""
         return self.scanner._hash_index.get_duplicate_filenames()
+
+    async def _apply_pool_filters(
+        self, available_checkpoints: list[Dict], pool_config: Dict
+    ) -> list[Dict]:
+        """
+        Apply pool_config filters to available Checkpoints.
+
+        Args:
+            available_checkpoints: List of all Checkpoint dicts
+            pool_config: Dict with filter settings from Pool node
+
+        Returns:
+            Filtered list of Checkpoint dicts
+        """
+        from .model_query import FilterCriteria
+
+        filter_section = pool_config
+
+        # Extract filter parameters
+        tags_dict = filter_section.get("tags", {})
+        include_tags = tags_dict.get("include", [])
+        exclude_tags = tags_dict.get("exclude", [])
+        folders_dict = filter_section.get("folders", {})
+        include_folders = folders_dict.get("include", [])
+        exclude_folders = folders_dict.get("exclude", [])
+        license_dict = filter_section.get("license", {})
+        no_credit_required = license_dict.get("noCreditRequired", False)
+        allow_selling = license_dict.get("allowSelling", False)
+
+        # Build tag filters dict
+        tag_filters = {}
+        for tag in include_tags:
+            tag_filters[tag] = "include"
+        for tag in exclude_tags:
+            tag_filters[tag] = "exclude"
+
+        # Build folder filter
+        if include_folders or exclude_folders:
+            filtered = []
+            for ckpt in available_checkpoints:
+                folder = ckpt.get("folder", "")
+
+                # Check exclude folders first
+                excluded = False
+                for exclude_folder in exclude_folders:
+                    if folder.startswith(exclude_folder):
+                        excluded = True
+                        break
+
+                if excluded:
+                    continue
+
+                # Check include folders
+                if include_folders:
+                    included = False
+                    for include_folder in include_folders:
+                        if folder.startswith(include_folder):
+                            included = True
+                            break
+                    if not included:
+                        continue
+
+                filtered.append(ckpt)
+
+            available_checkpoints = filtered
+
+        # Apply tag filters
+        if tag_filters:
+            criteria = FilterCriteria(tags=tag_filters)
+            available_checkpoints = self.filter_set.apply(available_checkpoints, criteria)
+
+        # Apply license filters
+        if no_credit_required:
+            available_checkpoints = [
+                ckpt for ckpt in available_checkpoints
+                if bool(ckpt.get("license_flags", 127) & (1 << 0))
+            ]
+
+        if allow_selling:
+            available_checkpoints = [
+                ckpt for ckpt in available_checkpoints
+                if bool(ckpt.get("license_flags", 127) & (1 << 1))
+            ]
+
+        return available_checkpoints
+
+    async def get_cycler_list(
+        self,
+        pool_config: dict | None = None,
+        sort_by: str = "filename"
+    ) -> list[Dict]:
+        """
+        Get filtered and sorted Checkpoint list for cycling.
+
+        Args:
+            pool_config: Optional pool config for filtering (filters dict)
+            sort_by: Sort field - 'filename' or 'model_name'
+
+        Returns:
+            List of Checkpoint dicts with file_name and model_name
+        """
+        # Get cached data
+        cache = await self.scanner.get_cached_data(force_refresh=False)
+        available_checkpoints = cache.raw_data if cache else []
+
+        # Apply pool filters if provided
+        if pool_config:
+            available_checkpoints = await self._apply_pool_filters(
+                available_checkpoints, pool_config
+            )
+
+        # Sort by specified field
+        if sort_by == "model_name":
+            available_checkpoints = sorted(
+                available_checkpoints,
+                key=lambda x: (x.get("model_name") or x.get("file_name", "")).lower()
+            )
+        else:  # Default to filename
+            available_checkpoints = sorted(
+                available_checkpoints,
+                key=lambda x: x.get("file_name", "").lower()
+            )
+
+        # Return minimal data needed for cycling
+        return [
+            {
+                "file_name": ckpt["file_name"],
+                "model_name": ckpt.get("model_name", ckpt["file_name"]),
+            }
+            for ckpt in available_checkpoints
+        ]

@@ -27,6 +27,7 @@ class LoraCyclerLM:
             },
             "optional": {
                 "pool_config": ("POOL_CONFIG", {}),
+                "repeat_count_override": ("INT", {"default": 0, "min": 0, "max": 9999, "forceInput": True}),
             },
         }
 
@@ -36,13 +37,14 @@ class LoraCyclerLM:
     FUNCTION = "cycle"
     OUTPUT_NODE = False
 
-    async def cycle(self, cycler_config, pool_config=None):
+    async def cycle(self, cycler_config, pool_config=None, repeat_count_override=None):
         """
         Cycle through LoRAs based on configuration and pool filters.
 
         Args:
             cycler_config: Dict with cycler settings (current_index, model_strength, clip_strength, sort_by)
             pool_config: Optional config from LoRA Pool node for filtering
+            repeat_count_override: Optional integer to override the repeat count
 
         Returns:
             Dictionary with 'result' (LORA_STACK tuple) and 'ui' (for widget display)
@@ -84,6 +86,11 @@ class LoraCyclerLM:
                     "error": ["No LoRAs available in pool"],
                 },
             }
+
+        # Override repeat count if input is provided AND valid (>0)
+        repeat_count = cycler_config.get("repeat_count", 1)
+        if repeat_count_override is not None and repeat_count_override > 0:
+            repeat_count = repeat_count_override
 
         # Determine which index to use for this execution
         # If execution_index is provided (batch queue case), use it
@@ -130,5 +137,6 @@ class LoraCyclerLM:
                 "current_lora_filename": [current_lora["file_name"]],
                 "next_lora_name": [next_display_name],
                 "next_lora_filename": [next_lora["file_name"]],
+                "repeat_count_override": [repeat_count], # Tell frontend about the override
             },
         }

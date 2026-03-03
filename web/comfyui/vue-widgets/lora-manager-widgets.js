@@ -1958,6 +1958,28 @@ to { transform: rotate(360deg);
   box-sizing: border-box;
 }
 
+.model-pool-widget[data-v-d4caba28] {
+  padding: 12px;
+  background: rgba(40, 44, 52, 0.6);
+  border-radius: 4px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.model-cycler-widget[data-v-da63f7d2] {
+  padding: 6px;
+  background: rgba(40, 44, 52, 0.6);
+  border-radius: 6px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
 .json-display-widget[data-v-0f202476] {
   padding: 8px;
   background: rgba(40, 44, 52, 0.6);
@@ -10483,12 +10505,12 @@ var PrimeVue = {
     setup(app2, configOptions);
   }
 };
-const _hoisted_1$m = { class: "filter-chip__text" };
+const _hoisted_1$o = { class: "filter-chip__text" };
 const _hoisted_2$i = {
   key: 0,
   class: "filter-chip__count"
 };
-const _sfc_main$n = /* @__PURE__ */ defineComponent({
+const _sfc_main$p = /* @__PURE__ */ defineComponent({
   __name: "FilterChip",
   props: {
     label: {},
@@ -10506,7 +10528,7 @@ const _sfc_main$n = /* @__PURE__ */ defineComponent({
       return openBlock(), createElementBlock("span", {
         class: normalizeClass(["filter-chip", variantClass.value])
       }, [
-        createBaseVNode("span", _hoisted_1$m, toDisplayString(__props.label), 1),
+        createBaseVNode("span", _hoisted_1$o, toDisplayString(__props.label), 1),
         __props.count !== void 0 ? (openBlock(), createElementBlock("span", _hoisted_2$i, "(" + toDisplayString(__props.count) + ")", 1)) : createCommentVNode("", true),
         __props.removable ? (openBlock(), createElementBlock("button", {
           key: 1,
@@ -10525,8 +10547,8 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const FilterChip = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__scopeId", "data-v-7e36267d"]]);
-const _sfc_main$m = /* @__PURE__ */ defineComponent({
+const FilterChip = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["__scopeId", "data-v-7e36267d"]]);
+const _sfc_main$o = /* @__PURE__ */ defineComponent({
   __name: "EditButton",
   emits: ["click"],
   setup(__props) {
@@ -10548,8 +10570,8 @@ const _sfc_main$m = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const EditButton = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__scopeId", "data-v-8da8aa4b"]]);
-const _hoisted_1$l = { class: "section" };
+const EditButton = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["__scopeId", "data-v-8da8aa4b"]]);
+const _hoisted_1$n = { class: "section" };
 const _hoisted_2$h = { class: "section__header" };
 const _hoisted_3$f = { class: "section__content" };
 const _hoisted_4$d = {
@@ -10560,7 +10582,7 @@ const _hoisted_5$b = {
   key: 1,
   class: "section__chips"
 };
-const _sfc_main$l = /* @__PURE__ */ defineComponent({
+const _sfc_main$n = /* @__PURE__ */ defineComponent({
   __name: "BaseModelSection",
   props: {
     selected: {},
@@ -10574,7 +10596,7 @@ const _sfc_main$l = /* @__PURE__ */ defineComponent({
       return model == null ? void 0 : model.count;
     };
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$l, [
+      return openBlock(), createElementBlock("div", _hoisted_1$n, [
         createBaseVNode("div", _hoisted_2$h, [
           _cache[1] || (_cache[1] = createBaseVNode("span", { class: "section__title" }, "BASE MODEL", -1)),
           createVNode(EditButton, {
@@ -10597,8 +10619,8 @@ const _sfc_main$l = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const BaseModelSection = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__scopeId", "data-v-12f059e2"]]);
-const _hoisted_1$k = { class: "section" };
+const BaseModelSection = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__scopeId", "data-v-12f059e2"]]);
+const _hoisted_1$m = { class: "section" };
 const _hoisted_2$g = { class: "section__columns" };
 const _hoisted_3$e = { class: "section__column" };
 const _hoisted_4$c = { class: "section__column-header" };
@@ -10622,7 +10644,7 @@ const _hoisted_12$3 = {
   key: 1,
   class: "section__chips"
 };
-const _sfc_main$k = /* @__PURE__ */ defineComponent({
+const _sfc_main$m = /* @__PURE__ */ defineComponent({
   __name: "TagsSection",
   props: {
     includeTags: {},
@@ -10631,7 +10653,7 @@ const _sfc_main$k = /* @__PURE__ */ defineComponent({
   emits: ["edit-include", "edit-exclude"],
   setup(__props) {
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$k, [
+      return openBlock(), createElementBlock("div", _hoisted_1$m, [
         _cache[4] || (_cache[4] = createBaseVNode("div", { class: "section__header" }, [
           createBaseVNode("span", { class: "section__title" }, "TAGS")
         ], -1)),
@@ -10679,8 +10701,8 @@ const _sfc_main$k = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const TagsSection = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__scopeId", "data-v-b869b780"]]);
-const _hoisted_1$j = { class: "section" };
+const TagsSection = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__scopeId", "data-v-b869b780"]]);
+const _hoisted_1$l = { class: "section" };
 const _hoisted_2$f = { class: "section__columns" };
 const _hoisted_3$d = { class: "section__column" };
 const _hoisted_4$b = { class: "section__column-header" };
@@ -10704,7 +10726,7 @@ const _hoisted_12$2 = {
   key: 1,
   class: "section__empty"
 };
-const _sfc_main$j = /* @__PURE__ */ defineComponent({
+const _sfc_main$l = /* @__PURE__ */ defineComponent({
   __name: "FoldersSection",
   props: {
     includeFolders: {},
@@ -10725,7 +10747,7 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
       emit2("update:excludeFolders", props.excludeFolders.filter((p2) => p2 !== path));
     };
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$j, [
+      return openBlock(), createElementBlock("div", _hoisted_1$l, [
         _cache[6] || (_cache[6] = createBaseVNode("div", { class: "section__header" }, [
           createBaseVNode("span", { class: "section__title" }, "FOLDERS")
         ], -1)),
@@ -10795,14 +10817,14 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const FoldersSection = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-af9caf84"]]);
-const _hoisted_1$i = { class: "section" };
+const FoldersSection = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__scopeId", "data-v-af9caf84"]]);
+const _hoisted_1$k = { class: "section" };
 const _hoisted_2$e = { class: "section__toggles" };
 const _hoisted_3$c = { class: "toggle-item" };
 const _hoisted_4$a = ["aria-checked"];
 const _hoisted_5$8 = { class: "toggle-item" };
 const _hoisted_6$8 = ["aria-checked"];
-const _sfc_main$i = /* @__PURE__ */ defineComponent({
+const _sfc_main$k = /* @__PURE__ */ defineComponent({
   __name: "LicenseSection",
   props: {
     noCreditRequired: { type: Boolean },
@@ -10811,7 +10833,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
   emits: ["update:noCreditRequired", "update:allowSelling"],
   setup(__props) {
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$i, [
+      return openBlock(), createElementBlock("div", _hoisted_1$k, [
         _cache[6] || (_cache[6] = createBaseVNode("div", { class: "section__header" }, [
           createBaseVNode("span", { class: "section__title" }, "LICENSE")
         ], -1)),
@@ -10847,8 +10869,8 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const LicenseSection = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__scopeId", "data-v-dea4adf6"]]);
-const _hoisted_1$h = { class: "preview" };
+const LicenseSection = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__scopeId", "data-v-dea4adf6"]]);
+const _hoisted_1$j = { class: "preview" };
 const _hoisted_2$d = { class: "preview__title" };
 const _hoisted_3$b = ["disabled"];
 const _hoisted_4$9 = {
@@ -10870,7 +10892,7 @@ const _hoisted_10$2 = {
   key: 0,
   class: "preview__empty"
 };
-const _sfc_main$h = /* @__PURE__ */ defineComponent({
+const _sfc_main$j = /* @__PURE__ */ defineComponent({
   __name: "LoraPoolPreview",
   props: {
     items: {},
@@ -10885,7 +10907,7 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
       img.style.display = "none";
     };
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$h, [
+      return openBlock(), createElementBlock("div", _hoisted_1$j, [
         createBaseVNode("div", {
           class: "preview__header",
           onMouseenter: _cache[1] || (_cache[1] = ($event) => showTooltip.value = true),
@@ -10948,10 +10970,10 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const LoraPoolPreview = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__scopeId", "data-v-6a4b50a1"]]);
-const _hoisted_1$g = { class: "summary-view" };
+const LoraPoolPreview = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-6a4b50a1"]]);
+const _hoisted_1$i = { class: "summary-view" };
 const _hoisted_2$c = { class: "summary-view__filters" };
-const _sfc_main$g = /* @__PURE__ */ defineComponent({
+const _sfc_main$i = /* @__PURE__ */ defineComponent({
   __name: "LoraPoolSummaryView",
   props: {
     selectedBaseModels: {},
@@ -10969,7 +10991,7 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
   emits: ["open-modal", "update:includeFolders", "update:excludeFolders", "update:noCreditRequired", "update:allowSelling", "refresh"],
   setup(__props) {
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$g, [
+      return openBlock(), createElementBlock("div", _hoisted_1$i, [
         createBaseVNode("div", _hoisted_2$c, [
           createVNode(BaseModelSection, {
             selected: __props.selectedBaseModels,
@@ -11007,8 +11029,8 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const LoraPoolSummaryView = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__scopeId", "data-v-328e7526"]]);
-const _hoisted_1$f = { class: "lora-pool-modal__header" };
+const LoraPoolSummaryView = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__scopeId", "data-v-328e7526"]]);
+const _hoisted_1$h = { class: "lora-pool-modal__header" };
 const _hoisted_2$b = { class: "lora-pool-modal__title-container" };
 const _hoisted_3$a = { class: "lora-pool-modal__title" };
 const _hoisted_4$8 = {
@@ -11020,7 +11042,7 @@ const _hoisted_5$6 = {
   class: "lora-pool-modal__search"
 };
 const _hoisted_6$6 = { class: "lora-pool-modal__body" };
-const _sfc_main$f = /* @__PURE__ */ defineComponent({
+const _sfc_main$h = /* @__PURE__ */ defineComponent({
   __name: "ModalWrapper",
   props: {
     visible: { type: Boolean },
@@ -11068,7 +11090,7 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
                 role: "dialog",
                 "aria-modal": "true"
               }, [
-                createBaseVNode("div", _hoisted_1$f, [
+                createBaseVNode("div", _hoisted_1$h, [
                   createBaseVNode("div", _hoisted_2$b, [
                     createBaseVNode("h3", _hoisted_3$a, toDisplayString(__props.title), 1),
                     __props.subtitle ? (openBlock(), createElementBlock("p", _hoisted_4$8, toDisplayString(__props.subtitle), 1)) : createCommentVNode("", true)
@@ -11095,8 +11117,8 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ModalWrapper = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__scopeId", "data-v-7b4de03d"]]);
-const _hoisted_1$e = { class: "search-container" };
+const ModalWrapper = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__scopeId", "data-v-7b4de03d"]]);
+const _hoisted_1$g = { class: "search-container" };
 const _hoisted_2$a = { class: "model-list" };
 const _hoisted_3$9 = ["checked", "onChange"];
 const _hoisted_4$7 = { class: "model-checkbox-visual" };
@@ -11112,7 +11134,7 @@ const _hoisted_8$3 = {
   key: 0,
   class: "no-results"
 };
-const _sfc_main$e = /* @__PURE__ */ defineComponent({
+const _sfc_main$g = /* @__PURE__ */ defineComponent({
   __name: "BaseModelModal",
   props: {
     visible: { type: Boolean },
@@ -11162,7 +11184,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
         onClose: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("close"))
       }, {
         search: withCtx(() => [
-          createBaseVNode("div", _hoisted_1$e, [
+          createBaseVNode("div", _hoisted_1$g, [
             _cache[3] || (_cache[3] = createBaseVNode("svg", {
               class: "search-icon",
               viewBox: "0 0 16 16",
@@ -11226,8 +11248,8 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const BaseModelModal = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-e02ca44a"]]);
-const _hoisted_1$d = { class: "search-container" };
+const BaseModelModal = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__scopeId", "data-v-e02ca44a"]]);
+const _hoisted_1$f = { class: "search-container" };
 const _hoisted_2$9 = ["onClick"];
 const _hoisted_3$8 = {
   key: 0,
@@ -11239,7 +11261,7 @@ const _hoisted_4$6 = {
 };
 const BATCH_SIZE = 200;
 const SCROLL_THRESHOLD = 100;
-const _sfc_main$d = /* @__PURE__ */ defineComponent({
+const _sfc_main$f = /* @__PURE__ */ defineComponent({
   __name: "TagsModal",
   props: {
     visible: { type: Boolean },
@@ -11325,7 +11347,7 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
         onClose: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("close"))
       }, {
         search: withCtx(() => [
-          createBaseVNode("div", _hoisted_1$d, [
+          createBaseVNode("div", _hoisted_1$f, [
             _cache[3] || (_cache[3] = createBaseVNode("svg", {
               class: "search-icon",
               viewBox: "0 0 16 16",
@@ -11382,8 +11404,8 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const TagsModal = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-48c2535d"]]);
-const _hoisted_1$c = { class: "tree-node" };
+const TagsModal = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__scopeId", "data-v-48c2535d"]]);
+const _hoisted_1$e = { class: "tree-node" };
 const _hoisted_2$8 = {
   key: 1,
   class: "tree-node__toggle-spacer"
@@ -11401,7 +11423,7 @@ const _hoisted_7$4 = {
   key: 0,
   class: "tree-node__children"
 };
-const _sfc_main$c = /* @__PURE__ */ defineComponent({
+const _sfc_main$e = /* @__PURE__ */ defineComponent({
   __name: "FolderTreeNode",
   props: {
     node: {},
@@ -11426,7 +11448,7 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
     };
     return (_ctx, _cache) => {
       const _component_FolderTreeNode = resolveComponent("FolderTreeNode", true);
-      return openBlock(), createElementBlock("div", _hoisted_1$c, [
+      return openBlock(), createElementBlock("div", _hoisted_1$e, [
         createBaseVNode("div", {
           class: normalizeClass(["tree-node__item", [
             `tree-node__item--${__props.variant}`,
@@ -11492,14 +11514,14 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const FolderTreeNode = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-90187dd4"]]);
-const _hoisted_1$b = { class: "search-container" };
+const FolderTreeNode = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-90187dd4"]]);
+const _hoisted_1$d = { class: "search-container" };
 const _hoisted_2$7 = { class: "folder-tree" };
 const _hoisted_3$6 = {
   key: 1,
   class: "no-results"
 };
-const _sfc_main$b = /* @__PURE__ */ defineComponent({
+const _sfc_main$d = /* @__PURE__ */ defineComponent({
   __name: "FoldersModal",
   props: {
     visible: { type: Boolean },
@@ -11563,7 +11585,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
         onClose: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("close"))
       }, {
         search: withCtx(() => [
-          createBaseVNode("div", _hoisted_1$b, [
+          createBaseVNode("div", _hoisted_1$d, [
             _cache[2] || (_cache[2] = createBaseVNode("svg", {
               class: "search-icon",
               viewBox: "0 0 16 16",
@@ -11602,7 +11624,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const FoldersModal = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-046dcbf4"]]);
+const FoldersModal = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-046dcbf4"]]);
 function useLoraPoolApi() {
   const isLoading = ref(false);
   const fetchBaseModels = async (limit = 50) => {
@@ -11843,8 +11865,8 @@ function useModalState() {
     isModalOpen
   };
 }
-const _hoisted_1$a = { class: "lora-pool-widget" };
-const _sfc_main$a = /* @__PURE__ */ defineComponent({
+const _hoisted_1$c = { class: "lora-pool-widget" };
+const _sfc_main$c = /* @__PURE__ */ defineComponent({
   __name: "LoraPoolWidget",
   props: {
     widget: {},
@@ -11872,7 +11894,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
       await state.refreshPreview();
     });
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$a, [
+      return openBlock(), createElementBlock("div", _hoisted_1$c, [
         createVNode(LoraPoolSummaryView, {
           "selected-base-models": unref(state).selectedBaseModels.value,
           "available-base-models": unref(state).availableBaseModels.value,
@@ -11935,8 +11957,8 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const LoraPoolWidget = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-4456abba"]]);
-const _hoisted_1$9 = { class: "last-used-preview" };
+const LoraPoolWidget = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-4456abba"]]);
+const _hoisted_1$b = { class: "last-used-preview" };
 const _hoisted_2$6 = { class: "last-used-preview__content" };
 const _hoisted_3$5 = ["src", "onError"];
 const _hoisted_4$4 = {
@@ -11950,7 +11972,7 @@ const _hoisted_8$2 = {
   key: 0,
   class: "last-used-preview__more"
 };
-const _sfc_main$9 = /* @__PURE__ */ defineComponent({
+const _sfc_main$b = /* @__PURE__ */ defineComponent({
   __name: "LastUsedPreview",
   props: {
     loras: {}
@@ -11978,7 +12000,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
       previewUrls.value[loraName] = "";
     };
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$9, [
+      return openBlock(), createElementBlock("div", _hoisted_1$b, [
         createBaseVNode("div", _hoisted_2$6, [
           (openBlock(true), createElementBlock(Fragment, null, renderList(displayLoras.value, (lora) => {
             return openBlock(), createElementBlock("div", {
@@ -12011,9 +12033,9 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const LastUsedPreview = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__scopeId", "data-v-b940502e"]]);
-const _hoisted_1$8 = { class: "slider-handle__value" };
-const _sfc_main$8 = /* @__PURE__ */ defineComponent({
+const LastUsedPreview = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-b940502e"]]);
+const _hoisted_1$a = { class: "slider-handle__value" };
+const _sfc_main$a = /* @__PURE__ */ defineComponent({
   __name: "SingleSlider",
   props: {
     min: {},
@@ -12139,16 +12161,16 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
           onPointercancel: withModifiers(stopDrag, ["stop"])
         }, [
           _cache[1] || (_cache[1] = createBaseVNode("div", { class: "slider-handle__thumb" }, null, -1)),
-          createBaseVNode("div", _hoisted_1$8, toDisplayString(formatValue(__props.value)), 1)
+          createBaseVNode("div", _hoisted_1$a, toDisplayString(formatValue(__props.value)), 1)
         ], 36)
       ], 34);
     };
   }
 });
-const SingleSlider = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-d04b968b"]]);
-const _hoisted_1$7 = { class: "slider-handle__value" };
+const SingleSlider = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-d04b968b"]]);
+const _hoisted_1$9 = { class: "slider-handle__value" };
 const _hoisted_2$5 = { class: "slider-handle__value" };
-const _sfc_main$7 = /* @__PURE__ */ defineComponent({
+const _sfc_main$9 = /* @__PURE__ */ defineComponent({
   __name: "DualRangeSlider",
   props: {
     min: {},
@@ -12411,7 +12433,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
           onPointercancel: withModifiers(stopDrag, ["stop"])
         }, [
           _cache[3] || (_cache[3] = createBaseVNode("div", { class: "slider-handle__thumb" }, null, -1)),
-          createBaseVNode("div", _hoisted_1$7, toDisplayString(formatValue(__props.valueMin)), 1)
+          createBaseVNode("div", _hoisted_1$9, toDisplayString(formatValue(__props.valueMin)), 1)
         ], 36),
         createBaseVNode("div", {
           class: "slider-handle slider-handle--max",
@@ -12428,8 +12450,8 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const DualRangeSlider = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-9f6c6950"]]);
-const _hoisted_1$6 = { class: "randomizer-settings" };
+const DualRangeSlider = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__scopeId", "data-v-9f6c6950"]]);
+const _hoisted_1$8 = { class: "randomizer-settings" };
 const _hoisted_2$4 = { class: "setting-section" };
 const _hoisted_3$4 = { class: "count-mode-tabs" };
 const _hoisted_4$3 = ["checked"];
@@ -12450,7 +12472,7 @@ const _hoisted_18$1 = { class: "roll-buttons" };
 const _hoisted_19$1 = ["disabled"];
 const _hoisted_20$1 = ["disabled"];
 const _hoisted_21$1 = ["disabled"];
-const _sfc_main$6 = /* @__PURE__ */ defineComponent({
+const _sfc_main$8 = /* @__PURE__ */ defineComponent({
   __name: "LoraRandomizerSettingsView",
   props: {
     countMode: {},
@@ -12490,7 +12512,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
       );
     };
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$6, [
+      return openBlock(), createElementBlock("div", _hoisted_1$8, [
         _cache[29] || (_cache[29] = createBaseVNode("div", { class: "settings-header" }, [
           createBaseVNode("h3", { class: "settings-title" }, "RANDOMIZER SETTINGS")
         ], -1)),
@@ -12684,7 +12706,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const LoraRandomizerSettingsView = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-f7a531b6"]]);
+const LoraRandomizerSettingsView = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-f7a531b6"]]);
 function useLoraRandomizerState(widget) {
   let isRestoring = false;
   const countMode = ref("range");
@@ -12886,8 +12908,8 @@ function useLoraRandomizerState(widget) {
     initializeNextSeed
   };
 }
-const _hoisted_1$5 = { class: "lora-randomizer-widget" };
-const _sfc_main$5 = /* @__PURE__ */ defineComponent({
+const _hoisted_1$7 = { class: "lora-randomizer-widget" };
+const _sfc_main$7 = /* @__PURE__ */ defineComponent({
   __name: "LoraRandomizerWidget",
   props: {
     widget: {},
@@ -13017,7 +13039,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
       };
     });
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$5, [
+      return openBlock(), createElementBlock("div", _hoisted_1$7, [
         createVNode(LoraRandomizerSettingsView, {
           "count-mode": unref(state).countMode.value,
           "count-fixed": unref(state).countFixed.value,
@@ -13058,8 +13080,8 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const LoraRandomizerWidget = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-8063df56"]]);
-const _hoisted_1$4 = { class: "cycler-settings" };
+const LoraRandomizerWidget = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-8063df56"]]);
+const _hoisted_1$6 = { class: "cycler-settings" };
 const _hoisted_2$3 = { class: "setting-section progress-section" };
 const _hoisted_3$3 = { class: "progress-label" };
 const _hoisted_4$2 = ["title"];
@@ -13101,7 +13123,7 @@ const _hoisted_26 = { class: "setting-section" };
 const _hoisted_27 = { class: "section-header-with-toggle" };
 const _hoisted_28 = { class: "setting-label" };
 const _hoisted_29 = ["aria-checked"];
-const _sfc_main$4 = /* @__PURE__ */ defineComponent({
+const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   __name: "LoraCyclerSettingsView",
   props: {
     currentIndex: {},
@@ -13164,7 +13186,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       tempRepeat.value = "";
     };
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$4, [
+      return openBlock(), createElementBlock("div", _hoisted_1$6, [
         _cache[21] || (_cache[21] = createBaseVNode("div", { class: "settings-header" }, [
           createBaseVNode("h3", { class: "settings-title" }, "CYCLER SETTINGS")
         ], -1)),
@@ -13328,8 +13350,8 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const LoraCyclerSettingsView = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-5b16b9d3"]]);
-const _hoisted_1$3 = { class: "search-container" };
+const LoraCyclerSettingsView = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-5b16b9d3"]]);
+const _hoisted_1$5 = { class: "search-container" };
 const _hoisted_2$2 = { class: "lora-list" };
 const _hoisted_3$2 = ["onMouseenter", "onClick"];
 const _hoisted_4$1 = { class: "lora-index" };
@@ -13342,7 +13364,7 @@ const _hoisted_7 = {
   key: 0,
   class: "no-results"
 };
-const _sfc_main$3 = /* @__PURE__ */ defineComponent({
+const _sfc_main$5 = /* @__PURE__ */ defineComponent({
   __name: "LoraListModal",
   props: {
     visible: { type: Boolean },
@@ -13452,7 +13474,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
         onClose: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("close"))
       }, {
         search: withCtx(() => [
-          createBaseVNode("div", _hoisted_1$3, [
+          createBaseVNode("div", _hoisted_1$5, [
             _cache[3] || (_cache[3] = createBaseVNode("svg", {
               class: "search-icon",
               viewBox: "0 0 16 16",
@@ -13511,7 +13533,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const LoraListModal = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-d7fd504d"]]);
+const LoraListModal = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-d7fd504d"]]);
 function useLoraCyclerState(widget) {
   let isRestoring = false;
   const currentIndex = ref(1);
@@ -13746,8 +13768,8 @@ function useLoraCyclerState(widget) {
     togglePause
   };
 }
-const _hoisted_1$2 = { class: "lora-cycler-widget" };
-const _sfc_main$2 = /* @__PURE__ */ defineComponent({
+const _hoisted_1$4 = { class: "lora-cycler-widget" };
+const _sfc_main$4 = /* @__PURE__ */ defineComponent({
   __name: "LoraCyclerWidget",
   props: {
     widget: {},
@@ -13985,7 +14007,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       };
     });
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$2, [
+      return openBlock(), createElementBlock("div", _hoisted_1$4, [
         createVNode(LoraCyclerSettingsView, {
           "current-index": unref(state).currentIndex.value,
           "total-count": unref(state).totalCount.value,
@@ -14022,7 +14044,843 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const LoraCyclerWidget = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-f09f4e8b"]]);
+const LoraCyclerWidget = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-f09f4e8b"]]);
+function useModelPoolApi() {
+  const isLoading = ref(false);
+  const fetchBaseModels = async (limit = 50) => {
+    try {
+      const response = await fetch(`/api/lm/checkpoints/base-models?limit=${limit}`);
+      const data = await response.json();
+      return data.base_models || [];
+    } catch (error) {
+      console.error("[ModelPoolApi] Failed to fetch base models:", error);
+      return [];
+    }
+  };
+  const fetchTags = async (limit = 0) => {
+    try {
+      const response = await fetch(`/api/lm/checkpoints/top-tags?limit=${limit}`);
+      const data = await response.json();
+      return data.tags || [];
+    } catch (error) {
+      console.error("[ModelPoolApi] Failed to fetch tags:", error);
+      return [];
+    }
+  };
+  const fetchFolderTree = async () => {
+    try {
+      const response = await fetch("/api/lm/checkpoints/unified-folder-tree");
+      const data = await response.json();
+      return transformFolderTree(data.tree || {});
+    } catch (error) {
+      console.error("[ModelPoolApi] Failed to fetch folder tree:", error);
+      return [];
+    }
+  };
+  const transformFolderTree = (tree, parentPath = "") => {
+    if (!tree || typeof tree !== "object") {
+      return [];
+    }
+    return Object.entries(tree).map(([name, children]) => {
+      const path = parentPath ? `${parentPath}/${name}` : name;
+      const childNodes = transformFolderTree(children, path);
+      return {
+        key: path,
+        label: name,
+        children: childNodes.length > 0 ? childNodes : void 0
+      };
+    });
+  };
+  const fetchModels = async (params) => {
+    var _a2, _b, _c, _d;
+    isLoading.value = true;
+    try {
+      const urlParams = new URLSearchParams();
+      urlParams.set("page", String(params.page || 1));
+      urlParams.set("page_size", String(params.pageSize || 6));
+      (_a2 = params.baseModels) == null ? void 0 : _a2.forEach((bm) => urlParams.append("base_model", bm));
+      (_b = params.tagsInclude) == null ? void 0 : _b.forEach((tag) => urlParams.append("tag_include", tag));
+      (_c = params.tagsExclude) == null ? void 0 : _c.forEach((tag) => urlParams.append("tag_exclude", tag));
+      if (params.foldersInclude && params.foldersInclude.length > 0) {
+        params.foldersInclude.forEach((folder) => urlParams.append("folder_include", folder));
+        urlParams.set("recursive", "true");
+      }
+      (_d = params.foldersExclude) == null ? void 0 : _d.forEach((folder) => urlParams.append("folder_exclude", folder));
+      if (params.noCreditRequired !== void 0) {
+        urlParams.set("credit_required", String(!params.noCreditRequired));
+      }
+      if (params.allowSelling !== void 0) {
+        urlParams.set("allow_selling_generated_content", String(params.allowSelling));
+      }
+      const response = await fetch(`/api/lm/checkpoints/list?${urlParams}`);
+      const data = await response.json();
+      return {
+        items: data.items || [],
+        total: data.total || 0
+      };
+    } catch (error) {
+      console.error("[ModelPoolApi] Failed to fetch models:", error);
+      return { items: [], total: 0 };
+    } finally {
+      isLoading.value = false;
+    }
+  };
+  return {
+    isLoading,
+    fetchBaseModels,
+    fetchTags,
+    fetchFolderTree,
+    fetchModels
+  };
+}
+function useModelPoolState(widget) {
+  const api2 = useModelPoolApi();
+  let isUpdatingFromConfig = false;
+  const selectedBaseModels = ref([]);
+  const includeTags = ref([]);
+  const excludeTags = ref([]);
+  const includeFolders = ref([]);
+  const excludeFolders = ref([]);
+  const noCreditRequired = ref(false);
+  const allowSelling = ref(false);
+  const availableBaseModels = ref([]);
+  const availableTags = ref([]);
+  const folderTree = ref([]);
+  const previewItems = ref([]);
+  const matchCount = ref(0);
+  const isPreviewStale = ref(false);
+  const isLoading = api2.isLoading;
+  const buildConfig = () => {
+    return {
+      version: 1,
+      filters: {
+        baseModels: [...selectedBaseModels.value],
+        tags: {
+          include: [...includeTags.value],
+          exclude: [...excludeTags.value]
+        },
+        folders: {
+          include: [...includeFolders.value],
+          exclude: [...excludeFolders.value]
+        },
+        favoritesOnly: false,
+        // For future implementation
+        license: {
+          noCreditRequired: noCreditRequired.value,
+          allowSelling: allowSelling.value
+        }
+      },
+      preview: {
+        matchCount: matchCount.value,
+        lastUpdated: Date.now()
+      }
+    };
+  };
+  const updateWidgetValue = () => {
+    if (!isUpdatingFromConfig) {
+      widget.value = buildConfig();
+    }
+  };
+  const restoreFromConfig = (config) => {
+    var _a2, _b, _c, _d, _e2, _f;
+    if (!(config == null ? void 0 : config.filters)) return;
+    isUpdatingFromConfig = true;
+    try {
+      const { filters } = config;
+      selectedBaseModels.value = [...filters.baseModels || []];
+      includeTags.value = [...((_a2 = filters.tags) == null ? void 0 : _a2.include) || []];
+      excludeTags.value = [...((_b = filters.tags) == null ? void 0 : _b.exclude) || []];
+      includeFolders.value = [...((_c = filters.folders) == null ? void 0 : _c.include) || []];
+      excludeFolders.value = [...((_d = filters.folders) == null ? void 0 : _d.exclude) || []];
+      noCreditRequired.value = ((_e2 = filters.license) == null ? void 0 : _e2.noCreditRequired) || false;
+      allowSelling.value = ((_f = filters.license) == null ? void 0 : _f.allowSelling) || false;
+    } finally {
+      setTimeout(() => {
+        isUpdatingFromConfig = false;
+      }, 0);
+    }
+  };
+  const fetchFilterOptions = async () => {
+    try {
+      const [models, tags, folders] = await Promise.all([
+        api2.fetchBaseModels(),
+        api2.fetchTags(),
+        api2.fetchFolderTree()
+      ]);
+      availableBaseModels.value = models.filter((m2) => m2.name !== "unknown");
+      availableTags.value = tags.filter((t) => t.name !== "unknown");
+      folderTree.value = folders;
+    } catch (error) {
+      console.error("[ModelPoolState] Failed to fetch filter options:", error);
+    }
+  };
+  const refreshPreview = async () => {
+    if (isUpdatingFromConfig) return;
+    try {
+      const result = await api2.fetchModels({
+        baseModels: selectedBaseModels.value,
+        tagsInclude: includeTags.value,
+        tagsExclude: excludeTags.value,
+        foldersInclude: includeFolders.value,
+        foldersExclude: excludeFolders.value,
+        noCreditRequired: noCreditRequired.value,
+        allowSelling: allowSelling.value,
+        page: 1,
+        pageSize: 6
+        // Match LoraPoolSummaryView display
+      });
+      previewItems.value = result.items;
+      matchCount.value = result.total;
+      isPreviewStale.value = false;
+      updateWidgetValue();
+    } catch (error) {
+      console.error("[ModelPoolState] Failed to refresh preview:", error);
+    }
+  };
+  let filterTimeout = null;
+  const onFilterChange = () => {
+    if (filterTimeout) clearTimeout(filterTimeout);
+    filterTimeout = setTimeout(() => {
+      refreshPreview();
+    }, 300);
+  };
+  watch([
+    selectedBaseModels,
+    includeTags,
+    excludeTags,
+    includeFolders,
+    excludeFolders,
+    noCreditRequired,
+    allowSelling
+  ], onFilterChange, { deep: true });
+  return {
+    // Filter state
+    selectedBaseModels,
+    includeTags,
+    excludeTags,
+    includeFolders,
+    excludeFolders,
+    noCreditRequired,
+    allowSelling,
+    // Available options
+    availableBaseModels,
+    availableTags,
+    folderTree,
+    // Preview state
+    previewItems,
+    matchCount,
+    isLoading,
+    // Actions
+    buildConfig,
+    restoreFromConfig,
+    fetchFilterOptions,
+    refreshPreview
+  };
+}
+const _hoisted_1$3 = { class: "model-pool-widget" };
+const _sfc_main$3 = /* @__PURE__ */ defineComponent({
+  __name: "ModelPoolWidget",
+  props: {
+    widget: {},
+    node: {}
+  },
+  setup(__props) {
+    const props = __props;
+    const state = useModelPoolState(props.widget);
+    const modalState = useModalState();
+    const openModal = (modal) => {
+      modalState.openModal(modal);
+    };
+    onMounted(async () => {
+      props.widget.callback = (v2) => {
+        if (v2) {
+          console.log("[ModelPoolWidget] Restoring config from callback");
+          state.restoreFromConfig(v2);
+        }
+      };
+      if (props.widget.value) {
+        console.log("[ModelPoolWidget] Restoring from initial value");
+        state.restoreFromConfig(props.widget.value);
+      }
+      await state.fetchFilterOptions();
+      await state.refreshPreview();
+    });
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", _hoisted_1$3, [
+        createVNode(LoraPoolSummaryView, {
+          "selected-base-models": unref(state).selectedBaseModels.value,
+          "available-base-models": unref(state).availableBaseModels.value,
+          "include-tags": unref(state).includeTags.value,
+          "exclude-tags": unref(state).excludeTags.value,
+          "include-folders": unref(state).includeFolders.value,
+          "exclude-folders": unref(state).excludeFolders.value,
+          "no-credit-required": unref(state).noCreditRequired.value,
+          "allow-selling": unref(state).allowSelling.value,
+          "preview-items": unref(state).previewItems.value,
+          "match-count": unref(state).matchCount.value,
+          "is-loading": unref(state).isLoading.value,
+          onOpenModal: openModal,
+          "onUpdate:includeFolders": _cache[0] || (_cache[0] = ($event) => unref(state).includeFolders.value = $event),
+          "onUpdate:excludeFolders": _cache[1] || (_cache[1] = ($event) => unref(state).excludeFolders.value = $event),
+          "onUpdate:noCreditRequired": _cache[2] || (_cache[2] = ($event) => unref(state).noCreditRequired.value = $event),
+          "onUpdate:allowSelling": _cache[3] || (_cache[3] = ($event) => unref(state).allowSelling.value = $event),
+          onRefresh: unref(state).refreshPreview
+        }, null, 8, ["selected-base-models", "available-base-models", "include-tags", "exclude-tags", "include-folders", "exclude-folders", "no-credit-required", "allow-selling", "preview-items", "match-count", "is-loading", "onRefresh"]),
+        createVNode(BaseModelModal, {
+          visible: unref(modalState).isModalOpen("baseModels"),
+          models: unref(state).availableBaseModels.value,
+          selected: unref(state).selectedBaseModels.value,
+          onClose: unref(modalState).closeModal,
+          "onUpdate:selected": _cache[4] || (_cache[4] = ($event) => unref(state).selectedBaseModels.value = $event)
+        }, null, 8, ["visible", "models", "selected", "onClose"]),
+        createVNode(TagsModal, {
+          visible: unref(modalState).isModalOpen("includeTags"),
+          tags: unref(state).availableTags.value,
+          selected: unref(state).includeTags.value,
+          variant: "include",
+          onClose: unref(modalState).closeModal,
+          "onUpdate:selected": _cache[5] || (_cache[5] = ($event) => unref(state).includeTags.value = $event)
+        }, null, 8, ["visible", "tags", "selected", "onClose"]),
+        createVNode(TagsModal, {
+          visible: unref(modalState).isModalOpen("excludeTags"),
+          tags: unref(state).availableTags.value,
+          selected: unref(state).excludeTags.value,
+          variant: "exclude",
+          onClose: unref(modalState).closeModal,
+          "onUpdate:selected": _cache[6] || (_cache[6] = ($event) => unref(state).excludeTags.value = $event)
+        }, null, 8, ["visible", "tags", "selected", "onClose"]),
+        createVNode(FoldersModal, {
+          visible: unref(modalState).isModalOpen("includeFolders"),
+          folders: unref(state).folderTree.value,
+          selected: unref(state).includeFolders.value,
+          variant: "include",
+          onClose: unref(modalState).closeModal,
+          "onUpdate:selected": _cache[7] || (_cache[7] = ($event) => unref(state).includeFolders.value = $event)
+        }, null, 8, ["visible", "folders", "selected", "onClose"]),
+        createVNode(FoldersModal, {
+          visible: unref(modalState).isModalOpen("excludeFolders"),
+          folders: unref(state).folderTree.value,
+          selected: unref(state).excludeFolders.value,
+          variant: "exclude",
+          onClose: unref(modalState).closeModal,
+          "onUpdate:selected": _cache[8] || (_cache[8] = ($event) => unref(state).excludeFolders.value = $event)
+        }, null, 8, ["visible", "folders", "selected", "onClose"])
+      ]);
+    };
+  }
+});
+const ModelPoolWidget = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-d4caba28"]]);
+function useModelCyclerState(widget) {
+  let isRestoring = false;
+  const currentIndex = ref(1);
+  const totalCount = ref(0);
+  const poolConfigHash = ref("");
+  const modelStrength = ref(1);
+  const clipStrength = ref(1);
+  const useCustomClipRange = ref(false);
+  const sortBy = ref("filename");
+  const currentModelName = ref("");
+  const currentModelFilename = ref("");
+  const isLoading = ref(false);
+  const executionIndex = ref(null);
+  const nextIndex = ref(null);
+  const repeatCount = ref(1);
+  const repeatUsed = ref(0);
+  const displayRepeatUsed = ref(0);
+  const isPaused = ref(false);
+  const isWorkflowExecuting = ref(false);
+  const executingRepeatStep = ref(0);
+  const buildConfig = () => {
+    if (isRestoring) {
+      return {
+        current_index: currentIndex.value,
+        total_count: totalCount.value,
+        pool_config_hash: poolConfigHash.value,
+        model_strength: modelStrength.value,
+        clip_strength: clipStrength.value,
+        use_same_clip_strength: !useCustomClipRange.value,
+        sort_by: sortBy.value,
+        current_model_name: currentModelName.value,
+        current_model_filename: currentModelFilename.value,
+        execution_index: executionIndex.value,
+        next_index: nextIndex.value,
+        repeat_count: repeatCount.value,
+        repeat_used: repeatUsed.value,
+        is_paused: isPaused.value
+      };
+    }
+    return {
+      current_index: currentIndex.value,
+      total_count: totalCount.value,
+      pool_config_hash: poolConfigHash.value,
+      model_strength: modelStrength.value,
+      clip_strength: clipStrength.value,
+      use_same_clip_strength: !useCustomClipRange.value,
+      sort_by: sortBy.value,
+      current_model_name: currentModelName.value,
+      current_model_filename: currentModelFilename.value,
+      execution_index: executionIndex.value,
+      next_index: nextIndex.value,
+      repeat_count: repeatCount.value,
+      repeat_used: repeatUsed.value,
+      is_paused: isPaused.value
+    };
+  };
+  const restoreFromConfig = (config) => {
+    isRestoring = true;
+    try {
+      currentIndex.value = config.current_index || 1;
+      totalCount.value = config.total_count || 0;
+      poolConfigHash.value = config.pool_config_hash || "";
+      modelStrength.value = config.model_strength ?? 1;
+      clipStrength.value = config.clip_strength ?? 1;
+      useCustomClipRange.value = !(config.use_same_clip_strength ?? true);
+      sortBy.value = config.sort_by || "filename";
+      currentModelName.value = config.current_model_name || "";
+      currentModelFilename.value = config.current_model_filename || "";
+      repeatCount.value = config.repeat_count ?? 1;
+      repeatUsed.value = config.repeat_used ?? 0;
+      isPaused.value = config.is_paused ?? false;
+    } finally {
+      isRestoring = false;
+    }
+  };
+  const generateNextIndex = () => {
+    executionIndex.value = nextIndex.value;
+    const current = executionIndex.value ?? currentIndex.value;
+    let next = current + 1;
+    if (totalCount.value > 0 && next > totalCount.value) {
+      next = 1;
+    }
+    nextIndex.value = next;
+  };
+  const initializeNextIndex = () => {
+    if (nextIndex.value === null) {
+      let next = currentIndex.value + 1;
+      if (totalCount.value > 0 && next > totalCount.value) {
+        next = 1;
+      }
+      nextIndex.value = next;
+    }
+  };
+  const hashPoolConfig = (poolConfig) => {
+    if (!poolConfig || !poolConfig.filters) {
+      return "";
+    }
+    try {
+      return btoa(JSON.stringify(poolConfig.filters));
+    } catch {
+      return "";
+    }
+  };
+  const fetchCyclerList = async (poolConfig) => {
+    try {
+      isLoading.value = true;
+      const requestBody = {
+        sort_by: sortBy.value
+      };
+      if (poolConfig == null ? void 0 : poolConfig.filters) {
+        requestBody.pool_config = poolConfig.filters;
+      }
+      const response = await fetch("/api/lm/checkpoints/cycler-list", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(requestBody)
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to fetch cycler list");
+      }
+      const data = await response.json();
+      if (!data.success) {
+        throw new Error(data.error || "Failed to get cycler list");
+      }
+      return data.loras || [];
+    } catch (error) {
+      console.error("[ModelCyclerState] Error fetching cycler list:", error);
+      throw error;
+    } finally {
+      isLoading.value = false;
+    }
+  };
+  const refreshList = async (poolConfig) => {
+    try {
+      const newHash = hashPoolConfig(poolConfig);
+      const hashChanged = newHash !== poolConfigHash.value;
+      const modelList = await fetchCyclerList(poolConfig);
+      totalCount.value = modelList.length;
+      if (hashChanged) {
+        currentIndex.value = 1;
+        poolConfigHash.value = newHash;
+      }
+      if (currentIndex.value > totalCount.value) {
+        currentIndex.value = Math.max(1, totalCount.value);
+      }
+      if (modelList.length > 0 && currentIndex.value > 0) {
+        const currentModel = modelList[currentIndex.value - 1];
+        if (currentModel) {
+          currentModelName.value = sortBy.value === "filename" ? currentModel.file_name : currentModel.model_name || currentModel.file_name;
+          currentModelFilename.value = currentModel.file_name;
+        }
+      } else {
+        currentModelName.value = "";
+        currentModelFilename.value = "";
+      }
+      return modelList;
+    } catch (error) {
+      console.error("[ModelCyclerState] Error refreshing list:", error);
+      throw error;
+    }
+  };
+  const setIndex = (index) => {
+    if (index >= 1 && index <= totalCount.value) {
+      currentIndex.value = index;
+    }
+  };
+  const resetIndex = () => {
+    currentIndex.value = 1;
+    repeatUsed.value = 0;
+    displayRepeatUsed.value = 0;
+  };
+  const togglePause = () => {
+    isPaused.value = !isPaused.value;
+  };
+  const isClipStrengthDisabled = computed(() => !useCustomClipRange.value);
+  watch(modelStrength, (newValue) => {
+    if (!useCustomClipRange.value) {
+      clipStrength.value = newValue;
+    }
+  });
+  watch([
+    currentIndex,
+    totalCount,
+    poolConfigHash,
+    modelStrength,
+    clipStrength,
+    useCustomClipRange,
+    sortBy,
+    currentModelName,
+    currentModelFilename,
+    repeatCount,
+    repeatUsed,
+    isPaused
+  ], () => {
+    widget.value = buildConfig();
+  }, { deep: true });
+  return {
+    // State refs
+    currentIndex,
+    totalCount,
+    poolConfigHash,
+    modelStrength,
+    clipStrength,
+    useCustomClipRange,
+    sortBy,
+    currentModelName,
+    currentModelFilename,
+    isLoading,
+    executionIndex,
+    nextIndex,
+    repeatCount,
+    repeatUsed,
+    displayRepeatUsed,
+    isPaused,
+    isWorkflowExecuting,
+    executingRepeatStep,
+    // Computed
+    isClipStrengthDisabled,
+    // Methods
+    buildConfig,
+    restoreFromConfig,
+    hashPoolConfig,
+    fetchCyclerList,
+    refreshList,
+    setIndex,
+    generateNextIndex,
+    initializeNextIndex,
+    resetIndex,
+    togglePause
+  };
+}
+const _hoisted_1$2 = { class: "model-cycler-widget" };
+const _sfc_main$2 = /* @__PURE__ */ defineComponent({
+  __name: "ModelCyclerWidget",
+  props: {
+    widget: {},
+    node: {},
+    api: {}
+  },
+  setup(__props) {
+    const props = __props;
+    const state = useModelCyclerState(props.widget);
+    const HAS_EXECUTED = Symbol("HAS_EXECUTED");
+    const executionQueue = [];
+    const hasQueuedPrompts = ref(false);
+    const pendingExecutions = [];
+    const lastPoolConfigHash = ref("");
+    const isMounted = ref(false);
+    const isModalOpen = ref(false);
+    const cachedModelList = ref([]);
+    const getPoolConfig = () => {
+      if (props.node.getPoolConfig) {
+        return props.node.getPoolConfig();
+      }
+      return null;
+    };
+    const updateDisplayFromModelList = (modelList, index) => {
+      if (modelList.length > 0 && index > 0 && index <= modelList.length) {
+        const currentModel = modelList[index - 1];
+        if (currentModel) {
+          state.currentModelName.value = currentModel.file_name;
+          state.currentModelFilename.value = currentModel.file_name;
+        }
+      }
+    };
+    const handleIndexUpdate = async (newIndex) => {
+      props.widget[HAS_EXECUTED] = false;
+      state.executionIndex.value = null;
+      state.nextIndex.value = null;
+      executionQueue.length = 0;
+      hasQueuedPrompts.value = false;
+      state.setIndex(newIndex);
+      try {
+        const poolConfig = getPoolConfig();
+        const modelList = await state.fetchCyclerList(poolConfig);
+        cachedModelList.value = modelList;
+        updateDisplayFromModelList(modelList, newIndex);
+      } catch (error) {
+        console.error("[ModelCyclerWidget] Error updating index:", error);
+      }
+    };
+    const handleModalSelect = (index) => {
+      handleIndexUpdate(index);
+    };
+    const handleUseCustomClipRangeChange = (newValue) => {
+      state.useCustomClipRange.value = newValue;
+      if (!newValue) {
+        state.clipStrength.value = state.modelStrength.value;
+      }
+    };
+    const handleRepeatCountChange = (newValue) => {
+      state.repeatCount.value = newValue;
+      state.repeatUsed.value = 0;
+      state.displayRepeatUsed.value = 0;
+    };
+    const handleTogglePause = () => {
+      state.togglePause();
+    };
+    const handleResetIndex = async () => {
+      props.widget[HAS_EXECUTED] = false;
+      state.executionIndex.value = null;
+      state.nextIndex.value = null;
+      executionQueue.length = 0;
+      hasQueuedPrompts.value = false;
+      state.resetIndex();
+      try {
+        const poolConfig = getPoolConfig();
+        const modelList = await state.fetchCyclerList(poolConfig);
+        cachedModelList.value = modelList;
+        updateDisplayFromModelList(modelList, 1);
+      } catch (error) {
+        console.error("[ModelCyclerWidget] Error resetting index:", error);
+      }
+    };
+    const checkPoolConfigChanges = async () => {
+      if (!isMounted.value) return;
+      const poolConfig = getPoolConfig();
+      const newHash = state.hashPoolConfig(poolConfig);
+      if (newHash !== lastPoolConfigHash.value) {
+        console.log("[ModelCyclerWidget] Pool config changed, refreshing list");
+        lastPoolConfigHash.value = newHash;
+        try {
+          await state.refreshList(poolConfig);
+          const modelList = await state.fetchCyclerList(poolConfig);
+          cachedModelList.value = modelList;
+        } catch (error) {
+          console.error("[ModelCyclerWidget] Error on pool config change:", error);
+        }
+      }
+    };
+    onMounted(async () => {
+      var _a2;
+      props.widget.callback = (v2) => {
+        if (v2) {
+          state.restoreFromConfig(v2);
+        }
+      };
+      if (props.widget.value) {
+        state.restoreFromConfig(props.widget.value);
+      }
+      props.widget.beforeQueued = () => {
+        if (state.isPaused.value) {
+          executionQueue.push({
+            isPaused: true,
+            repeatUsed: state.repeatUsed.value,
+            repeatCount: state.repeatCount.value,
+            shouldAdvanceDisplay: false,
+            displayRepeatUsed: state.displayRepeatUsed.value
+            // Keep current display value when paused
+          });
+          hasQueuedPrompts.value = true;
+          const pausedConfig = state.buildConfig();
+          pausedConfig.execution_index = null;
+          props.widget.value = pausedConfig;
+          return;
+        }
+        if (props.widget[HAS_EXECUTED]) {
+          if (state.repeatUsed.value < state.repeatCount.value) {
+            state.repeatUsed.value++;
+          } else {
+            state.repeatUsed.value = 1;
+            state.generateNextIndex();
+          }
+        } else {
+          state.repeatUsed.value = 1;
+          state.initializeNextIndex();
+          props.widget[HAS_EXECUTED] = true;
+        }
+        const shouldAdvanceDisplay = state.repeatUsed.value >= state.repeatCount.value;
+        const displayRepeatUsed = shouldAdvanceDisplay ? 0 : state.repeatUsed.value;
+        executionQueue.push({
+          isPaused: false,
+          repeatUsed: state.repeatUsed.value,
+          repeatCount: state.repeatCount.value,
+          shouldAdvanceDisplay,
+          displayRepeatUsed
+        });
+        hasQueuedPrompts.value = true;
+        props.widget.value = state.buildConfig();
+      };
+      isMounted.value = true;
+      try {
+        const poolConfig = getPoolConfig();
+        lastPoolConfigHash.value = state.hashPoolConfig(poolConfig);
+        await state.refreshList(poolConfig);
+        const modelList = await state.fetchCyclerList(poolConfig);
+        cachedModelList.value = modelList;
+      } catch (error) {
+        console.error("[ModelCyclerWidget] Error on initial load:", error);
+      }
+      const originalOnExecuted = (_a2 = props.node.onExecuted) == null ? void 0 : _a2.bind(props.node);
+      props.node.onExecuted = function(output) {
+        console.log("[ModelCyclerWidget] Node executed with output:", output);
+        const context = executionQueue.shift();
+        hasQueuedPrompts.value = executionQueue.length > 0;
+        const shouldAdvanceDisplay = context ? context.shouldAdvanceDisplay : !state.isPaused.value && state.repeatUsed.value >= state.repeatCount.value;
+        const nextIndex = (output == null ? void 0 : output.next_index) !== void 0 ? Array.isArray(output.next_index) ? output.next_index[0] : output.next_index : state.currentIndex.value;
+        const nextModelName = (output == null ? void 0 : output.next_model_name) !== void 0 ? Array.isArray(output.next_model_name) ? output.next_model_name[0] : output.next_model_name : "";
+        const nextModelFilename = (output == null ? void 0 : output.next_model_filename) !== void 0 ? Array.isArray(output.next_model_filename) ? output.next_model_filename[0] : output.next_model_filename : "";
+        const currentModelName = (output == null ? void 0 : output.current_model_name) !== void 0 ? Array.isArray(output.current_model_name) ? output.current_model_name[0] : output.current_model_name : "";
+        const currentModelFilename = (output == null ? void 0 : output.current_model_filename) !== void 0 ? Array.isArray(output.current_model_filename) ? output.current_model_filename[0] : output.current_model_filename : "";
+        if ((output == null ? void 0 : output.total_count) !== void 0) {
+          const val = Array.isArray(output.total_count) ? output.total_count[0] : output.total_count;
+          state.totalCount.value = val;
+        }
+        if (context) {
+          pendingExecutions.push({
+            repeatUsed: context.repeatUsed,
+            repeatCount: context.repeatCount,
+            shouldAdvanceDisplay,
+            displayRepeatUsed: context.displayRepeatUsed,
+            output: {
+              nextIndex,
+              nextModelName,
+              nextModelFilename,
+              currentModelName,
+              currentModelFilename
+            }
+          });
+          state.executingRepeatStep.value = context.repeatUsed;
+          state.isWorkflowExecuting.value = true;
+        }
+        if (originalOnExecuted) {
+          return originalOnExecuted(output);
+        }
+      };
+      if (props.api) {
+        const handleExecutionComplete = () => {
+          if (pendingExecutions.length === 0) {
+            return;
+          }
+          const pending = pendingExecutions.shift();
+          state.displayRepeatUsed.value = pending.displayRepeatUsed;
+          if (pending.output) {
+            if (pending.shouldAdvanceDisplay) {
+              state.currentIndex.value = pending.output.nextIndex;
+              state.currentModelName.value = pending.output.nextModelName;
+              state.currentModelFilename.value = pending.output.nextModelFilename;
+            } else {
+              state.currentModelName.value = pending.output.currentModelName;
+              state.currentModelFilename.value = pending.output.currentModelFilename;
+            }
+          }
+          if (pendingExecutions.length === 0) {
+            state.isWorkflowExecuting.value = false;
+            state.executingRepeatStep.value = 0;
+          }
+        };
+        props.api.addEventListener("execution_success", handleExecutionComplete);
+        props.api.addEventListener("execution_error", handleExecutionComplete);
+        props.api.addEventListener("execution_interrupted", handleExecutionComplete);
+        const apiCleanup = () => {
+          props.api.removeEventListener("execution_success", handleExecutionComplete);
+          props.api.removeEventListener("execution_error", handleExecutionComplete);
+          props.api.removeEventListener("execution_interrupted", handleExecutionComplete);
+        };
+        const existingCleanup = props.widget.onRemoveCleanup;
+        props.widget.onRemoveCleanup = () => {
+          existingCleanup == null ? void 0 : existingCleanup();
+          apiCleanup();
+        };
+      }
+      const checkInterval = setInterval(checkPoolConfigChanges, 1e3);
+      const existingCleanupForInterval = props.widget.onRemoveCleanup;
+      props.widget.onRemoveCleanup = () => {
+        existingCleanupForInterval == null ? void 0 : existingCleanupForInterval();
+        clearInterval(checkInterval);
+      };
+    });
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", _hoisted_1$2, [
+        createVNode(LoraCyclerSettingsView, {
+          "current-index": unref(state).currentIndex.value,
+          "total-count": unref(state).totalCount.value,
+          "current-lora-name": unref(state).currentModelName.value,
+          "current-lora-filename": unref(state).currentModelFilename.value,
+          "model-strength": unref(state).modelStrength.value,
+          "clip-strength": unref(state).clipStrength.value,
+          "use-custom-clip-range": unref(state).useCustomClipRange.value,
+          "is-clip-strength-disabled": unref(state).isClipStrengthDisabled.value,
+          "is-loading": unref(state).isLoading.value,
+          "repeat-count": unref(state).repeatCount.value,
+          "repeat-used": unref(state).displayRepeatUsed.value,
+          "is-paused": unref(state).isPaused.value,
+          "is-pause-disabled": hasQueuedPrompts.value,
+          "is-workflow-executing": unref(state).isWorkflowExecuting.value,
+          "executing-repeat-step": unref(state).executingRepeatStep.value,
+          "onUpdate:currentIndex": handleIndexUpdate,
+          "onUpdate:modelStrength": _cache[0] || (_cache[0] = ($event) => unref(state).modelStrength.value = $event),
+          "onUpdate:clipStrength": _cache[1] || (_cache[1] = ($event) => unref(state).clipStrength.value = $event),
+          "onUpdate:useCustomClipRange": handleUseCustomClipRangeChange,
+          "onUpdate:repeatCount": handleRepeatCountChange,
+          onTogglePause: handleTogglePause,
+          onResetIndex: handleResetIndex,
+          onOpenLoraSelector: _cache[2] || (_cache[2] = ($event) => isModalOpen.value = true)
+        }, null, 8, ["current-index", "total-count", "current-lora-name", "current-lora-filename", "model-strength", "clip-strength", "use-custom-clip-range", "is-clip-strength-disabled", "is-loading", "repeat-count", "repeat-used", "is-paused", "is-pause-disabled", "is-workflow-executing", "executing-repeat-step"]),
+        createVNode(LoraListModal, {
+          visible: isModalOpen.value,
+          "lora-list": _ctx.cachedLoraList,
+          "current-index": unref(state).currentIndex.value,
+          onClose: _cache[3] || (_cache[3] = ($event) => isModalOpen.value = false),
+          onSelect: handleModalSelect
+        }, null, 8, ["visible", "lora-list", "current-index"])
+      ]);
+    };
+  }
+});
+const ModelCyclerWidget = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-da63f7d2"]]);
 const _hoisted_1$1 = { class: "json-display-widget" };
 const _hoisted_2$1 = {
   class: "json-content",
@@ -14818,6 +15676,111 @@ function createLoraCyclerWidget(node) {
   };
   return { widget };
 }
+function createModelPoolWidget(node) {
+  const container = document.createElement("div");
+  container.id = `model-pool-widget-${node.id}`;
+  container.style.width = "100%";
+  container.style.height = "100%";
+  container.style.display = "flex";
+  container.style.flexDirection = "column";
+  container.style.overflow = "hidden";
+  forwardMiddleMouseToCanvas(container);
+  let internalValue;
+  const widget = node.addDOMWidget(
+    "pool_config",
+    "MODEL_POOL_CONFIG",
+    container,
+    {
+      getValue() {
+        return internalValue;
+      },
+      setValue(v2) {
+        internalValue = v2;
+      },
+      serialize: true,
+      getMinHeight() {
+        return LORA_POOL_WIDGET_MIN_HEIGHT;
+      }
+    }
+  );
+  const vueApp = createApp(ModelPoolWidget, {
+    widget,
+    node
+  });
+  vueApp.use(PrimeVue, {
+    unstyled: true,
+    ripple: false
+  });
+  vueApp.mount(container);
+  vueApps.set(node.id + 4e4, vueApp);
+  widget.computeLayoutSize = () => {
+    const minWidth = LORA_POOL_WIDGET_MIN_WIDTH;
+    const minHeight = LORA_POOL_WIDGET_MIN_HEIGHT;
+    return { minHeight, minWidth };
+  };
+  widget.onRemove = () => {
+    const vueApp2 = vueApps.get(node.id + 4e4);
+    if (vueApp2) {
+      vueApp2.unmount();
+      vueApps.delete(node.id + 4e4);
+    }
+  };
+  return { widget };
+}
+function createModelCyclerWidget(node) {
+  const container = document.createElement("div");
+  container.id = `model-cycler-widget-${node.id}`;
+  container.style.width = "100%";
+  container.style.height = "100%";
+  container.style.display = "flex";
+  container.style.flexDirection = "column";
+  container.style.overflow = "hidden";
+  forwardMiddleMouseToCanvas(container);
+  let internalValue;
+  const widget = node.addDOMWidget(
+    "cycler_config",
+    "MODEL_CYCLER_CONFIG",
+    container,
+    {
+      getValue() {
+        return internalValue;
+      },
+      setValue(v2) {
+        internalValue = v2;
+      },
+      serialize: true,
+      getMinHeight() {
+        return LORA_CYCLER_WIDGET_MIN_HEIGHT;
+      }
+    }
+  );
+  node.getPoolConfig = () => getPoolConfigFromConnectedNode(node);
+  const vueApp = createApp(ModelCyclerWidget, {
+    widget,
+    node,
+    api
+  });
+  vueApp.use(PrimeVue, {
+    unstyled: true,
+    ripple: false
+  });
+  vueApp.mount(container);
+  vueApps.set(node.id + 5e4, vueApp);
+  widget.computeLayoutSize = () => {
+    const minWidth = LORA_CYCLER_WIDGET_MIN_WIDTH;
+    const minHeight = LORA_CYCLER_WIDGET_MIN_HEIGHT;
+    const maxHeight = LORA_CYCLER_WIDGET_MAX_HEIGHT;
+    return { minHeight, minWidth, maxHeight };
+  };
+  widget.onRemove = () => {
+    const vueApp2 = vueApps.get(node.id + 5e4);
+    if (vueApp2) {
+      vueApp2.unmount();
+      vueApps.delete(node.id + 5e4);
+    }
+  };
+  return { widget };
+}
 function createJsonDisplayWidget(node) {
   const container = document.createElement("div");
   container.id = `json-display-widget-${node.id}`;
@@ -14985,6 +15948,14 @@ app$1.registerExtension({
       // @ts-ignore
       CYCLER_CONFIG(node) {
         return createLoraCyclerWidget(node);
+      },
+      // @ts-ignore
+      MODEL_POOL_CONFIG(node) {
+        return createModelPoolWidget(node);
+      },
+      // @ts-ignore
+      MODEL_CYCLER_CONFIG(node) {
+        return createModelCyclerWidget(node);
       },
       // @ts-ignore
       async LORAS(node) {
