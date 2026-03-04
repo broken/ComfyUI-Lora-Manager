@@ -10,8 +10,16 @@ export const LORA_PROVIDER_NODE_TYPES = [
   "Lora Cycler (LoraManager)",
 ];
 
+export const MODEL_PROVIDER_NODE_TYPES = [
+  "Model Cycler (LoraManager)",
+];
+
 export function isLoraProviderNode(comfyClass) {
   return LORA_PROVIDER_NODE_TYPES.includes(comfyClass);
+}
+
+export function isModelProviderNode(comfyClass) {
+  return MODEL_PROVIDER_NODE_TYPES.includes(comfyClass);
 }
 
 function isMapLike(collection) {
@@ -670,7 +678,7 @@ export function forwardMiddleMouseToCanvas(container) {
     });
 }
 
-// Get connected Lora Pool node from pool_config input
+// Get connected Lora Pool or Model Pool node from pool_config input
 export function getConnectedPoolConfigNode(node) {
     if (!node?.inputs) {
         return null;
@@ -687,7 +695,7 @@ export function getConnectedPoolConfigNode(node) {
         }
 
         const sourceNode = node.graph?.getNodeById?.(link.origin_id);
-        if (sourceNode && sourceNode.comfyClass === "Lora Pool (LoraManager)") {
+        if (sourceNode && (sourceNode.comfyClass === "Lora Pool (LoraManager)" || sourceNode.comfyClass === "Model Pool (LoraManager)")) {
             return sourceNode;
         }
     }
@@ -695,7 +703,7 @@ export function getConnectedPoolConfigNode(node) {
     return null;
 }
 
-// Get pool config widget value from connected Lora Pool node
+// Get pool config widget value from connected Pool node
 export function getPoolConfigFromConnectedNode(node) {
     const poolNode = getConnectedPoolConfigNode(node);
     if (!poolNode) {

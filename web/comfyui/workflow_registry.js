@@ -6,6 +6,8 @@ const LORA_NODE_CLASSES = new Set([
     "Lora Loader (LoraManager)",
     "Lora Stacker (LoraManager)",
     "WanVideo Lora Select (LoraManager)",
+    "Model Cycler (LoraManager)",
+    "Model Pool (LoraManager)",
 ]);
 
 const TARGET_WIDGET_NAMES = new Set(["ckpt_name", "unet_name"]);

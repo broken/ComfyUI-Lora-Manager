@@ -15407,7 +15407,7 @@ function getConnectedPoolConfigNode(node) {
       continue;
     }
     const sourceNode = (_b = (_a2 = node.graph) == null ? void 0 : _a2.getNodeById) == null ? void 0 : _b.call(_a2, link.origin_id);
-    if (sourceNode && sourceNode.comfyClass === "Lora Pool (LoraManager)") {
+    if (sourceNode && (sourceNode.comfyClass === "Lora Pool (LoraManager)" || sourceNode.comfyClass === "Model Pool (LoraManager)")) {
       return sourceNode;
     }
   }
