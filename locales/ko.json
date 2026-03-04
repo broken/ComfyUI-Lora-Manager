@@ -557,6 +557,11 @@
                 "menuLabel": "업데이트 옵션 표시",
                 "check": "업데이트 확인",
                 "checkTooltip": "업데이트 확인에는 시간이 걸릴 수 있습니다."
+            },
+            "view": {
+                "title": "Select View",
+                "default": "Screenshot",
+                "menuLabel": "Show view options"
             }
         },
         "bulkOperations": {

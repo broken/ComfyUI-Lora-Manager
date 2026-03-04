@@ -557,6 +557,11 @@
                 "menuLabel": "顯示更新選項",
                 "check": "檢查更新",
                 "checkTooltip": "檢查更新可能耗時。"
+            },
+            "view": {
+                "title": "Select View",
+                "default": "Screenshot",
+                "menuLabel": "Show view options"
             }
         },
         "bulkOperations": {

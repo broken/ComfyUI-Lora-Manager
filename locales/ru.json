@@ -557,6 +557,11 @@
                 "menuLabel": "Показать параметры обновления",
                 "check": "Проверить обновления",
                 "checkTooltip": "Проверка может занять время."
+            },
+            "view": {
+                "title": "Select View",
+                "default": "Screenshot",
+                "menuLabel": "Show view options"
             }
         },
         "bulkOperations": {

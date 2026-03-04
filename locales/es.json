@@ -557,6 +557,11 @@
                 "menuLabel": "Mostrar opciones de actualización",
                 "check": "Buscar actualizaciones",
                 "checkTooltip": "Comprobar actualizaciones puede tardar."
+            },
+            "view": {
+                "title": "Select View",
+                "default": "Screenshot",
+                "menuLabel": "Show view options"
             }
         },
         "bulkOperations": {

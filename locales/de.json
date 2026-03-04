@@ -557,6 +557,11 @@
                 "menuLabel": "Weitere Update-Optionen anzeigen",
                 "check": "Updates prüfen",
                 "checkTooltip": "Die Aktualisierungssuche kann einige Zeit dauern."
+            },
+            "view": {
+                "title": "Select View",
+                "default": "Screenshot",
+                "menuLabel": "Show view options"
             }
         },
         "bulkOperations": {

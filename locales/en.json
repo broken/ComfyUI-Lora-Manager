@@ -557,6 +557,11 @@
                 "menuLabel": "Show update options",
                 "check": "Check updates",
                 "checkTooltip": "Checking updates may take a while."
+            },
+            "view": {
+                "title": "Select View",
+                "default": "Screenshot",
+                "menuLabel": "Show view options"
             }
         },
         "bulkOperations": {

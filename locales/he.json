@@ -557,6 +557,11 @@
                 "menuLabel": "הצגת אפשרויות עדכון",
                 "check": "בדוק עדכונים",
                 "checkTooltip": "בדיקת עדכונים עלולה לקחת זמן."
+            },
+            "view": {
+                "title": "Select View",
+                "default": "Screenshot",
+                "menuLabel": "Show view options"
             }
         },
         "bulkOperations": {
