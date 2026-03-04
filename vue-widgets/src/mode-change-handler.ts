@@ -16,6 +16,7 @@ export const LORA_PROVIDER_NODE_TYPES = [
   "Lora Stacker (LoraManager)",
   "Lora Randomizer (LoraManager)",
   "Lora Cycler (LoraManager)",
+  "Model Cycler (LoraManager)",
 ] as const;
 
 export type LoraProviderNodeType = typeof LORA_PROVIDER_NODE_TYPES[number];
@@ -36,7 +37,7 @@ export function isLoraProviderNode(comfyClass: string): comfyClass is LoraProvid
 export function getActiveLorasFromNodeByType(node: any): Set<string> {
   const comfyClass = node?.comfyClass;
 
-  if (comfyClass === "Lora Cycler (LoraManager)") {
+  if (comfyClass === "Lora Cycler (LoraManager)" || comfyClass === "Model Cycler (LoraManager)") {
     return extractFromCyclerConfig(node);
   }
 

@@ -15186,11 +15186,12 @@ const AutocompleteTextWidget = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scope
 const LORA_PROVIDER_NODE_TYPES$1 = [
   "Lora Stacker (LoraManager)",
   "Lora Randomizer (LoraManager)",
-  "Lora Cycler (LoraManager)"
+  "Lora Cycler (LoraManager)",
+  "Model Cycler (LoraManager)"
 ];
 function getActiveLorasFromNodeByType(node) {
   const comfyClass = node == null ? void 0 : node.comfyClass;
-  if (comfyClass === "Lora Cycler (LoraManager)") {
+  if (comfyClass === "Lora Cycler (LoraManager)" || comfyClass === "Model Cycler (LoraManager)") {
     return extractFromCyclerConfig(node);
   }
   return extractFromLorasWidget(node);
