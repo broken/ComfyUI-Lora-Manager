@@ -496,8 +496,22 @@ export function createModelCard(model, modelType) {
     const previewVersionsKey = modelType;
     const previewVersions = state.pages[previewVersionsKey]?.previewVersions || new Map();
     const version = previewVersions.get(model.file_path);
-    const previewUrl = model.preview_url || '/loras_static/images/no-preview.png';
+    const defaultPreviewUrl = model.preview_url || '/loras_static/images/no-preview.png';
+    let previewUrl = defaultPreviewUrl;
+
+    // Determine the view-specific image URL if it's a LoRA and a custom view is selected
+    if (modelType === MODEL_TYPES.LORA) {
+        const currentView = state.pages?.loras?.currentView || 'default';
+        if (currentView !== 'default') {
+            previewUrl = `/api/lm/loras/views/image?view=${encodeURIComponent(currentView)}&lora=${encodeURIComponent(model.file_name)}`;
+        }
+    }
+
     const versionedPreviewUrl = version ? `${previewUrl}${previewUrl.includes('?') ? '&' : '?'}t=${version}` : previewUrl;
+    
+    // Store original versioned preview url if we're using a custom view, for fallback
+    const fallbackUrl = version ? `${defaultPreviewUrl}${defaultPreviewUrl.includes('?') ? '&' : '?'}t=${version}` : defaultPreviewUrl;
+    const imgAttributes = previewUrl !== defaultPreviewUrl ? `onerror="this.onerror=null; this.src='${fallbackUrl}'"` : '';
 
     // Determine NSFW warning text based on level with i18n support
     let nsfwText = translate('modelCard.nsfw.matureContent', {}, 'Mature Content');
@@ -594,7 +608,7 @@ export function createModelCard(model, modelType) {
         <div class="card-preview ${shouldBlur ? 'blurred' : ''}">
             ${isVideo ?
             `<video ${videoAttrs.join(' ')} style="pointer-events: none;"></video>` :
-            `<img src="${versionedPreviewUrl}" alt="${model.model_name}">`
+            `<img src="${versionedPreviewUrl}" alt="${model.model_name}" ${imgAttributes}>`
         }
             <div class="card-header">
                 ${shouldBlur ?

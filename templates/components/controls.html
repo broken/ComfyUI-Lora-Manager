@@ -75,6 +75,22 @@
                     </div>
                 </div>
             </div>
+            {% if page_id == 'loras' %}
+            <div class="control-group dropdown-group view-selector-group" id="viewSelectorGroup" style="display: none;">
+                <button id="viewSelectorBtn" class="dropdown-main" title="{{ t('loras.controls.view.title', default='Select View') }}">
+                    <i class="fas fa-images"></i> <span id="currentViewName">{{ t('loras.controls.view.default', default='Screenshot') }}</span>
+                </button>
+                <button id="viewSelectorMenuToggle" class="dropdown-toggle" aria-label="{{ t('loras.controls.view.menuLabel', default='Show view options') }}">
+                    <i class="fas fa-caret-down"></i>
+                </button>
+                <div class="dropdown-menu" id="viewSelectorMenu">
+                    <div class="dropdown-item active" data-view="default">
+                        <i class="fas fa-camera"></i> <span>{{ t('loras.controls.view.default', default='Screenshot') }}</span>
+                    </div>
+                    <!-- Dynamic views will be inserted here -->
+                </div>
+            </div>
+            {% endif %}
             <div id="customFilterIndicator" class="control-group hidden">
                 <div class="filter-active">
                     <i class="fas fa-filter"></i> <span class="customFilterText" title=""></span>
