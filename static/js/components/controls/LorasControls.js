@@ -21,6 +21,9 @@ export class LorasControls extends PageControls {
         
         // Initialize alphabet bar component
         this.initAlphabetBar();
+        
+        // Initialize view selector
+        this.initViewSelector();
     }
     
     /**
@@ -153,5 +156,69 @@ export class LorasControls extends PageControls {
         
         // Expose the alphabet bar to the global scope for debugging
         window.alphabetBar = this.alphabetBar;
+    }
+    
+    /**
+     * Initialize the view selector component and fetch available views
+     */
+    async initViewSelector() {
+        try {
+            const response = await fetch('/api/lm/loras/views/list');
+            const data = await response.json();
+            
+            if (data.success && data.views && data.views.length > 0) {
+                const group = document.getElementById('viewSelectorGroup');
+                const menu = document.getElementById('viewSelectorMenu');
+                
+                if (!group || !menu) return;
+                
+                // Show the view selector
+                group.style.display = 'flex';
+                
+                // Set default view in state if not present
+                if (!this.pageState.currentView) {
+                    this.pageState.currentView = 'default';
+                }
+                
+                // Add views to menu
+                data.views.forEach(viewName => {
+                    const item = document.createElement('div');
+                    item.className = 'dropdown-item';
+                    item.dataset.view = viewName;
+                    
+                    if (this.pageState.currentView === viewName) {
+                        item.classList.add('active');
+                        document.getElementById('currentViewName').textContent = viewName;
+                    }
+                    
+                    item.innerHTML = `<i class="fas fa-image"></i> <span>${viewName}</span>`;
+                    menu.appendChild(item);
+                });
+                
+                // Add click handlers for all items
+                menu.addEventListener('click', async (e) => {
+                    const item = e.target.closest('.dropdown-item');
+                    if (!item) return;
+                    
+                    const newView = item.dataset.view;
+                    
+                    // Update active state in UI
+                    menu.querySelectorAll('.dropdown-item').forEach(el => el.classList.remove('active'));
+                    item.classList.add('active');
+                    
+                    // Update button text
+                    const viewLabel = newView === 'default' ? 'Screenshot' : newView;
+                    document.getElementById('currentViewName').textContent = viewLabel;
+                    
+                    // Update state
+                    this.pageState.currentView = newView;
+                    
+                    // Reload models to update the DOM with new views
+                    await this.api.resetAndReload(false);
+                });
+            }
+        } catch (error) {
+            console.error('Error initializing view selector:', error);
+        }
     }
 }

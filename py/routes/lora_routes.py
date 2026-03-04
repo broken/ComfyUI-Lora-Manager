@@ -58,6 +58,14 @@ class LoraRoutes(BaseModelRoutes):
             self.get_lora_usage_tips_by_path,
         )
 
+        # Views routes
+        registrar.add_prefixed_route(
+            "GET", "/api/lm/{prefix}/views/list", prefix, self.get_views_list
+        )
+        registrar.add_prefixed_route(
+            "GET", "/api/lm/{prefix}/views/image", prefix, self.get_view_image
+        )
+
         # Randomizer routes
         registrar.add_prefixed_route(
             "POST", "/api/lm/{prefix}/random-sample", prefix, self.get_random_loras
@@ -212,6 +220,68 @@ class LoraRoutes(BaseModelRoutes):
 
         except Exception as e:
             logger.error(f"Error getting lora Civitai URL: {e}", exc_info=True)
+            return web.json_response({"success": False, "error": str(e)}, status=500)
+
+    async def get_views_list(self, request: web.Request) -> web.Response:
+        """Get list of available alternative views for LoRAs"""
+        import os
+        from ..config import config
+        try:
+            views_dir = os.path.join(os.path.dirname(config.static_path), "views")
+            if not os.path.exists(views_dir):
+                return web.json_response({"success": True, "views": []})
+                
+            views = []
+            for item in os.listdir(views_dir):
+                if os.path.isdir(os.path.join(views_dir, item)):
+                    views.append(item)
+                    
+            views.sort()
+            return web.json_response({"success": True, "views": views})
+        except Exception as e:
+            logger.error(f"Error getting views list: {e}")
+            return web.json_response({"success": False, "error": str(e)}, status=500)
+
+    async def get_view_image(self, request: web.Request) -> web.Response:
+        """Get an alternative view image for a LoRA"""
+        import os
+        import mimetypes
+        from ..config import config
+        try:
+            view_name = request.query.get("view")
+            lora_name = request.query.get("lora")
+            
+            if not view_name or not lora_name:
+                return web.Response(text="View and lora parameters are required", status=400)
+                
+            # Safely resolve path to avoid directory traversal
+            views_dir = os.path.join(os.path.dirname(config.static_path), "views")
+            target_view_dir = os.path.normpath(os.path.join(views_dir, view_name))
+            
+            if not target_view_dir.startswith(os.path.normpath(views_dir)):
+                return web.Response(text="Invalid view parameter", status=400)
+                
+            if not os.path.exists(target_view_dir):
+                return web.Response(text="View not found", status=404)
+                
+            # Extract base name without extension from lora_name
+            # Wait, `lora_name` is `model.file_name` which could include `.safetensors`.
+            # If `model.file_name` comes as `my_lora.safetensors`, `os.path.splitext` gives `my_lora`.
+            # What if `lora_name` is just `my_lora`? It works.
+            base_name = os.path.splitext(lora_name)[0]
+            
+            # Look for common image extensions
+            extensions = ['.png', '.jpg', '.jpeg', '.webp', '.gif']
+            for ext in extensions:
+                image_path = os.path.join(target_view_dir, f"{base_name}{ext}")
+                if os.path.exists(image_path):
+                    content_type, _ = mimetypes.guess_type(image_path)
+                    return web.FileResponse(image_path, headers={'Content-Type': content_type or 'application/octet-stream'})
+                    
+            return web.Response(text="Image not found for this LoRA in the selected view", status=404)
+            
+        except Exception as e:
+            logger.error(f"Error getting view image: {e}")
             return web.json_response({"success": False, "error": str(e)}, status=500)
 
     async def get_random_loras(self, request: web.Request) -> web.Response:
