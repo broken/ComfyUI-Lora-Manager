@@ -581,8 +581,22 @@ export function createModelCard(model, modelType) {
     const previewVersionsKey = modelType;
     const previewVersions = state.pages[previewVersionsKey]?.previewVersions || new Map();
     const version = previewVersions.get(model.file_path);
-    const previewUrl = model.preview_url || '/loras_static/images/no-preview.png';
+    const defaultPreviewUrl = model.preview_url || '/loras_static/images/no-preview.png';
+    let previewUrl = defaultPreviewUrl;
+
+    // Determine the view-specific image URL if it's a LoRA and a custom view is selected
+    if (modelType === MODEL_TYPES.LORA) {
+        const currentView = state.pages?.loras?.currentView || 'default';
+        if (currentView !== 'default') {
+            previewUrl = `/api/lm/loras/views/image?view=${encodeURIComponent(currentView)}&lora=${encodeURIComponent(model.file_name)}`;
+        }
+    }
+
     const versionedPreviewUrl = version ? `${previewUrl}${previewUrl.includes('?') ? '&' : '?'}t=${version}` : previewUrl;
+
+    // Store original versioned preview url if we're using a custom view, for fallback
+    const fallbackUrl = version ? `${defaultPreviewUrl}${defaultPreviewUrl.includes('?') ? '&' : '?'}t=${version}` : defaultPreviewUrl;
+    const imgAttributes = previewUrl !== defaultPreviewUrl ? `onerror="this.onerror=null; this.src='${fallbackUrl}'"` : '';
 
     // Determine NSFW warning text based on level with i18n support
     let nsfwText = translate('modelCard.nsfw.matureContent', {}, 'Mature Content');
@@ -685,7 +699,7 @@ export function createModelCard(model, modelType) {
         <div class="card-preview ${shouldBlur ? 'blurred' : ''}">
             ${isVideo ?
             `<video ${videoAttrs.join(' ')} style="pointer-events: none;"></video>` :
-            `<img draggable="false" src="${versionedPreviewUrl}" alt="${model.model_name}" onerror="this.onerror=null; this.src='/loras_static/images/no-preview.png'">`
+            `<img draggable="false" src="${versionedPreviewUrl}" alt="${model.model_name}" ${imgAttributes} onerror="this.onerror=null; this.src='/loras_static/images/no-preview.png'">`
         }
             <div class="card-header">
                 ${shouldBlur ?
@@ -732,33 +746,33 @@ export function createModelCard(model, modelType) {
                     <span class="model-name" title="${getDisplayName(model).replace(/"/g, '&quot;')}">${getDisplayName(model)}</span>
                     <div class="version-row">
                         ${(() => {
-                            const autoTags = model.auto_tags || [];
-                            const hlTags = autoTags.filter(t => t === 'HIGH' || t === 'LOW');
-                            const hasVersionName = model.civitai?.name;
-                            // When group_by_model is active and model has multiple versions,
-                            // show clickable version count instead of version name (and hide badges)
-                            const isGroupByModel = state.global.settings.group_by_model;
-                            const versionCount = model.version_count;
-                            const showVersionCount = isGroupByModel && versionCount > 1;
-                            if (!hlTags.length && !hasVersionName && !showVersionCount) return '';
-                            const density = state.global.settings.display_density || 'default';
-                            const shortLabels = density === 'medium' || density === 'compact';
-                            // Don't show HIGH/LOW badges when showing version count (confusing in grouped mode)
-                            const badges = !showVersionCount ? hlTags.map(t => {
-                                const cls = t === 'HIGH' ? 'hl-badge hl-badge--high' : 'hl-badge hl-badge--low';
-                                const label = shortLabels ? (t === 'HIGH' ? 'H' : 'L') : t;
-                                const titleAttr = shortLabels ? ` title="${t}"` : '';
-                                return `<span class="${cls}"${titleAttr}>${label}</span>`;
-                            }).join('') : '';
-                            let versionHtml = '';
-                            if (showVersionCount) {
-                                const countLabel = translate('modelCard.footer.versionCount', { count: versionCount }, `${versionCount} versions`);
-                                versionHtml = `<span class="version-count-link" title="${translate('modelCard.footer.viewAllVersions', {}, 'View all local versions')}">${countLabel}</span>`;
-                            } else if (hasVersionName) {
-                                versionHtml = `<span class="version-name civitai-version">${model.civitai.name}</span>`;
-                            }
-                            return `<span class="badge-version-unit">${badges}${versionHtml}</span>`;
-                        })()}
+            const autoTags = model.auto_tags || [];
+            const hlTags = autoTags.filter(t => t === 'HIGH' || t === 'LOW');
+            const hasVersionName = model.civitai?.name;
+            // When group_by_model is active and model has multiple versions,
+            // show clickable version count instead of version name (and hide badges)
+            const isGroupByModel = state.global.settings.group_by_model;
+            const versionCount = model.version_count;
+            const showVersionCount = isGroupByModel && versionCount > 1;
+            if (!hlTags.length && !hasVersionName && !showVersionCount) return '';
+            const density = state.global.settings.display_density || 'default';
+            const shortLabels = density === 'medium' || density === 'compact';
+            // Don't show HIGH/LOW badges when showing version count (confusing in grouped mode)
+            const badges = !showVersionCount ? hlTags.map(t => {
+                const cls = t === 'HIGH' ? 'hl-badge hl-badge--high' : 'hl-badge hl-badge--low';
+                const label = shortLabels ? (t === 'HIGH' ? 'H' : 'L') : t;
+                const titleAttr = shortLabels ? ` title="${t}"` : '';
+                return `<span class="${cls}"${titleAttr}>${label}</span>`;
+            }).join('') : '';
+            let versionHtml = '';
+            if (showVersionCount) {
+                const countLabel = translate('modelCard.footer.versionCount', { count: versionCount }, `${versionCount} versions`);
+                versionHtml = `<span class="version-count-link" title="${translate('modelCard.footer.viewAllVersions', {}, 'View all local versions')}">${countLabel}</span>`;
+            } else if (hasVersionName) {
+                versionHtml = `<span class="version-name civitai-version">${model.civitai.name}</span>`;
+            }
+            return `<span class="badge-version-unit">${badges}${versionHtml}</span>`;
+        })()}
                         ${hasUsageCount ? `<span class="version-name" title="${translate('modelCard.usage.timesUsed', {}, 'Times used')}">${model.usage_count}×</span>` : ''}
                     </div>
                 </div>
