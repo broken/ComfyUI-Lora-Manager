@@ -84,12 +84,12 @@ export function useLoraPoolApi() {
       }
       params.foldersExclude?.forEach(folder => urlParams.append('folder_exclude', folder))
 
-      if (params.noCreditRequired !== undefined) {
-        urlParams.set('credit_required', String(!params.noCreditRequired))
+      if (params.noCreditRequired) {
+        urlParams.set('credit_required', 'false')
       }
 
-      if (params.allowSelling !== undefined) {
-        urlParams.set('allow_selling_generated_content', String(params.allowSelling))
+      if (params.allowSelling) {
+        urlParams.set('allow_selling_generated_content', 'true')
       }
 
       const response = await fetch(`/api/lm/loras/list?${urlParams}`)

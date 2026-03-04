@@ -73,6 +73,7 @@ class CheckpointService(BaseModelService):
         filter_section = pool_config
 
         # Extract filter parameters
+        selected_base_models = filter_section.get("baseModels", [])
         tags_dict = filter_section.get("tags", {})
         include_tags = tags_dict.get("include", [])
         exclude_tags = tags_dict.get("exclude", [])
@@ -119,6 +120,14 @@ class CheckpointService(BaseModelService):
                 filtered.append(ckpt)
 
             available_checkpoints = filtered
+
+        # Apply base model filter
+        if selected_base_models:
+            available_checkpoints = [
+                ckpt
+                for ckpt in available_checkpoints
+                if ckpt.get("base_model") in selected_base_models
+            ]
 
         # Apply tag filters
         if tag_filters:
