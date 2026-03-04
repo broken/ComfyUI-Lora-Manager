@@ -274,16 +274,37 @@ class LoraRoutes(BaseModelRoutes):
             # We'll try to find the image in two ways:
             # 1. Matching the exact path structure (e.g. views/ViewName/subfolder/my_lora.png)
             # 2. Stripping the path and just looking in the root of the view (e.g. views/ViewName/my_lora.png)
-            search_names = [base_name_full]
+            search_names = [(base_name_full, os.path.dirname(os.path.join(target_view_dir, base_name_full)))]
             if base_name_flat != base_name_full:
-                search_names.append(base_name_flat)
+                search_names.append((base_name_flat, target_view_dir))
                 
-            for search_name in search_names:
+            # First, try to find an exact match
+            for search_name, _ in search_names:
                 for ext in extensions:
                     image_path = os.path.join(target_view_dir, f"{search_name}{ext}")
                     if os.path.exists(image_path):
                         content_type, _ = mimetypes.guess_type(image_path)
                         return web.FileResponse(image_path, headers={'Content-Type': content_type or 'application/octet-stream'})
+            
+            # Second, if no exact match is found, try to find a prefix match
+            # This handles cases where ComfyUI appends suffixes like _0001 to generated images
+            for search_name, search_dir in search_names:
+                if not os.path.exists(search_dir):
+                    continue
+                    
+                target_prefix = os.path.basename(search_name) + "_"
+                target_prefix_alt = os.path.basename(search_name) + " " # Sometimes spaces instead of underscores
+                
+                try:
+                    for filename in os.listdir(search_dir):
+                        if filename.startswith(target_prefix) or filename.startswith(target_prefix_alt) or filename.startswith(os.path.basename(search_name) + "."):
+                            # Check if it has a valid image extension
+                            if any(filename.lower().endswith(ext) for ext in extensions):
+                                image_path = os.path.join(search_dir, filename)
+                                content_type, _ = mimetypes.guess_type(image_path)
+                                return web.FileResponse(image_path, headers={'Content-Type': content_type or 'application/octet-stream'})
+                except OSError:
+                    pass
                     
             return web.Response(text="Image not found for this LoRA in the selected view", status=404)
             
