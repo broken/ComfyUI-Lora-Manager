@@ -117,9 +117,12 @@ class ModelCyclerLM:
         # Get next Model for UI display
         next_ckpt = ckpt_list[next_index - 1]
         next_display_name = next_ckpt["file_name"]
+        
+        from ..utils.utils import get_checkpoint_info
+        ckpt_path = get_checkpoint_info(current_ckpt["file_name"])
 
         return {
-            "result": (current_ckpt["file_name"],),
+            "result": (ckpt_path,),
             "ui": {
                 "current_index": [clamped_index],
                 "next_index": [next_index],
