@@ -37,6 +37,7 @@
       :items="previewItems"
       :match-count="matchCount"
       :is-loading="isLoading"
+      :model-type="modelType"
       @refresh="$emit('refresh')"
     />
   </div>
@@ -68,6 +69,7 @@ defineProps<{
   previewItems: LoraItem[]
   matchCount: number
   isLoading: boolean
+  modelType?: string
 }>()
 
 defineEmits<{

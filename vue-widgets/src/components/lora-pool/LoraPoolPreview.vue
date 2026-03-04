@@ -5,7 +5,7 @@
       @mouseenter="showTooltip = true"
       @mouseleave="showTooltip = false"
     >
-      <span class="preview__title">Matching LoRAs: {{ matchCount.toLocaleString() }}</span>
+      <span class="preview__title">Matching {{ modelType }}: {{ matchCount.toLocaleString() }}</span>
       <button
         type="button"
         class="preview__refresh"
@@ -51,7 +51,7 @@
     </Transition>
 
     <div v-if="items.length === 0 && !isLoading" class="preview__empty">
-      No matching LoRAs
+      No matching {{ modelType }}
     </div>
   </div>
 </template>
@@ -60,17 +60,22 @@
 import { ref } from 'vue'
 import type { LoraItem } from '../../composables/types'
 
-defineProps<{
-  items: LoraItem[]
-  matchCount: number
-  isLoading: boolean
-}>()
+
 
 defineEmits<{
   refresh: []
 }>()
 
 const showTooltip = ref(false)
+
+const props = withDefaults(defineProps<{
+  items: LoraItem[]
+  matchCount: number
+  isLoading: boolean
+  modelType?: string
+}>(), {
+  modelType: 'LoRAs'
+})
 
 const onImageError = (event: Event) => {
   const img = event.target as HTMLImageElement

@@ -10,6 +10,11 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+class AnyType(str):
+    def __ne__(self, __value: object) -> bool:
+        return False
+
+any_type = AnyType("*")
 
 class ModelCyclerLM:
     """Node that sequentially cycles through Models from a pool"""
@@ -24,12 +29,12 @@ class ModelCyclerLM:
                 "cycler_config": ("MODEL_CYCLER_CONFIG", {}),
             },
             "optional": {
-                "pool_config": ("MODEL_POOL_CONFIG", {}),
+                "pool_config": ("MODEL_POOL", {}),
                 "repeat_count_override": ("INT", {"default": 0, "min": 0, "max": 9999, "forceInput": True}),
             },
         }
 
-    RETURN_TYPES = ("STRING",)
+    RETURN_TYPES = (any_type,)
     RETURN_NAMES = ("ckpt_name",)
 
     FUNCTION = "cycle"

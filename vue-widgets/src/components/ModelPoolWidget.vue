@@ -13,6 +13,7 @@
       :preview-items="state.previewItems.value"
       :match-count="state.matchCount.value"
       :is-loading="state.isLoading.value"
+      model-type="Models"
       @open-modal="openModal"
       @update:include-folders="state.includeFolders.value = $event"
       @update:exclude-folders="state.excludeFolders.value = $event"

@@ -33,8 +33,8 @@ class ModelPoolLM:
             },
         }
 
-    RETURN_TYPES = ("MODEL_POOL_CONFIG", "INT")
-    RETURN_NAMES = ("MODEL_POOL_CONFIG", "POOL_SIZE")
+    RETURN_TYPES = ("MODEL_POOL", "INT")
+    RETURN_NAMES = ("MODEL_POOL", "POOL_SIZE")
 
     FUNCTION = "process"
     OUTPUT_NODE = False

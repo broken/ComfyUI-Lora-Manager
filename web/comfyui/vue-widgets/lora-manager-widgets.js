@@ -352,23 +352,23 @@
   opacity: 1;
 }
 
-.preview[data-v-6a4b50a1] {
+.preview[data-v-cb12ab75] {
   padding-top: 12px;
   border-top: 1px solid var(--border-color, #444);
   position: relative;
 }
-.preview__header[data-v-6a4b50a1] {
+.preview__header[data-v-cb12ab75] {
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: default;
 }
-.preview__title[data-v-6a4b50a1] {
+.preview__title[data-v-cb12ab75] {
   font-size: 12px;
   font-weight: 500;
   color: var(--fg-color, #fff);
 }
-.preview__refresh[data-v-6a4b50a1] {
+.preview__refresh[data-v-cb12ab75] {
   width: 24px;
   height: 24px;
   display: flex;
@@ -382,21 +382,21 @@
   border-radius: 4px;
   transition: all 0.15s;
 }
-.preview__refresh[data-v-6a4b50a1]:hover {
+.preview__refresh[data-v-cb12ab75]:hover {
   opacity: 1;
   background: var(--comfy-input-bg, #333);
 }
-.preview__refresh[data-v-6a4b50a1]:disabled {
+.preview__refresh[data-v-cb12ab75]:disabled {
   cursor: not-allowed;
 }
-.preview__refresh-icon[data-v-6a4b50a1] {
+.preview__refresh-icon[data-v-cb12ab75] {
   width: 14px;
   height: 14px;
 }
-.preview__refresh--loading .preview__refresh-icon[data-v-6a4b50a1] {
-  animation: spin-6a4b50a1 1s linear infinite;
+.preview__refresh--loading .preview__refresh-icon[data-v-cb12ab75] {
+  animation: spin-cb12ab75 1s linear infinite;
 }
-@keyframes spin-6a4b50a1 {
+@keyframes spin-cb12ab75 {
 from { transform: rotate(0deg);
 }
 to { transform: rotate(360deg);
@@ -404,7 +404,7 @@ to { transform: rotate(360deg);
 }
 
 /* Tooltip styles */
-.preview__tooltip[data-v-6a4b50a1] {
+.preview__tooltip[data-v-cb12ab75] {
   position: absolute;
   bottom: 100%;
   left: 0;
@@ -412,7 +412,7 @@ to { transform: rotate(360deg);
   margin-bottom: 8px;
   z-index: 100;
 }
-.preview__tooltip-content[data-v-6a4b50a1] {
+.preview__tooltip-content[data-v-cb12ab75] {
   background: var(--comfy-menu-bg, #1a1a1a);
   border: 1px solid var(--border-color, #444);
   border-radius: 6px;
@@ -422,7 +422,7 @@ to { transform: rotate(360deg);
   flex-direction: column;
   gap: 4px;
 }
-.preview__item[data-v-6a4b50a1] {
+.preview__item[data-v-cb12ab75] {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -430,7 +430,7 @@ to { transform: rotate(360deg);
   background: var(--comfy-input-bg, #333);
   border-radius: 4px;
 }
-.preview__thumb[data-v-6a4b50a1] {
+.preview__thumb[data-v-cb12ab75] {
   width: 28px;
   height: 28px;
   object-fit: cover;
@@ -438,18 +438,18 @@ to { transform: rotate(360deg);
   flex-shrink: 0;
   background: rgba(0, 0, 0, 0.2);
 }
-.preview__thumb--placeholder[data-v-6a4b50a1] {
+.preview__thumb--placeholder[data-v-cb12ab75] {
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--fg-color, #fff);
   opacity: 0.2;
 }
-.preview__thumb--placeholder svg[data-v-6a4b50a1] {
+.preview__thumb--placeholder svg[data-v-cb12ab75] {
   width: 14px;
   height: 14px;
 }
-.preview__name[data-v-6a4b50a1] {
+.preview__name[data-v-cb12ab75] {
   flex: 1;
   font-size: 11px;
   color: var(--fg-color, #fff);
@@ -457,14 +457,14 @@ to { transform: rotate(360deg);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.preview__more[data-v-6a4b50a1] {
+.preview__more[data-v-cb12ab75] {
   font-size: 11px;
   color: var(--fg-color, #fff);
   opacity: 0.5;
   text-align: center;
   padding: 4px;
 }
-.preview__empty[data-v-6a4b50a1] {
+.preview__empty[data-v-cb12ab75] {
   font-size: 11px;
   color: var(--fg-color, #fff);
   opacity: 0.4;
@@ -473,22 +473,22 @@ to { transform: rotate(360deg);
 }
 
 /* Tooltip transitions */
-.tooltip-enter-active[data-v-6a4b50a1],
-.tooltip-leave-active[data-v-6a4b50a1] {
+.tooltip-enter-active[data-v-cb12ab75],
+.tooltip-leave-active[data-v-cb12ab75] {
   transition: opacity 0.15s ease, transform 0.15s ease;
 }
-.tooltip-enter-from[data-v-6a4b50a1],
-.tooltip-leave-to[data-v-6a4b50a1] {
+.tooltip-enter-from[data-v-cb12ab75],
+.tooltip-leave-to[data-v-cb12ab75] {
   opacity: 0;
   transform: translateY(4px);
 }
 
-.summary-view[data-v-328e7526] {
+.summary-view[data-v-7eea0e3d] {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
-.summary-view__filters[data-v-328e7526] {
+.summary-view__filters[data-v-7eea0e3d] {
   flex: 1;
   overflow-y: auto;
   padding-right: 4px;
@@ -1958,7 +1958,7 @@ to { transform: rotate(360deg);
   box-sizing: border-box;
 }
 
-.model-pool-widget[data-v-d4caba28] {
+.model-pool-widget[data-v-4a79a6bc] {
   padding: 12px;
   background: rgba(40, 44, 52, 0.6);
   border-radius: 4px;
@@ -10897,7 +10897,8 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
   props: {
     items: {},
     matchCount: {},
-    isLoading: { type: Boolean }
+    isLoading: { type: Boolean },
+    modelType: { default: "LoRAs" }
   },
   emits: ["refresh"],
   setup(__props) {
@@ -10913,7 +10914,7 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
           onMouseenter: _cache[1] || (_cache[1] = ($event) => showTooltip.value = true),
           onMouseleave: _cache[2] || (_cache[2] = ($event) => showTooltip.value = false)
         }, [
-          createBaseVNode("span", _hoisted_2$d, "Matching LoRAs: " + toDisplayString(__props.matchCount.toLocaleString()), 1),
+          createBaseVNode("span", _hoisted_2$d, "Matching " + toDisplayString(__props.modelType) + ": " + toDisplayString(__props.matchCount.toLocaleString()), 1),
           createBaseVNode("button", {
             type: "button",
             class: normalizeClass(["preview__refresh", { "preview__refresh--loading": __props.isLoading }]),
@@ -10965,12 +10966,12 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
           ]),
           _: 1
         }),
-        __props.items.length === 0 && !__props.isLoading ? (openBlock(), createElementBlock("div", _hoisted_10$2, " No matching LoRAs ")) : createCommentVNode("", true)
+        __props.items.length === 0 && !__props.isLoading ? (openBlock(), createElementBlock("div", _hoisted_10$2, " No matching " + toDisplayString(__props.modelType), 1)) : createCommentVNode("", true)
       ]);
     };
   }
 });
-const LoraPoolPreview = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-6a4b50a1"]]);
+const LoraPoolPreview = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-cb12ab75"]]);
 const _hoisted_1$i = { class: "summary-view" };
 const _hoisted_2$c = { class: "summary-view__filters" };
 const _sfc_main$i = /* @__PURE__ */ defineComponent({
@@ -10986,7 +10987,8 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
     allowSelling: { type: Boolean },
     previewItems: {},
     matchCount: {},
-    isLoading: { type: Boolean }
+    isLoading: { type: Boolean },
+    modelType: {}
   },
   emits: ["open-modal", "update:includeFolders", "update:excludeFolders", "update:noCreditRequired", "update:allowSelling", "refresh"],
   setup(__props) {
@@ -11023,13 +11025,14 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
           items: __props.previewItems,
           "match-count": __props.matchCount,
           "is-loading": __props.isLoading,
+          "model-type": __props.modelType,
           onRefresh: _cache[9] || (_cache[9] = ($event) => _ctx.$emit("refresh"))
-        }, null, 8, ["items", "match-count", "is-loading"])
+        }, null, 8, ["items", "match-count", "is-loading", "model-type"])
       ]);
     };
   }
 });
-const LoraPoolSummaryView = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__scopeId", "data-v-328e7526"]]);
+const LoraPoolSummaryView = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__scopeId", "data-v-7eea0e3d"]]);
 const _hoisted_1$h = { class: "lora-pool-modal__header" };
 const _hoisted_2$b = { class: "lora-pool-modal__title-container" };
 const _hoisted_3$a = { class: "lora-pool-modal__title" };
@@ -14319,6 +14322,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
           "preview-items": unref(state).previewItems.value,
           "match-count": unref(state).matchCount.value,
           "is-loading": unref(state).isLoading.value,
+          "model-type": "Models",
           onOpenModal: openModal,
           "onUpdate:includeFolders": _cache[0] || (_cache[0] = ($event) => unref(state).includeFolders.value = $event),
           "onUpdate:excludeFolders": _cache[1] || (_cache[1] = ($event) => unref(state).excludeFolders.value = $event),
@@ -14369,7 +14373,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ModelPoolWidget = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-d4caba28"]]);
+const ModelPoolWidget = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-4a79a6bc"]]);
 function useModelCyclerState(widget) {
   let isRestoring = false;
   const currentIndex = ref(1);
