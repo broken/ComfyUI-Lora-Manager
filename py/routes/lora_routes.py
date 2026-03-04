@@ -265,18 +265,25 @@ class LoraRoutes(BaseModelRoutes):
                 return web.Response(text="View not found", status=404)
                 
             # Extract base name without extension from lora_name
-            # Wait, `lora_name` is `model.file_name` which could include `.safetensors`.
-            # If `model.file_name` comes as `my_lora.safetensors`, `os.path.splitext` gives `my_lora`.
-            # What if `lora_name` is just `my_lora`? It works.
-            base_name = os.path.splitext(lora_name)[0]
+            base_name_full = os.path.splitext(lora_name)[0]
+            base_name_flat = os.path.basename(base_name_full)
             
             # Look for common image extensions
             extensions = ['.png', '.jpg', '.jpeg', '.webp', '.gif']
-            for ext in extensions:
-                image_path = os.path.join(target_view_dir, f"{base_name}{ext}")
-                if os.path.exists(image_path):
-                    content_type, _ = mimetypes.guess_type(image_path)
-                    return web.FileResponse(image_path, headers={'Content-Type': content_type or 'application/octet-stream'})
+            
+            # We'll try to find the image in two ways:
+            # 1. Matching the exact path structure (e.g. views/ViewName/subfolder/my_lora.png)
+            # 2. Stripping the path and just looking in the root of the view (e.g. views/ViewName/my_lora.png)
+            search_names = [base_name_full]
+            if base_name_flat != base_name_full:
+                search_names.append(base_name_flat)
+                
+            for search_name in search_names:
+                for ext in extensions:
+                    image_path = os.path.join(target_view_dir, f"{search_name}{ext}")
+                    if os.path.exists(image_path):
+                        content_type, _ = mimetypes.guess_type(image_path)
+                        return web.FileResponse(image_path, headers={'Content-Type': content_type or 'application/octet-stream'})
                     
             return web.Response(text="Image not found for this LoRA in the selected view", status=404)
             
