@@ -1473,16 +1473,16 @@ to { transform: rotate(360deg);
   box-sizing: border-box;
 }
 
-.cycler-settings[data-v-5b16b9d3] {
+.cycler-settings[data-v-cf2b84ed] {
   display: flex;
   flex-direction: column;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: #e4e4e7;
 }
-.settings-header[data-v-5b16b9d3] {
+.settings-header[data-v-cf2b84ed] {
   margin-bottom: 8px;
 }
-.settings-title[data-v-5b16b9d3] {
+.settings-title[data-v-cf2b84ed] {
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -1491,10 +1491,10 @@ to { transform: rotate(360deg);
   margin: 0;
   text-transform: uppercase;
 }
-.setting-section[data-v-5b16b9d3] {
+.setting-section[data-v-cf2b84ed] {
   margin-bottom: 8px;
 }
-.setting-label[data-v-5b16b9d3] {
+.setting-label[data-v-cf2b84ed] {
   font-size: 13px;
   font-weight: 500;
   color: rgba(226, 232, 240, 0.8);
@@ -1503,10 +1503,10 @@ to { transform: rotate(360deg);
 }
 
 /* Progress Display */
-.progress-section[data-v-5b16b9d3] {
+.progress-section[data-v-cf2b84ed] {
   margin-bottom: 12px;
 }
-.progress-display[data-v-5b16b9d3] {
+.progress-display[data-v-cf2b84ed] {
   background: rgba(26, 32, 44, 0.9);
   border: 1px solid rgba(226, 232, 240, 0.2);
   border-radius: 6px;
@@ -1516,31 +1516,31 @@ to { transform: rotate(360deg);
   align-items: center;
   transition: border-color 0.3s ease;
 }
-.progress-display.executing[data-v-5b16b9d3] {
+.progress-display.executing[data-v-cf2b84ed] {
   border-color: rgba(66, 153, 225, 0.5);
-  animation: pulse-5b16b9d3 2s ease-in-out infinite;
+  animation: pulse-cf2b84ed 2s ease-in-out infinite;
 }
-@keyframes pulse-5b16b9d3 {
+@keyframes pulse-cf2b84ed {
 0%, 100% { border-color: rgba(66, 153, 225, 0.3);
 }
 50% { border-color: rgba(66, 153, 225, 0.7);
 }
 }
-.progress-info[data-v-5b16b9d3] {
+.progress-info[data-v-cf2b84ed] {
   display: flex;
   flex-direction: column;
   gap: 2px;
   min-width: 0;
   flex: 1;
 }
-.progress-label[data-v-5b16b9d3] {
+.progress-label[data-v-cf2b84ed] {
   font-size: 10px;
   font-weight: 500;
   color: rgba(226, 232, 240, 0.5);
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
-.progress-name[data-v-5b16b9d3] {
+.progress-name[data-v-cf2b84ed] {
   font-size: 13px;
   font-weight: 500;
   color: rgba(191, 219, 254, 1);
@@ -1548,7 +1548,7 @@ to { transform: rotate(360deg);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.progress-name.clickable[data-v-5b16b9d3] {
+.progress-name.clickable[data-v-cf2b84ed] {
   cursor: pointer;
   padding: 2px 6px;
   margin: -2px -6px;
@@ -1558,34 +1558,34 @@ to { transform: rotate(360deg);
   align-items: center;
   gap: 4px;
 }
-.progress-name.clickable[data-v-5b16b9d3]:hover:not(.disabled) {
+.progress-name.clickable[data-v-cf2b84ed]:hover:not(.disabled) {
   background: rgba(66, 153, 225, 0.2);
   color: rgba(191, 219, 254, 1);
 }
-.progress-name.clickable.disabled[data-v-5b16b9d3] {
+.progress-name.clickable.disabled[data-v-cf2b84ed] {
   cursor: not-allowed;
   opacity: 0.5;
 }
-.progress-info.disabled[data-v-5b16b9d3] {
+.progress-info.disabled[data-v-cf2b84ed] {
   cursor: not-allowed;
 }
-.selector-icon[data-v-5b16b9d3] {
+.selector-icon[data-v-cf2b84ed] {
   width: 16px;
   height: 16px;
   opacity: 0.5;
   flex-shrink: 0;
 }
-.progress-name.clickable:hover .selector-icon[data-v-5b16b9d3] {
+.progress-name.clickable:hover .selector-icon[data-v-cf2b84ed] {
   opacity: 0.8;
 }
-.progress-counter[data-v-5b16b9d3] {
+.progress-counter[data-v-cf2b84ed] {
   display: flex;
   align-items: center;
   gap: 4px;
   padding-left: 12px;
   flex-shrink: 0;
 }
-.progress-index[data-v-5b16b9d3] {
+.progress-index[data-v-cf2b84ed] {
   font-size: 18px;
   font-weight: 600;
   color: rgba(66, 153, 225, 1);
@@ -1594,12 +1594,12 @@ to { transform: rotate(360deg);
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-.progress-separator[data-v-5b16b9d3] {
+.progress-separator[data-v-cf2b84ed] {
   font-size: 14px;
   color: rgba(226, 232, 240, 0.4);
   margin: 0 2px;
 }
-.progress-total[data-v-5b16b9d3] {
+.progress-total[data-v-cf2b84ed] {
   font-size: 14px;
   font-weight: 500;
   color: rgba(226, 232, 240, 0.6);
@@ -1610,7 +1610,7 @@ to { transform: rotate(360deg);
 }
 
 /* Repeat Progress */
-.repeat-progress[data-v-5b16b9d3] {
+.repeat-progress[data-v-cf2b84ed] {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1620,23 +1620,23 @@ to { transform: rotate(360deg);
   border: 1px solid rgba(226, 232, 240, 0.1);
   border-radius: 4px;
 }
-.repeat-progress-track[data-v-5b16b9d3] {
+.repeat-progress-track[data-v-cf2b84ed] {
   width: 32px;
   height: 4px;
   background: rgba(226, 232, 240, 0.15);
   border-radius: 2px;
   overflow: hidden;
 }
-.repeat-progress-fill[data-v-5b16b9d3] {
+.repeat-progress-fill[data-v-cf2b84ed] {
   height: 100%;
   background: linear-gradient(90deg, #f59e0b, #fbbf24);
   border-radius: 2px;
   transition: width 0.3s ease;
 }
-.repeat-progress-fill.is-complete[data-v-5b16b9d3] {
+.repeat-progress-fill.is-complete[data-v-cf2b84ed] {
   background: linear-gradient(90deg, #10b981, #34d399);
 }
-.repeat-progress-text[data-v-5b16b9d3] {
+.repeat-progress-text[data-v-cf2b84ed] {
   font-size: 10px;
   font-family: 'SF Mono', 'Roboto Mono', monospace;
   color: rgba(253, 230, 138, 0.9);
@@ -1645,19 +1645,19 @@ to { transform: rotate(360deg);
 }
 
 /* Index Controls Row - Grouped Layout */
-.index-controls-row[data-v-5b16b9d3] {
+.index-controls-row[data-v-cf2b84ed] {
   display: flex;
   align-items: flex-end;
   gap: 16px;
 }
 
 /* Control Group */
-.control-group[data-v-5b16b9d3] {
+.control-group[data-v-cf2b84ed] {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
-.control-group-label[data-v-5b16b9d3] {
+.control-group-label[data-v-cf2b84ed] {
   font-size: 11px;
   font-weight: 500;
   color: rgba(226, 232, 240, 0.5);
@@ -1665,13 +1665,13 @@ to { transform: rotate(360deg);
   letter-spacing: 0.03em;
   line-height: 1;
 }
-.control-group-content[data-v-5b16b9d3] {
+.control-group-content[data-v-cf2b84ed] {
   display: flex;
   align-items: baseline;
   gap: 4px;
   height: 32px;
 }
-.index-input[data-v-5b16b9d3] {
+.index-input[data-v-cf2b84ed] {
   width: 50px;
   height: 32px;
   padding: 0 8px;
@@ -1684,15 +1684,15 @@ to { transform: rotate(360deg);
   line-height: 32px;
   box-sizing: border-box;
 }
-.index-input[data-v-5b16b9d3]:focus {
+.index-input[data-v-cf2b84ed]:focus {
   outline: none;
   border-color: rgba(66, 153, 225, 0.6);
 }
-.index-input[data-v-5b16b9d3]:disabled {
+.index-input[data-v-cf2b84ed]:disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }
-.index-hint[data-v-5b16b9d3] {
+.index-hint[data-v-cf2b84ed] {
   font-size: 12px;
   color: rgba(226, 232, 240, 0.4);
   font-variant-numeric: tabular-nums;
@@ -1700,7 +1700,7 @@ to { transform: rotate(360deg);
 }
 
 /* Repeat Controls */
-.repeat-input[data-v-5b16b9d3] {
+.repeat-input[data-v-cf2b84ed] {
   width: 50px;
   height: 32px;
   padding: 0 6px;
@@ -1714,11 +1714,11 @@ to { transform: rotate(360deg);
   line-height: 32px;
   box-sizing: border-box;
 }
-.repeat-input[data-v-5b16b9d3]:focus {
+.repeat-input[data-v-cf2b84ed]:focus {
   outline: none;
   border-color: rgba(66, 153, 225, 0.6);
 }
-.repeat-suffix[data-v-5b16b9d3] {
+.repeat-suffix[data-v-cf2b84ed] {
   font-size: 13px;
   color: rgba(226, 232, 240, 0.4);
   font-weight: 500;
@@ -1726,7 +1726,7 @@ to { transform: rotate(360deg);
 }
 
 /* Action Buttons */
-.action-buttons[data-v-5b16b9d3] {
+.action-buttons[data-v-cf2b84ed] {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1734,7 +1734,7 @@ to { transform: rotate(360deg);
 }
 
 /* Control Buttons */
-.control-btn[data-v-5b16b9d3] {
+.control-btn[data-v-cf2b84ed] {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1748,52 +1748,52 @@ to { transform: rotate(360deg);
   cursor: pointer;
   transition: all 0.2s;
 }
-.control-btn[data-v-5b16b9d3]:hover:not(:disabled) {
+.control-btn[data-v-cf2b84ed]:hover:not(:disabled) {
   background: rgba(66, 153, 225, 0.2);
   border-color: rgba(66, 153, 225, 0.4);
   color: rgba(191, 219, 254, 1);
 }
-.control-btn[data-v-5b16b9d3]:disabled {
+.control-btn[data-v-cf2b84ed]:disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }
-.control-btn.active[data-v-5b16b9d3] {
+.control-btn.active[data-v-cf2b84ed] {
   background: rgba(245, 158, 11, 0.2);
   border-color: rgba(245, 158, 11, 0.5);
   color: rgba(253, 230, 138, 1);
 }
-.control-btn.active[data-v-5b16b9d3]:hover {
+.control-btn.active[data-v-cf2b84ed]:hover {
   background: rgba(245, 158, 11, 0.3);
   border-color: rgba(245, 158, 11, 0.6);
 }
-.control-icon[data-v-5b16b9d3] {
+.control-icon[data-v-cf2b84ed] {
   width: 14px;
   height: 14px;
 }
 
 /* Slider Container */
-.slider-container[data-v-5b16b9d3] {
+.slider-container[data-v-cf2b84ed] {
   background: rgba(26, 32, 44, 0.9);
   border: 1px solid rgba(226, 232, 240, 0.2);
   border-radius: 6px;
   padding: 6px;
 }
-.slider-container--disabled[data-v-5b16b9d3] {
+.slider-container--disabled[data-v-cf2b84ed] {
   opacity: 0.5;
   pointer-events: none;
 }
-.section-header-with-toggle[data-v-5b16b9d3] {
+.section-header-with-toggle[data-v-cf2b84ed] {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 8px;
 }
-.section-header-with-toggle .setting-label[data-v-5b16b9d3] {
+.section-header-with-toggle .setting-label[data-v-cf2b84ed] {
   margin-bottom: 4px;
 }
 
 /* Toggle Switch */
-.toggle-switch[data-v-5b16b9d3] {
+.toggle-switch[data-v-cf2b84ed] {
   position: relative;
   width: 36px;
   height: 20px;
@@ -1802,7 +1802,7 @@ to { transform: rotate(360deg);
   border: none;
   cursor: pointer;
 }
-.toggle-switch__track[data-v-5b16b9d3] {
+.toggle-switch__track[data-v-cf2b84ed] {
   position: absolute;
   inset: 0;
   background: var(--comfy-input-bg, #333);
@@ -1810,11 +1810,11 @@ to { transform: rotate(360deg);
   border-radius: 10px;
   transition: all 0.2s;
 }
-.toggle-switch--active .toggle-switch__track[data-v-5b16b9d3] {
+.toggle-switch--active .toggle-switch__track[data-v-cf2b84ed] {
   background: rgba(66, 153, 225, 0.3);
   border-color: rgba(66, 153, 225, 0.6);
 }
-.toggle-switch__thumb[data-v-5b16b9d3] {
+.toggle-switch__thumb[data-v-cf2b84ed] {
   position: absolute;
   top: 3px;
   left: 2px;
@@ -1825,12 +1825,12 @@ to { transform: rotate(360deg);
   transition: all 0.2s;
   opacity: 0.6;
 }
-.toggle-switch--active .toggle-switch__thumb[data-v-5b16b9d3] {
+.toggle-switch--active .toggle-switch__thumb[data-v-cf2b84ed] {
   transform: translateX(16px);
   background: #4299e1;
   opacity: 1;
 }
-.toggle-switch:hover .toggle-switch__thumb[data-v-5b16b9d3] {
+.toggle-switch:hover .toggle-switch__thumb[data-v-cf2b84ed] {
   opacity: 1;
 }
 
@@ -1969,7 +1969,7 @@ to { transform: rotate(360deg);
   box-sizing: border-box;
 }
 
-.model-cycler-widget[data-v-da63f7d2] {
+.model-cycler-widget[data-v-a122a990] {
   padding: 6px;
   background: rgba(40, 44, 52, 0.6);
   border-radius: 6px;
@@ -11689,11 +11689,11 @@ function useLoraPoolApi() {
         urlParams.set("recursive", "true");
       }
       (_d = params.foldersExclude) == null ? void 0 : _d.forEach((folder) => urlParams.append("folder_exclude", folder));
-      if (params.noCreditRequired !== void 0) {
-        urlParams.set("credit_required", String(!params.noCreditRequired));
+      if (params.noCreditRequired) {
+        urlParams.set("credit_required", "false");
       }
-      if (params.allowSelling !== void 0) {
-        urlParams.set("allow_selling_generated_content", String(params.allowSelling));
+      if (params.allowSelling) {
+        urlParams.set("allow_selling_generated_content", "true");
       }
       const response = await fetch(`/api/lm/loras/list?${urlParams}`);
       const data = await response.json();
@@ -13120,9 +13120,15 @@ const _hoisted_23 = {
   fill: "currentColor",
   class: "control-icon"
 };
-const _hoisted_24 = { class: "setting-section" };
+const _hoisted_24 = {
+  key: 0,
+  class: "setting-section"
+};
 const _hoisted_25 = { class: "slider-container" };
-const _hoisted_26 = { class: "setting-section" };
+const _hoisted_26 = {
+  key: 1,
+  class: "setting-section"
+};
 const _hoisted_27 = { class: "section-header-with-toggle" };
 const _hoisted_28 = { class: "setting-label" };
 const _hoisted_29 = ["aria-checked"];
@@ -13137,6 +13143,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     clipStrength: {},
     useCustomClipRange: { type: Boolean },
     isClipStrengthDisabled: { type: Boolean },
+    hideStrengths: { type: Boolean },
     repeatCount: {},
     repeatUsed: {},
     isPaused: { type: Boolean },
@@ -13307,7 +13314,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
             ])
           ])
         ]),
-        createBaseVNode("div", _hoisted_24, [
+        !__props.hideStrengths ? (openBlock(), createElementBlock("div", _hoisted_24, [
           _cache[19] || (_cache[19] = createBaseVNode("label", { class: "setting-label" }, "Model Strength", -1)),
           createBaseVNode("div", _hoisted_25, [
             createVNode(SingleSlider, {
@@ -13319,8 +13326,8 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
               "onUpdate:value": _cache[8] || (_cache[8] = ($event) => _ctx.$emit("update:modelStrength", $event))
             }, null, 8, ["value"])
           ])
-        ]),
-        createBaseVNode("div", _hoisted_26, [
+        ])) : createCommentVNode("", true),
+        !__props.hideStrengths ? (openBlock(), createElementBlock("div", _hoisted_26, [
           createBaseVNode("div", _hoisted_27, [
             createBaseVNode("label", _hoisted_28, " Clip Strength - " + toDisplayString(__props.useCustomClipRange ? "Custom Value" : "Use Model Strength"), 1),
             createBaseVNode("button", {
@@ -13348,12 +13355,12 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
               "onUpdate:value": _cache[10] || (_cache[10] = ($event) => _ctx.$emit("update:clipStrength", $event))
             }, null, 8, ["value", "disabled"])
           ], 2)
-        ])
+        ])) : createCommentVNode("", true)
       ]);
     };
   }
 });
-const LoraCyclerSettingsView = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-5b16b9d3"]]);
+const LoraCyclerSettingsView = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-cf2b84ed"]]);
 const _hoisted_1$5 = { class: "search-container" };
 const _hoisted_2$2 = { class: "lora-list" };
 const _hoisted_3$2 = ["onMouseenter", "onClick"];
@@ -14109,11 +14116,11 @@ function useModelPoolApi() {
         urlParams.set("recursive", "true");
       }
       (_d = params.foldersExclude) == null ? void 0 : _d.forEach((folder) => urlParams.append("folder_exclude", folder));
-      if (params.noCreditRequired !== void 0) {
-        urlParams.set("credit_required", String(!params.noCreditRequired));
+      if (params.noCreditRequired) {
+        urlParams.set("credit_required", "false");
       }
-      if (params.allowSelling !== void 0) {
-        urlParams.set("allow_selling_generated_content", String(params.allowSelling));
+      if (params.allowSelling) {
+        urlParams.set("allow_selling_generated_content", "true");
       }
       const response = await fetch(`/api/lm/checkpoints/list?${urlParams}`);
       const data = await response.json();
@@ -14379,9 +14386,6 @@ function useModelCyclerState(widget) {
   const currentIndex = ref(1);
   const totalCount = ref(0);
   const poolConfigHash = ref("");
-  const modelStrength = ref(1);
-  const clipStrength = ref(1);
-  const useCustomClipRange = ref(false);
   const sortBy = ref("filename");
   const currentModelName = ref("");
   const currentModelFilename = ref("");
@@ -14400,9 +14404,6 @@ function useModelCyclerState(widget) {
         current_index: currentIndex.value,
         total_count: totalCount.value,
         pool_config_hash: poolConfigHash.value,
-        model_strength: modelStrength.value,
-        clip_strength: clipStrength.value,
-        use_same_clip_strength: !useCustomClipRange.value,
         sort_by: sortBy.value,
         current_model_name: currentModelName.value,
         current_model_filename: currentModelFilename.value,
@@ -14417,9 +14418,6 @@ function useModelCyclerState(widget) {
       current_index: currentIndex.value,
       total_count: totalCount.value,
       pool_config_hash: poolConfigHash.value,
-      model_strength: modelStrength.value,
-      clip_strength: clipStrength.value,
-      use_same_clip_strength: !useCustomClipRange.value,
       sort_by: sortBy.value,
       current_model_name: currentModelName.value,
       current_model_filename: currentModelFilename.value,
@@ -14436,9 +14434,6 @@ function useModelCyclerState(widget) {
       currentIndex.value = config.current_index || 1;
       totalCount.value = config.total_count || 0;
       poolConfigHash.value = config.pool_config_hash || "";
-      modelStrength.value = config.model_strength ?? 1;
-      clipStrength.value = config.clip_strength ?? 1;
-      useCustomClipRange.value = !(config.use_same_clip_strength ?? true);
       sortBy.value = config.sort_by || "filename";
       currentModelName.value = config.current_model_name || "";
       currentModelFilename.value = config.current_model_filename || "";
@@ -14551,19 +14546,10 @@ function useModelCyclerState(widget) {
   const togglePause = () => {
     isPaused.value = !isPaused.value;
   };
-  const isClipStrengthDisabled = computed(() => !useCustomClipRange.value);
-  watch(modelStrength, (newValue) => {
-    if (!useCustomClipRange.value) {
-      clipStrength.value = newValue;
-    }
-  });
   watch([
     currentIndex,
     totalCount,
     poolConfigHash,
-    modelStrength,
-    clipStrength,
-    useCustomClipRange,
     sortBy,
     currentModelName,
     currentModelFilename,
@@ -14578,9 +14564,6 @@ function useModelCyclerState(widget) {
     currentIndex,
     totalCount,
     poolConfigHash,
-    modelStrength,
-    clipStrength,
-    useCustomClipRange,
     sortBy,
     currentModelName,
     currentModelFilename,
@@ -14593,8 +14576,6 @@ function useModelCyclerState(widget) {
     isPaused,
     isWorkflowExecuting,
     executingRepeatStep,
-    // Computed
-    isClipStrengthDisabled,
     // Methods
     buildConfig,
     restoreFromConfig,
@@ -14660,12 +14641,6 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
     const handleModalSelect = (index) => {
       handleIndexUpdate(index);
-    };
-    const handleUseCustomClipRangeChange = (newValue) => {
-      state.useCustomClipRange.value = newValue;
-      if (!newValue) {
-        state.clipStrength.value = state.modelStrength.value;
-      }
     };
     const handleRepeatCountChange = (newValue) => {
       state.repeatCount.value = newValue;
@@ -14853,10 +14828,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
           "total-count": unref(state).totalCount.value,
           "current-lora-name": unref(state).currentModelName.value,
           "current-lora-filename": unref(state).currentModelFilename.value,
-          "model-strength": unref(state).modelStrength.value,
-          "clip-strength": unref(state).clipStrength.value,
-          "use-custom-clip-range": unref(state).useCustomClipRange.value,
-          "is-clip-strength-disabled": unref(state).isClipStrengthDisabled.value,
+          "hide-strengths": true,
           "is-loading": unref(state).isLoading.value,
           "repeat-count": unref(state).repeatCount.value,
           "repeat-used": unref(state).displayRepeatUsed.value,
@@ -14865,26 +14837,23 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
           "is-workflow-executing": unref(state).isWorkflowExecuting.value,
           "executing-repeat-step": unref(state).executingRepeatStep.value,
           "onUpdate:currentIndex": handleIndexUpdate,
-          "onUpdate:modelStrength": _cache[0] || (_cache[0] = ($event) => unref(state).modelStrength.value = $event),
-          "onUpdate:clipStrength": _cache[1] || (_cache[1] = ($event) => unref(state).clipStrength.value = $event),
-          "onUpdate:useCustomClipRange": handleUseCustomClipRangeChange,
           "onUpdate:repeatCount": handleRepeatCountChange,
           onTogglePause: handleTogglePause,
           onResetIndex: handleResetIndex,
-          onOpenLoraSelector: _cache[2] || (_cache[2] = ($event) => isModalOpen.value = true)
-        }, null, 8, ["current-index", "total-count", "current-lora-name", "current-lora-filename", "model-strength", "clip-strength", "use-custom-clip-range", "is-clip-strength-disabled", "is-loading", "repeat-count", "repeat-used", "is-paused", "is-pause-disabled", "is-workflow-executing", "executing-repeat-step"]),
+          onOpenLoraSelector: _cache[0] || (_cache[0] = ($event) => isModalOpen.value = true)
+        }, null, 8, ["current-index", "total-count", "current-lora-name", "current-lora-filename", "is-loading", "repeat-count", "repeat-used", "is-paused", "is-pause-disabled", "is-workflow-executing", "executing-repeat-step"]),
         createVNode(LoraListModal, {
           visible: isModalOpen.value,
           "lora-list": _ctx.cachedLoraList,
           "current-index": unref(state).currentIndex.value,
-          onClose: _cache[3] || (_cache[3] = ($event) => isModalOpen.value = false),
+          onClose: _cache[1] || (_cache[1] = ($event) => isModalOpen.value = false),
           onSelect: handleModalSelect
         }, null, 8, ["visible", "lora-list", "current-index"])
       ]);
     };
   }
 });
-const ModelCyclerWidget = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-da63f7d2"]]);
+const ModelCyclerWidget = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-a122a990"]]);
 const _hoisted_1$1 = { class: "json-display-widget" };
 const _hoisted_2$1 = {
   class: "json-content",

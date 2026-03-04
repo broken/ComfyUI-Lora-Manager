@@ -115,7 +115,7 @@
     </div>
 
     <!-- Model Strength -->
-    <div class="setting-section">
+    <div v-if="!hideStrengths" class="setting-section">
       <label class="setting-label">Model Strength</label>
       <div class="slider-container">
         <SingleSlider
@@ -130,7 +130,7 @@
     </div>
 
     <!-- Clip Strength -->
-    <div class="setting-section">
+    <div v-if="!hideStrengths" class="setting-section">
       <div class="section-header-with-toggle">
         <label class="setting-label">
           Clip Strength - {{ useCustomClipRange ? 'Custom Value' : 'Use Model Strength' }}
@@ -172,10 +172,11 @@ const props = defineProps<{
   totalCount: number
   currentLoraName: string
   currentLoraFilename: string
-  modelStrength: number
-  clipStrength: number
-  useCustomClipRange: boolean
-  isClipStrengthDisabled: boolean
+  modelStrength?: number
+  clipStrength?: number
+  useCustomClipRange?: boolean
+  isClipStrengthDisabled?: boolean
+  hideStrengths?: boolean
   repeatCount: number
   repeatUsed: number
   isPaused: boolean

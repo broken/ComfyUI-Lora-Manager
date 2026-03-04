@@ -15,9 +15,6 @@ export function useModelCyclerState(widget: ComponentWidget<CyclerConfig>) {
   const currentIndex = ref(1)  // 1-based
   const totalCount = ref(0)
   const poolConfigHash = ref('')
-  const modelStrength = ref(1.0)
-  const clipStrength = ref(1.0)
-  const useCustomClipRange = ref(false)
   const sortBy = ref<'filename' | 'model_name'>('filename')
   const currentModelName = ref('')
   const currentModelFilename = ref('')
@@ -47,9 +44,6 @@ export function useModelCyclerState(widget: ComponentWidget<CyclerConfig>) {
         current_index: currentIndex.value,
         total_count: totalCount.value,
         pool_config_hash: poolConfigHash.value,
-        model_strength: modelStrength.value,
-        clip_strength: clipStrength.value,
-        use_same_clip_strength: !useCustomClipRange.value,
         sort_by: sortBy.value,
         current_model_name: currentModelName.value,
         current_model_filename: currentModelFilename.value,
@@ -64,9 +58,6 @@ export function useModelCyclerState(widget: ComponentWidget<CyclerConfig>) {
       current_index: currentIndex.value,
       total_count: totalCount.value,
       pool_config_hash: poolConfigHash.value,
-      model_strength: modelStrength.value,
-      clip_strength: clipStrength.value,
-      use_same_clip_strength: !useCustomClipRange.value,
       sort_by: sortBy.value,
       current_model_name: currentModelName.value,
       current_model_filename: currentModelFilename.value,
@@ -87,9 +78,6 @@ export function useModelCyclerState(widget: ComponentWidget<CyclerConfig>) {
       currentIndex.value = config.current_index || 1
       totalCount.value = config.total_count || 0
       poolConfigHash.value = config.pool_config_hash || ''
-      modelStrength.value = config.model_strength ?? 1.0
-      clipStrength.value = config.clip_strength ?? 1.0
-      useCustomClipRange.value = !(config.use_same_clip_strength ?? true)
       sortBy.value = config.sort_by || 'filename'
       currentModelName.value = config.current_model_name || ''
       currentModelFilename.value = config.current_model_filename || ''
@@ -248,24 +236,11 @@ export function useModelCyclerState(widget: ComponentWidget<CyclerConfig>) {
     isPaused.value = !isPaused.value
   }
 
-  // Computed property to check if clip strength is disabled
-  const isClipStrengthDisabled = computed(() => !useCustomClipRange.value)
-
-  // Watch model strength changes to sync with clip strength when not using custom range
-  watch(modelStrength, (newValue) => {
-    if (!useCustomClipRange.value) {
-      clipStrength.value = newValue
-    }
-  })
-
   // Watch all state changes and update widget value
   watch([
     currentIndex,
     totalCount,
     poolConfigHash,
-    modelStrength,
-    clipStrength,
-    useCustomClipRange,
     sortBy,
     currentModelName,
     currentModelFilename,
@@ -281,9 +256,6 @@ export function useModelCyclerState(widget: ComponentWidget<CyclerConfig>) {
     currentIndex,
     totalCount,
     poolConfigHash,
-    modelStrength,
-    clipStrength,
-    useCustomClipRange,
     sortBy,
     currentModelName,
     currentModelFilename,
@@ -296,9 +268,6 @@ export function useModelCyclerState(widget: ComponentWidget<CyclerConfig>) {
     isPaused,
     isWorkflowExecuting,
     executingRepeatStep,
-
-    // Computed
-    isClipStrengthDisabled,
 
     // Methods
     buildConfig,

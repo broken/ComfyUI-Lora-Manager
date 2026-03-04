@@ -5,10 +5,7 @@
       :total-count="state.totalCount.value"
       :current-lora-name="state.currentModelName.value"
       :current-lora-filename="state.currentModelFilename.value"
-      :model-strength="state.modelStrength.value"
-      :clip-strength="state.clipStrength.value"
-      :use-custom-clip-range="state.useCustomClipRange.value"
-      :is-clip-strength-disabled="state.isClipStrengthDisabled.value"
+      :hide-strengths="true"
       :is-loading="state.isLoading.value"
       :repeat-count="state.repeatCount.value"
       :repeat-used="state.displayRepeatUsed.value"
@@ -17,9 +14,6 @@
       :is-workflow-executing="state.isWorkflowExecuting.value"
       :executing-repeat-step="state.executingRepeatStep.value"
       @update:current-index="handleIndexUpdate"
-      @update:model-strength="state.modelStrength.value = $event"
-      @update:clip-strength="state.clipStrength.value = $event"
-      @update:use-custom-clip-range="handleUseCustomClipRangeChange"
       @update:repeat-count="handleRepeatCountChange"
       @toggle-pause="handleTogglePause"
       @reset-index="handleResetIndex"
@@ -153,12 +147,9 @@ const handleModalSelect = (index: number) => {
 }
 
 // Handle use custom clip range toggle
+// Used by other cyclers, retained for API completeness if abstracted further
 const handleUseCustomClipRangeChange = (newValue: boolean) => {
-  state.useCustomClipRange.value = newValue
-  // When toggling off, sync clip strength to model strength
-  if (!newValue) {
-    state.clipStrength.value = state.modelStrength.value
-  }
+  // Model cycler does not use custom clip range
 }
 
 // Handle repeat count change
