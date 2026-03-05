@@ -225,9 +225,9 @@ class LoraRoutes(BaseModelRoutes):
     async def get_views_list(self, request: web.Request) -> web.Response:
         """Get list of available alternative views for LoRAs"""
         import os
-        from ..config import config
+        import folder_paths
         try:
-            views_dir = os.path.join(os.path.dirname(config.static_path), "views")
+            views_dir = os.path.join(folder_paths.get_output_directory(), "views")
             if not os.path.exists(views_dir):
                 return web.json_response({"success": True, "views": []})
                 
@@ -246,7 +246,7 @@ class LoraRoutes(BaseModelRoutes):
         """Get an alternative view image for a LoRA"""
         import os
         import mimetypes
-        from ..config import config
+        import folder_paths
         try:
             view_name = request.query.get("view")
             lora_name = request.query.get("lora")
@@ -255,7 +255,7 @@ class LoraRoutes(BaseModelRoutes):
                 return web.Response(text="View and lora parameters are required", status=400)
                 
             # Safely resolve path to avoid directory traversal
-            views_dir = os.path.join(os.path.dirname(config.static_path), "views")
+            views_dir = os.path.join(folder_paths.get_output_directory(), "views")
             target_view_dir = os.path.normpath(os.path.join(views_dir, view_name))
             
             if not target_view_dir.startswith(os.path.normpath(views_dir)):
