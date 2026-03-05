@@ -180,18 +180,41 @@ export class LorasControls extends PageControls {
                     this.pageState.currentView = 'default';
                 }
                 
-                // Add views to menu
-                data.views.forEach(viewName => {
-                    const item = document.createElement('div');
-                    item.className = 'dropdown-item';
-                    item.dataset.view = viewName;
+                // Add views to menu, formatting grouped paths as a pseudo-tree
+                // Calculate folder groupings assuming views are sorted alphabetically
+                let lastPathParts = [];
+                
+                data.views.forEach(viewPath => {
+                    const pathParts = viewPath.split('/');
+                    const currentName = pathParts[pathParts.length - 1];
+                    const currentDepth = pathParts.length - 1;
                     
-                    if (this.pageState.currentView === viewName) {
-                        item.classList.add('active');
-                        document.getElementById('currentViewName').textContent = viewName;
+                    // Add folder headers for path parts that differ from the previous item
+                    for (let i = 0; i < currentDepth; i++) {
+                        if (i >= lastPathParts.length || pathParts[i] !== lastPathParts[i]) {
+                            const header = document.createElement('div');
+                            header.className = 'dropdown-header';
+                            header.style.paddingLeft = `${0.5 + i * 1.5}rem`;
+                            header.innerHTML = `<i class="fas fa-folder"></i> <span>${pathParts[i]}</span>`;
+                            menu.appendChild(header);
+                        }
                     }
                     
-                    item.innerHTML = `<i class="fas fa-image"></i> <span>${viewName}</span>`;
+                    lastPathParts = pathParts;
+
+                    const item = document.createElement('div');
+                    item.className = 'dropdown-item';
+                    item.dataset.view = viewPath;
+                    
+                    // Add padding proportional to depth for visual hierarchy
+                    item.style.paddingLeft = `${1 + currentDepth * 1.5}rem`;
+                    
+                    if (this.pageState.currentView === viewPath) {
+                        item.classList.add('active');
+                        document.getElementById('currentViewName').textContent = currentName;
+                    }
+                    
+                    item.innerHTML = `<i class="fas fa-image"></i> <span>${currentName}</span>`;
                     menu.appendChild(item);
                 });
                 
@@ -207,7 +230,8 @@ export class LorasControls extends PageControls {
                     item.classList.add('active');
                     
                     // Update button text
-                    const viewLabel = newView === 'default' ? 'Screenshot' : newView;
+                    const pathParts = newView.split('/');
+                    const viewLabel = newView === 'default' ? 'Screenshot' : pathParts[pathParts.length - 1];
                     document.getElementById('currentViewName').textContent = viewLabel;
                     
                     // Update state

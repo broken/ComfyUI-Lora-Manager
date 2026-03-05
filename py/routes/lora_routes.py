@@ -232,9 +232,15 @@ class LoraRoutes(BaseModelRoutes):
                 return web.json_response({"success": True, "views": []})
                 
             views = []
-            for item in os.listdir(views_dir):
-                if os.path.isdir(os.path.join(views_dir, item)):
-                    views.append(item)
+            for root, dirs, files in os.walk(views_dir):
+                for d in dirs:
+                    # Get the full path of the directory
+                    full_dir_path = os.path.join(root, d)
+                    # Get relative path from the base views directory
+                    rel_path = os.path.relpath(full_dir_path, views_dir)
+                    # Using forward slashes for consistency in the frontend
+                    rel_path = rel_path.replace(os.sep, '/')
+                    views.append(rel_path)
                     
             views.sort()
             return web.json_response({"success": True, "views": views})
