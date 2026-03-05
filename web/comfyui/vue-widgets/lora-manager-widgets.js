@@ -1947,7 +1947,7 @@ to { transform: rotate(360deg);
   font-size: 13px;
 }
 
-.lora-cycler-widget[data-v-f09f4e8b] {
+.lora-cycler-widget[data-v-bd407ecd] {
   padding: 6px;
   background: rgba(40, 44, 52, 0.6);
   border-radius: 6px;
@@ -1969,7 +1969,7 @@ to { transform: rotate(360deg);
   box-sizing: border-box;
 }
 
-.model-cycler-widget[data-v-a122a990] {
+.model-cycler-widget[data-v-95bf5c5d] {
   padding: 6px;
   background: rgba(40, 44, 52, 0.6);
   border-radius: 6px;
@@ -13948,6 +13948,12 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
         const nextLoraFilename = (output == null ? void 0 : output.next_lora_filename) !== void 0 ? Array.isArray(output.next_lora_filename) ? output.next_lora_filename[0] : output.next_lora_filename : "";
         const currentLoraName = (output == null ? void 0 : output.current_lora_name) !== void 0 ? Array.isArray(output.current_lora_name) ? output.current_lora_name[0] : output.current_lora_name : "";
         const currentLoraFilename = (output == null ? void 0 : output.current_lora_filename) !== void 0 ? Array.isArray(output.current_lora_filename) ? output.current_lora_filename[0] : output.current_lora_filename : "";
+        const repeatCountOverride = (output == null ? void 0 : output.repeat_count_override) !== void 0 ? Array.isArray(output.repeat_count_override) ? output.repeat_count_override[0] : output.repeat_count_override : void 0;
+        if (repeatCountOverride !== void 0 && repeatCountOverride > 0 && Number.isInteger(repeatCountOverride)) {
+          if (state.repeatCount.value !== repeatCountOverride) {
+            state.repeatCount.value = repeatCountOverride;
+          }
+        }
         if ((output == null ? void 0 : output.total_count) !== void 0) {
           const val = Array.isArray(output.total_count) ? output.total_count[0] : output.total_count;
           state.totalCount.value = val;
@@ -14054,7 +14060,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const LoraCyclerWidget = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-f09f4e8b"]]);
+const LoraCyclerWidget = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-bd407ecd"]]);
 function useModelPoolApi() {
   const isLoading = ref(false);
   const fetchBaseModels = async (limit = 50) => {
@@ -14753,6 +14759,12 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
         const nextModelFilename = (output == null ? void 0 : output.next_model_filename) !== void 0 ? Array.isArray(output.next_model_filename) ? output.next_model_filename[0] : output.next_model_filename : "";
         const currentModelName = (output == null ? void 0 : output.current_model_name) !== void 0 ? Array.isArray(output.current_model_name) ? output.current_model_name[0] : output.current_model_name : "";
         const currentModelFilename = (output == null ? void 0 : output.current_model_filename) !== void 0 ? Array.isArray(output.current_model_filename) ? output.current_model_filename[0] : output.current_model_filename : "";
+        const repeatCountOverride = (output == null ? void 0 : output.repeat_count_override) !== void 0 ? Array.isArray(output.repeat_count_override) ? output.repeat_count_override[0] : output.repeat_count_override : void 0;
+        if (repeatCountOverride !== void 0 && repeatCountOverride > 0 && Number.isInteger(repeatCountOverride)) {
+          if (state.repeatCount.value !== repeatCountOverride) {
+            state.repeatCount.value = repeatCountOverride;
+          }
+        }
         if ((output == null ? void 0 : output.total_count) !== void 0) {
           const val = Array.isArray(output.total_count) ? output.total_count[0] : output.total_count;
           state.totalCount.value = val;
@@ -14853,7 +14865,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ModelCyclerWidget = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-a122a990"]]);
+const ModelCyclerWidget = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-95bf5c5d"]]);
 const _hoisted_1$1 = { class: "json-display-widget" };
 const _hoisted_2$1 = {
   class: "json-content",

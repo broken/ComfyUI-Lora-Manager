@@ -350,6 +350,15 @@ onMounted(async () => {
     const currentLoraFilename = output?.current_lora_filename !== undefined
       ? (Array.isArray(output.current_lora_filename) ? output.current_lora_filename[0] : output.current_lora_filename)
       : ''
+    const repeatCountOverride = output?.repeat_count_override !== undefined
+      ? (Array.isArray(output.repeat_count_override) ? output.repeat_count_override[0] : output.repeat_count_override)
+      : undefined
+
+    if (repeatCountOverride !== undefined && repeatCountOverride > 0 && Number.isInteger(repeatCountOverride)) {
+      if (state.repeatCount.value !== repeatCountOverride) {
+        state.repeatCount.value = repeatCountOverride
+      }
+    }
 
     // Update total count immediately (doesn't need to wait for workflow completion)
     if (output?.total_count !== undefined) {
