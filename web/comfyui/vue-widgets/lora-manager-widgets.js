@@ -283,13 +283,13 @@
   align-items: center;
 }
 
-.section[data-v-6355711e] {
+.section[data-v-4db5acce] {
   margin-bottom: 16px;
 }
-.section__header[data-v-6355711e] {
+.section__header[data-v-4db5acce] {
   margin-bottom: 8px;
 }
-.section__title[data-v-6355711e] {
+.section__title[data-v-4db5acce] {
   font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
@@ -297,22 +297,22 @@
   color: var(--fg-color, #fff);
   opacity: 0.6;
 }
-.section__toggles[data-v-6355711e] {
+.section__toggles[data-v-4db5acce] {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
 }
-.toggle-item[data-v-6355711e] {
+.toggle-item[data-v-4db5acce] {
   display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
 }
-.toggle-item__label[data-v-6355711e] {
+.toggle-item__label[data-v-4db5acce] {
   font-size: 12px;
   color: var(--fg-color, #fff);
 }
-.toggle-switch[data-v-6355711e] {
+.toggle-switch[data-v-4db5acce] {
   position: relative;
   width: 36px;
   height: 20px;
@@ -321,7 +321,7 @@
   border: none;
   cursor: pointer;
 }
-.toggle-switch__track[data-v-6355711e] {
+.toggle-switch__track[data-v-4db5acce] {
   position: absolute;
   inset: 0;
   background: var(--comfy-input-bg, #333);
@@ -329,11 +329,11 @@
   border-radius: 10px;
   transition: all 0.2s;
 }
-.toggle-switch--active .toggle-switch__track[data-v-6355711e] {
+.toggle-switch--active .toggle-switch__track[data-v-4db5acce] {
   background: rgba(66, 153, 225, 0.3);
   border-color: rgba(66, 153, 225, 0.6);
 }
-.toggle-switch__thumb[data-v-6355711e] {
+.toggle-switch__thumb[data-v-4db5acce] {
   position: absolute;
   top: 3px;
   left: 2px;
@@ -344,12 +344,12 @@
   transition: all 0.2s;
   opacity: 0.6;
 }
-.toggle-switch--active .toggle-switch__thumb[data-v-6355711e] {
+.toggle-switch--active .toggle-switch__thumb[data-v-4db5acce] {
   transform: translateX(16px);
   background: #4299e1;
   opacity: 1;
 }
-.toggle-switch:hover .toggle-switch__thumb[data-v-6355711e] {
+.toggle-switch:hover .toggle-switch__thumb[data-v-4db5acce] {
   opacity: 1;
 }
 
@@ -10821,7 +10821,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
         ], -1)),
         createBaseVNode("div", _hoisted_2$e, [
           createBaseVNode("label", _hoisted_3$c, [
-            _cache[4] || (_cache[4] = createBaseVNode("span", { class: "toggle-item__label" }, "No Credit Required", -1)),
+            _cache[4] || (_cache[4] = createBaseVNode("span", { class: "toggle-item__label" }, "No Credit Required TEST", -1)),
             createBaseVNode("button", {
               type: "button",
               class: normalizeClass(["toggle-switch", { "toggle-switch--active": __props.noCreditRequired }]),
@@ -10865,7 +10865,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const LicenseSection = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__scopeId", "data-v-6355711e"]]);
+const LicenseSection = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__scopeId", "data-v-4db5acce"]]);
 const _hoisted_1$h = { class: "preview" };
 const _hoisted_2$d = { class: "preview__title" };
 const _hoisted_3$b = ["disabled"];

@@ -5,7 +5,7 @@
     </div>
     <div class="section__toggles">
       <label class="toggle-item">
-        <span class="toggle-item__label">No Credit Required</span>
+        <span class="toggle-item__label">No Credit Required TEST</span>
         <button
           type="button"
           class="toggle-switch"
