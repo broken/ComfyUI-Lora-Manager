@@ -283,13 +283,13 @@
   align-items: center;
 }
 
-.section[data-v-52c522b3] {
+.section[data-v-6355711e] {
   margin-bottom: 16px;
 }
-.section__header[data-v-52c522b3] {
+.section__header[data-v-6355711e] {
   margin-bottom: 8px;
 }
-.section__title[data-v-52c522b3] {
+.section__title[data-v-6355711e] {
   font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
@@ -297,21 +297,22 @@
   color: var(--fg-color, #fff);
   opacity: 0.6;
 }
-.section__toggles[data-v-52c522b3] {
+.section__toggles[data-v-6355711e] {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
 }
-.toggle-item[data-v-52c522b3] {
+.toggle-item[data-v-6355711e] {
   display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
 }
-.toggle-item__label[data-v-52c522b3] {
+.toggle-item__label[data-v-6355711e] {
   font-size: 12px;
   color: var(--fg-color, #fff);
 }
-.toggle-switch[data-v-52c522b3] {
+.toggle-switch[data-v-6355711e] {
   position: relative;
   width: 36px;
   height: 20px;
@@ -320,7 +321,7 @@
   border: none;
   cursor: pointer;
 }
-.toggle-switch__track[data-v-52c522b3] {
+.toggle-switch__track[data-v-6355711e] {
   position: absolute;
   inset: 0;
   background: var(--comfy-input-bg, #333);
@@ -328,11 +329,11 @@
   border-radius: 10px;
   transition: all 0.2s;
 }
-.toggle-switch--active .toggle-switch__track[data-v-52c522b3] {
+.toggle-switch--active .toggle-switch__track[data-v-6355711e] {
   background: rgba(66, 153, 225, 0.3);
   border-color: rgba(66, 153, 225, 0.6);
 }
-.toggle-switch__thumb[data-v-52c522b3] {
+.toggle-switch__thumb[data-v-6355711e] {
   position: absolute;
   top: 3px;
   left: 2px;
@@ -343,12 +344,12 @@
   transition: all 0.2s;
   opacity: 0.6;
 }
-.toggle-switch--active .toggle-switch__thumb[data-v-52c522b3] {
+.toggle-switch--active .toggle-switch__thumb[data-v-6355711e] {
   transform: translateX(16px);
   background: #4299e1;
   opacity: 1;
 }
-.toggle-switch:hover .toggle-switch__thumb[data-v-52c522b3] {
+.toggle-switch:hover .toggle-switch__thumb[data-v-6355711e] {
   opacity: 1;
 }
 
@@ -10864,7 +10865,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const LicenseSection = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__scopeId", "data-v-52c522b3"]]);
+const LicenseSection = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__scopeId", "data-v-6355711e"]]);
 const _hoisted_1$h = { class: "preview" };
 const _hoisted_2$d = { class: "preview__title" };
 const _hoisted_3$b = ["disabled"];

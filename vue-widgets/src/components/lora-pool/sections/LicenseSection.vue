@@ -87,6 +87,7 @@ defineEmits<{
 
 .section__toggles {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
 }
 
