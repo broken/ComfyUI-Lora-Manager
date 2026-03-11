@@ -259,7 +259,22 @@ onMounted(async () => {
       // execution_index set by previous non-paused beforeQueued calls
       const pausedConfig = state.buildConfig()
       pausedConfig.execution_index = null
+
+      const actualIndex = pausedConfig.current_index
+      if (cachedLoraList.value.length > 0 && actualIndex > 0 && actualIndex <= cachedLoraList.value.length) {
+        const actualLora = cachedLoraList.value[actualIndex - 1]
+        if (actualLora) {
+          pausedConfig.current_lora_name = state.sortBy.value === 'filename' 
+            ? actualLora.file_name 
+            : (actualLora.model_name || actualLora.file_name)
+          pausedConfig.current_lora_filename = actualLora.file_name
+        }
+      }
+
+      const tempCallback = props.widget.callback
+      props.widget.callback = undefined
       props.widget.value = pausedConfig
+      props.widget.callback = tempCallback
       return
     }
 
@@ -300,7 +315,27 @@ onMounted(async () => {
     hasQueuedPrompts.value = true
 
     // Update the widget value so the indices are included in the serialized config
-    props.widget.value = state.buildConfig()
+    const config = state.buildConfig()
+
+    // Inject the actual values that will be used for this execution into the saved config
+    // This ensures that metadata in generated images contains the correct LoRA/Model names
+    // instead of the stale UI state.
+    const actualIndex = config.execution_index !== null ? config.execution_index : config.current_index
+    if (cachedLoraList.value.length > 0 && actualIndex > 0 && actualIndex <= cachedLoraList.value.length) {
+      const actualLora = cachedLoraList.value[actualIndex - 1]
+      if (actualLora) {
+        config.current_lora_name = state.sortBy.value === 'filename' 
+          ? actualLora.file_name 
+          : (actualLora.model_name || actualLora.file_name)
+        config.current_lora_filename = actualLora.file_name
+        config.current_index = actualIndex
+      }
+    }
+
+    const tempCallback = props.widget.callback
+    props.widget.callback = undefined
+    props.widget.value = config
+    props.widget.callback = tempCallback
   }
 
   // Mark component as mounted

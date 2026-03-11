@@ -1947,7 +1947,7 @@ to { transform: rotate(360deg);
   font-size: 13px;
 }
 
-.lora-cycler-widget[data-v-bd407ecd] {
+.lora-cycler-widget[data-v-15ce6e6d] {
   padding: 6px;
   background: rgba(40, 44, 52, 0.6);
   border-radius: 6px;
@@ -1969,7 +1969,7 @@ to { transform: rotate(360deg);
   box-sizing: border-box;
 }
 
-.model-cycler-widget[data-v-95bf5c5d] {
+.model-cycler-widget[data-v-46d5efb2] {
   padding: 6px;
   background: rgba(40, 44, 52, 0.6);
   border-radius: 6px;
@@ -13900,7 +13900,18 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
           hasQueuedPrompts.value = true;
           const pausedConfig = state.buildConfig();
           pausedConfig.execution_index = null;
+          const actualIndex2 = pausedConfig.current_index;
+          if (cachedLoraList.value.length > 0 && actualIndex2 > 0 && actualIndex2 <= cachedLoraList.value.length) {
+            const actualLora = cachedLoraList.value[actualIndex2 - 1];
+            if (actualLora) {
+              pausedConfig.current_lora_name = state.sortBy.value === "filename" ? actualLora.file_name : actualLora.model_name || actualLora.file_name;
+              pausedConfig.current_lora_filename = actualLora.file_name;
+            }
+          }
+          const tempCallback2 = props.widget.callback;
+          props.widget.callback = void 0;
           props.widget.value = pausedConfig;
+          props.widget.callback = tempCallback2;
           return;
         }
         if (props.widget[HAS_EXECUTED]) {
@@ -13925,7 +13936,20 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
           displayRepeatUsed
         });
         hasQueuedPrompts.value = true;
-        props.widget.value = state.buildConfig();
+        const config = state.buildConfig();
+        const actualIndex = config.execution_index !== null ? config.execution_index : config.current_index;
+        if (cachedLoraList.value.length > 0 && actualIndex > 0 && actualIndex <= cachedLoraList.value.length) {
+          const actualLora = cachedLoraList.value[actualIndex - 1];
+          if (actualLora) {
+            config.current_lora_name = state.sortBy.value === "filename" ? actualLora.file_name : actualLora.model_name || actualLora.file_name;
+            config.current_lora_filename = actualLora.file_name;
+            config.current_index = actualIndex;
+          }
+        }
+        const tempCallback = props.widget.callback;
+        props.widget.callback = void 0;
+        props.widget.value = config;
+        props.widget.callback = tempCallback;
       };
       isMounted.value = true;
       try {
@@ -14060,7 +14084,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const LoraCyclerWidget = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-bd407ecd"]]);
+const LoraCyclerWidget = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-15ce6e6d"]]);
 function useModelPoolApi() {
   const isLoading = ref(false);
   const fetchBaseModels = async (limit = 50) => {
@@ -14711,7 +14735,18 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
           hasQueuedPrompts.value = true;
           const pausedConfig = state.buildConfig();
           pausedConfig.execution_index = null;
+          const actualIndex2 = pausedConfig.current_index;
+          if (cachedModelList.value.length > 0 && actualIndex2 > 0 && actualIndex2 <= cachedModelList.value.length) {
+            const actualModel = cachedModelList.value[actualIndex2 - 1];
+            if (actualModel) {
+              pausedConfig.current_model_name = state.sortBy.value === "filename" ? actualModel.file_name : actualModel.model_name || actualModel.file_name;
+              pausedConfig.current_model_filename = actualModel.file_name;
+            }
+          }
+          const tempCallback2 = props.widget.callback;
+          props.widget.callback = void 0;
           props.widget.value = pausedConfig;
+          props.widget.callback = tempCallback2;
           return;
         }
         if (props.widget[HAS_EXECUTED]) {
@@ -14736,7 +14771,20 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
           displayRepeatUsed
         });
         hasQueuedPrompts.value = true;
-        props.widget.value = state.buildConfig();
+        const config = state.buildConfig();
+        const actualIndex = config.execution_index !== null ? config.execution_index : config.current_index;
+        if (cachedModelList.value.length > 0 && actualIndex > 0 && actualIndex <= cachedModelList.value.length) {
+          const actualModel = cachedModelList.value[actualIndex - 1];
+          if (actualModel) {
+            config.current_model_name = state.sortBy.value === "filename" ? actualModel.file_name : actualModel.model_name || actualModel.file_name;
+            config.current_model_filename = actualModel.file_name;
+            config.current_index = actualIndex;
+          }
+        }
+        const tempCallback = props.widget.callback;
+        props.widget.callback = void 0;
+        props.widget.value = config;
+        props.widget.callback = tempCallback;
       };
       isMounted.value = true;
       try {
@@ -14865,7 +14913,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ModelCyclerWidget = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-95bf5c5d"]]);
+const ModelCyclerWidget = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-46d5efb2"]]);
 const _hoisted_1$1 = { class: "json-display-widget" };
 const _hoisted_2$1 = {
   class: "json-content",
