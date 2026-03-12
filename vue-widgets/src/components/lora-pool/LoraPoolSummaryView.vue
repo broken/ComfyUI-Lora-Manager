@@ -27,8 +27,10 @@
       <LicenseSection
         :no-credit-required="noCreditRequired"
         :allow-selling="allowSelling"
+        :include-empty-lora="includeEmptyLora"
         @update:no-credit-required="$emit('update:noCreditRequired', $event)"
         @update:allow-selling="$emit('update:allowSelling', $event)"
+        @update:include-empty-lora="$emit('update:includeEmptyLora', $event)"
       />
     </div>
 
@@ -62,9 +64,10 @@ defineProps<{
   // Folders
   includeFolders: string[]
   excludeFolders: string[]
-  // License
+  // License & Misc
   noCreditRequired: boolean
   allowSelling: boolean
+  includeEmptyLora: boolean
   // Preview
   previewItems: LoraItem[]
   matchCount: number
@@ -78,6 +81,7 @@ defineEmits<{
   'update:excludeFolders': [value: string[]]
   'update:noCreditRequired': [value: boolean]
   'update:allowSelling': [value: boolean]
+  'update:includeEmptyLora': [value: boolean]
   refresh: []
 }>()
 </script>
