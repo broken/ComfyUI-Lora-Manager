@@ -544,6 +544,37 @@ class LoraLoaderManagerExtractor(NodeMetadataExtractor):
                 "node_id": node_id
             }
 
+class LoraStackExtractor(NodeMetadataExtractor):
+    @staticmethod
+    def update(node_id, outputs, metadata):
+        """Extract active LoRAs from the LORA_STACK output list"""
+        if not outputs or not isinstance(outputs, list) or len(outputs) == 0:
+            return
+            
+        first_output = outputs[0]
+        if not isinstance(first_output, tuple) or len(first_output) == 0:
+            return
+            
+        lora_stack = first_output[0]
+        if not lora_stack or not isinstance(lora_stack, list):
+            return
+            
+        active_loras = []
+        for lora_path, model_strength, clip_strength in lora_stack:
+            lora_name = os.path.splitext(os.path.basename(lora_path))[0]
+            active_loras.append({
+                "name": lora_name,
+                "strength": model_strength
+            })
+            
+        if active_loras:
+            if LORAS not in metadata:
+                metadata[LORAS] = {}
+            metadata[LORAS][node_id] = {
+                "lora_list": active_loras,
+                "node_id": node_id
+            }
+
 class FluxGuidanceExtractor(NodeMetadataExtractor):
     @staticmethod
     def extract(node_id, inputs, outputs, metadata):
@@ -784,6 +815,8 @@ NODE_EXTRACTORS = {
     "UnetLoaderGGUF": UNETLoaderExtractor,  # Updated to use dedicated extractor
     "LoraLoader": LoraLoaderExtractor,
     "LoraLoaderLM": LoraLoaderManagerExtractor,
+    "LoraCyclerLM": LoraStackExtractor,
+    "LoraRandomizerLM": LoraStackExtractor,
     "RgthreePowerLoraLoader": RgthreePowerLoraLoaderExtractor,
     "TensorRTLoader": TensorRTLoaderExtractor,
     # Conditioning

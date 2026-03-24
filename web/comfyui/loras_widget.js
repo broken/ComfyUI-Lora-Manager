@@ -728,7 +728,8 @@ export function addLorasWidget(node, name, opts, callback) {
       renderLoras(widgetValue, widget);
     },
     hideOnZoom: true,
-    selectOn: ['click', 'focus']
+    selectOn: ['click', 'focus'],
+    serialize: true
   });
 
   widget.value = defaultValue;
