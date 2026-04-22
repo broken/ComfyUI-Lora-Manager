@@ -17,6 +17,25 @@ def _store_checkpoint_metadata(metadata, node_id, model_name):
     }
 
 
+class CheckpointCyclerExtractor(NodeMetadataExtractor):
+    """Extract metadata from CheckpointCyclerCU nodes using their specific outputs."""
+
+    @staticmethod
+    def extract(node_id, inputs, outputs, metadata):
+        # Initial guess from widgets if available
+        if inputs and "ckpt_name" in inputs:
+            _store_checkpoint_metadata(metadata, node_id, inputs.get("ckpt_name"))
+
+    @staticmethod
+    def update(node_id, outputs, metadata):
+        # Post-execution truth from outputs
+        # CheckpointCyclerCU returns (target_name, tags, total_models)
+        if outputs and isinstance(outputs, (list, tuple)) and len(outputs) > 0:
+            model_name = outputs[0]
+            if isinstance(model_name, str):
+                _store_checkpoint_metadata(metadata, node_id, model_name)
+
+
 class NodeMetadataExtractor:
     """Base class for node-specific metadata extraction"""
     
@@ -901,6 +920,49 @@ class LoraLoaderManagerExtractor(NodeMetadataExtractor):
                 "node_id": node_id
             }
 
+
+class LoraCyclerExtractor(NodeMetadataExtractor):
+    """Extract metadata from LoraCyclerCU nodes using their specific outputs."""
+
+    @staticmethod
+    def extract(node_id, inputs, outputs, metadata):
+        # Initial state from inputs if possible
+        if not inputs:
+            return
+        
+        # Note: We prioritize the update() method for these dynamic nodes
+        pass
+
+    @staticmethod
+    def update(node_id, outputs, metadata):
+        # Post-execution truth from outputs
+        # LoraCyclerCU returns (lora_stack, total_models)
+        # lora_stack is a list of tuples: [(lora_name, model_strength, clip_strength), ...]
+        if not outputs or not isinstance(outputs, (list, tuple)) or len(outputs) == 0:
+            return
+
+        lora_stack = outputs[0]
+        if not isinstance(lora_stack, list):
+            return
+
+        active_loras = []
+        for lora in lora_stack:
+            if isinstance(lora, (list, tuple)) and len(lora) >= 2:
+                lora_name = lora[0]
+                model_strength = lora[1]
+                # Extract basename without extension
+                lora_name = os.path.splitext(os.path.basename(lora_name))[0]
+                active_loras.append({
+                    "name": lora_name,
+                    "strength": model_strength
+                })
+
+        if active_loras:
+            metadata[LORAS][node_id] = {
+                "lora_list": active_loras,
+                "node_id": node_id
+            }
+
 class FluxGuidanceExtractor(NodeMetadataExtractor):
     @staticmethod
     def extract(node_id, inputs, outputs, metadata):
@@ -1169,6 +1231,9 @@ NODE_EXTRACTORS = {
     # Flux
     "FluxGuidance": FluxGuidanceExtractor,      # Add FluxGuidance
     "CFGGuider": CFGGuiderExtractor,            # Add CFGGuider
+    # Cyclers
+    "CheckpointCyclerCU": CheckpointCyclerExtractor,
+    "LoraCyclerCU": LoraCyclerExtractor,
     # Image
     "VAEDecode": VAEDecodeExtractor,  # Added VAEDecode extractor
     # Add other nodes as needed
