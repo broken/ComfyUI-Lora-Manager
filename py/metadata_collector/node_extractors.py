@@ -1170,6 +1170,20 @@ class LoraCyclerExtractor(NodeMetadataExtractor):
                 "node_id": node_id
             }
 
+class PromptSelectionExtractor(NodeMetadataExtractor):
+    """Extract metadata from PromptSelectionCU nodes using their specific outputs."""
+
+    @staticmethod
+    def update(node_id, outputs, metadata):
+        # PromptSelectionCU returns (positive, negative, count)
+        if outputs and isinstance(outputs, (list, tuple)) and len(outputs) >= 2:
+            pos_text = outputs[0]
+            neg_text = outputs[1]
+            if isinstance(pos_text, str) or isinstance(neg_text, str):
+                prompt_metadata = _ensure_prompt_metadata(metadata, node_id)
+                prompt_metadata["positive_text"] = pos_text
+                prompt_metadata["negative_text"] = neg_text
+
 class LoraTextLoaderManagerExtractor(NodeMetadataExtractor):
     """Extract LoRA metadata from LoraTextLoaderLM (LoRA Text Loader).
 
@@ -1516,6 +1530,7 @@ NODE_EXTRACTORS = {
     # Cyclers
     "CheckpointCyclerCU": CheckpointCyclerExtractor,
     "LoraCyclerCU": LoraCyclerExtractor,
+    "PromptSelectionCU": PromptSelectionExtractor,
     # Image
     "VAEDecode": VAEDecodeExtractor,  # Added VAEDecode extractor
     # Metadata overwrite
