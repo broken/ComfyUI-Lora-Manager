@@ -18,38 +18,20 @@ def _store_checkpoint_metadata(metadata, node_id, model_name):
     }
 
 
-class CheckpointCyclerExtractor(NodeMetadataExtractor):
-    """Extract metadata from CheckpointCyclerCU nodes using their specific outputs."""
-
-    @staticmethod
-    def extract(node_id, inputs, outputs, metadata):
-        # Initial guess from widgets if available
-        if inputs and "ckpt_name" in inputs:
-            _store_checkpoint_metadata(metadata, node_id, inputs.get("ckpt_name"))
-
-    @staticmethod
-    def update(node_id, outputs, metadata):
-        # Post-execution truth from outputs
-        # CheckpointCyclerCU returns (target_name, tags, total_models)
-        if outputs and isinstance(outputs, (list, tuple)) and len(outputs) > 0:
-            model_name = outputs[0]
-            if isinstance(model_name, str):
-                _store_checkpoint_metadata(metadata, node_id, model_name)
-
-
 class NodeMetadataExtractor:
     """Base class for node-specific metadata extraction"""
-    
+
     @staticmethod
     def extract(node_id, inputs, outputs, metadata):
         """Extract metadata from node inputs/outputs"""
         pass
-        
+
     @staticmethod
     def update(node_id, outputs, metadata):
         """Update metadata with node outputs after execution"""
         pass
-        
+
+
 class GenericNodeExtractor(NodeMetadataExtractor):
     """Fallback extractor with type-signature-based detection.
 
@@ -75,6 +57,7 @@ class GenericNodeExtractor(NodeMetadataExtractor):
 
     # Input field names that may carry prompt text in encoder-style nodes.
     _TEXT_FIELDS = ("text", "clip_l", "t5xxl", "prompt", "positive", "negative")
+
 
     @staticmethod
     def extract(node_id, inputs, outputs, metadata, return_types=None):
@@ -139,6 +122,25 @@ class GenericNodeExtractor(NodeMetadataExtractor):
             output_conditioning,
             prompt_metadata.get("orig_conditionings", []),
         )
+
+
+class CheckpointCyclerExtractor(NodeMetadataExtractor):
+    """Extract metadata from CheckpointCyclerCU nodes using their specific outputs."""
+
+    @staticmethod
+    def extract(node_id, inputs, outputs, metadata):
+        # Initial guess from widgets if available
+        if inputs and "ckpt_name" in inputs:
+            _store_checkpoint_metadata(metadata, node_id, inputs.get("ckpt_name"))
+
+    @staticmethod
+    def update(node_id, outputs, metadata):
+        # Post-execution truth from outputs
+        # CheckpointCyclerCU returns (target_name, tags, total_models)
+        if outputs and isinstance(outputs, (list, tuple)) and len(outputs) > 0:
+            model_name = outputs[0]
+            if isinstance(model_name, str):
+                _store_checkpoint_metadata(metadata, node_id, model_name)
 
 class CheckpointLoaderExtractor(NodeMetadataExtractor):
     @staticmethod
