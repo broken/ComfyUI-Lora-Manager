@@ -17,6 +17,28 @@ def _store_checkpoint_metadata(metadata, node_id, model_name):
     }
 
 
+class NodeMetadataExtractor:
+    """Base class for node-specific metadata extraction"""
+
+    @staticmethod
+    def extract(node_id, inputs, outputs, metadata):
+        """Extract metadata from node inputs/outputs"""
+        pass
+
+    @staticmethod
+    def update(node_id, outputs, metadata):
+        """Update metadata with node outputs after execution"""
+        pass
+
+
+class GenericNodeExtractor(NodeMetadataExtractor):
+    """Default extractor for nodes without specific handling"""
+
+    @staticmethod
+    def extract(node_id, inputs, outputs, metadata):
+        pass
+
+
 class CheckpointCyclerExtractor(NodeMetadataExtractor):
     """Extract metadata from CheckpointCyclerCU nodes using their specific outputs."""
 
@@ -34,26 +56,6 @@ class CheckpointCyclerExtractor(NodeMetadataExtractor):
             model_name = outputs[0]
             if isinstance(model_name, str):
                 _store_checkpoint_metadata(metadata, node_id, model_name)
-
-
-class NodeMetadataExtractor:
-    """Base class for node-specific metadata extraction"""
-    
-    @staticmethod
-    def extract(node_id, inputs, outputs, metadata):
-        """Extract metadata from node inputs/outputs"""
-        pass
-        
-    @staticmethod
-    def update(node_id, outputs, metadata):
-        """Update metadata with node outputs after execution"""
-        pass
-        
-class GenericNodeExtractor(NodeMetadataExtractor):
-    """Default extractor for nodes without specific handling"""
-    @staticmethod
-    def extract(node_id, inputs, outputs, metadata):
-        pass
         
 class CheckpointLoaderExtractor(NodeMetadataExtractor):
     @staticmethod
