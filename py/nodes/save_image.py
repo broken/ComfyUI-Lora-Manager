@@ -650,40 +650,36 @@ class SaveImageLM:
                     # For JPEG, use piexif
                     if save_with_metadata and metadata:
                         try:
-                            exif_dict = {
-                                "Exif": {
-                                    piexif.ExifIFD.UserComment: b"UNICODE\0"
-                                    + metadata.encode("utf-16be")
-                                }
-                            }
+                            import piexif.helper
+                            exif_dict = {"0th": {}, "Exif": {}, "1st": {}, "GPS": {}, "Interop": {}}
+                            exif_dict["Exif"][piexif.ExifIFD.UserComment] = piexif.helper.UserComment.dump(
+                                metadata, encoding="unicode"
+                            )
                             exif_bytes = piexif.dump(exif_dict)
                             save_kwargs["exif"] = exif_bytes
                         except Exception as e:
-                            logger.error(f"Error adding EXIF data: {e}")
+                            logger.error(f"Error adding EXIF data: {e}", exc_info=True)
                     img.save(file_path, format="JPEG", **save_kwargs)
                 elif file_format == "webp":
                     try:
                         # For WebP, use piexif for metadata
-                        exif_dict = {}
+                        import piexif.helper
+                        exif_dict = {"0th": {}, "Exif": {}, "1st": {}, "GPS": {}, "Interop": {}}
 
                         if save_with_metadata and metadata:
-                            exif_dict["Exif"] = {
-                                piexif.ExifIFD.UserComment: b"UNICODE\0"
-                                + metadata.encode("utf-16be")
-                            }
+                            exif_dict["Exif"][piexif.ExifIFD.UserComment] = piexif.helper.UserComment.dump(
+                                metadata, encoding="unicode"
+                            )
 
                         # Add workflow if needed
                         if embed_workflow and extra_pnginfo is not None:
                             workflow_json = json.dumps(extra_pnginfo["workflow"])
-                            exif_dict["0th"] = {
-                                piexif.ImageIFD.ImageDescription: "Workflow:"
-                                + workflow_json
-                            }
+                            exif_dict["0th"][piexif.ImageIFD.ImageDescription] = ("Workflow:" + workflow_json).encode("utf-8")
 
                         exif_bytes = piexif.dump(exif_dict)
                         save_kwargs["exif"] = exif_bytes
                     except Exception as e:
-                        logger.error(f"Error adding EXIF data: {e}")
+                        logger.error(f"Error adding EXIF data: {e}", exc_info=True)
 
                     img.save(file_path, format="WEBP", **save_kwargs)
 
