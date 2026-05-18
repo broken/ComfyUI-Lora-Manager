@@ -1823,3 +1823,47 @@ def test_krea_dual_resolution_selector_extracts_size_from_outputs(
         "height": 1024,
         "node_id": "selector",
     }
+
+
+def test_checkpoint_cycler_and_list_extract_models(metadata_registry):
+    metadata_registry.start_collection("prompt1")
+
+    # Emulate CheckpointCyclerCU execution
+    metadata_registry.record_node_execution(
+        "cycler_node",
+        "CheckpointCyclerCU",
+        {"ckpt_name": ["model_from_list.safetensors"]},
+        None,
+    )
+    metadata_registry.update_node_execution(
+        "cycler_node",
+        "CheckpointCyclerCU",
+        [("selected_cycler_model.safetensors", "tag1, tag2", 10)],
+    )
+
+    # Emulate CheckpointListCU execution
+    metadata_registry.record_node_execution(
+        "list_node",
+        "CheckpointListCU",
+        {"index": [1]},
+        None,
+    )
+    metadata_registry.update_node_execution(
+        "list_node",
+        "CheckpointListCU",
+        [("selected_list_model.safetensors", "tag3, tag4", 5)],
+    )
+
+    metadata = metadata_registry.get_metadata("prompt1")
+
+    assert metadata[MODELS]["cycler_node"] == {
+        "name": "selected_cycler_model.safetensors",
+        "type": "checkpoint",
+        "node_id": "cycler_node",
+    }
+    assert metadata[MODELS]["list_node"] == {
+        "name": "selected_list_model.safetensors",
+        "type": "checkpoint",
+        "node_id": "list_node",
+    }
+
