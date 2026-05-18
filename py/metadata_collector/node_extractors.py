@@ -993,6 +993,19 @@ class FluxGuidanceExtractor(NodeMetadataExtractor):
             
         metadata[SAMPLING][node_id]["parameters"]["guidance"] = guidance_value
 
+class CheckpointCyclerListExtractor(NodeMetadataExtractor):
+    @staticmethod
+    def extract(node_id, inputs, outputs, metadata):
+        pass
+
+    @staticmethod
+    def update(node_id, outputs, metadata):
+        output_tuple = _first_output_tuple(outputs)
+        if output_tuple and len(output_tuple) > 0:
+            model_name = output_tuple[0]
+            if isinstance(model_name, str) and model_name:
+                _store_checkpoint_metadata(metadata, node_id, model_name)
+
 class UNETLoaderExtractor(NodeMetadataExtractor):
     @staticmethod
     def extract(node_id, inputs, outputs, metadata):
@@ -1219,6 +1232,8 @@ NODE_EXTRACTORS = {
     "DiffusionModelLoaderKJ": KJNodesModelLoaderExtractor,  # KJNodes
     "CheckpointLoaderKJ": CheckpointLoaderExtractor,  # KJNodes
     "CheckpointLoaderLM": CheckpointLoaderExtractor,  # LoRA Manager
+    "CheckpointCyclerCU": CheckpointCyclerListExtractor,
+    "CheckpointListCU": CheckpointCyclerListExtractor,
     "UNETLoader": UNETLoaderExtractor,          # Updated to use dedicated extractor
     "UnetLoaderGGUF": UNETLoaderExtractor,  # Updated to use dedicated extractor
     "UNETLoaderLM": UNETLoaderExtractor,  # LoRA Manager
