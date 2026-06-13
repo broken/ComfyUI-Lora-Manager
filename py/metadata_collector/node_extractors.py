@@ -137,9 +137,10 @@ class CheckpointCyclerExtractor(NodeMetadataExtractor):
     def update(node_id, outputs, metadata):
         # Post-execution truth from outputs
         # CheckpointCyclerCU returns (target_name, tags, total_models)
-        if outputs and isinstance(outputs, (list, tuple)) and len(outputs) > 0:
-            model_name = outputs[0]
-            if isinstance(model_name, str):
+        output_tuple = _first_output_tuple(outputs)
+        if output_tuple and len(output_tuple) > 0:
+            model_name = output_tuple[0]
+            if isinstance(model_name, str) and model_name:
                 _store_checkpoint_metadata(metadata, node_id, model_name)
 
 class CheckpointLoaderExtractor(NodeMetadataExtractor):
@@ -1145,10 +1146,11 @@ class LoraCyclerExtractor(NodeMetadataExtractor):
         # Post-execution truth from outputs
         # LoraCyclerCU returns (lora_stack, total_models)
         # lora_stack is a list of tuples: [(lora_name, model_strength, clip_strength), ...]
-        if not outputs or not isinstance(outputs, (list, tuple)) or len(outputs) == 0:
+        output_tuple = _first_output_tuple(outputs)
+        if not output_tuple or len(output_tuple) == 0:
             return
 
-        lora_stack = outputs[0]
+        lora_stack = output_tuple[0]
         if not isinstance(lora_stack, list):
             return
 
@@ -1247,18 +1249,7 @@ class FluxGuidanceExtractor(NodeMetadataExtractor):
             
         metadata[SAMPLING][node_id]["parameters"]["guidance"] = guidance_value
 
-class CheckpointCyclerListExtractor(NodeMetadataExtractor):
-    @staticmethod
-    def extract(node_id, inputs, outputs, metadata):
-        pass
 
-    @staticmethod
-    def update(node_id, outputs, metadata):
-        output_tuple = _first_output_tuple(outputs)
-        if output_tuple and len(output_tuple) > 0:
-            model_name = output_tuple[0]
-            if isinstance(model_name, str) and model_name:
-                _store_checkpoint_metadata(metadata, node_id, model_name)
 
 class UNETLoaderExtractor(NodeMetadataExtractor):
     @staticmethod
@@ -1510,8 +1501,8 @@ NODE_EXTRACTORS = {
     "DiffusionModelLoaderKJ": KJNodesModelLoaderExtractor,  # KJNodes
     "CheckpointLoaderKJ": CheckpointLoaderExtractor,  # KJNodes
     "CheckpointLoaderLM": CheckpointLoaderExtractor,  # LoRA Manager
-    "CheckpointCyclerCU": CheckpointCyclerListExtractor,
-    "CheckpointListCU": CheckpointCyclerListExtractor,
+    "CheckpointCyclerCU": CheckpointCyclerExtractor,
+    "CheckpointListCU": CheckpointCyclerExtractor,
     "UNETLoader": UNETLoaderExtractor,          # Updated to use dedicated extractor
     "UnetLoaderGGUF": UNETLoaderExtractor,  # Updated to use dedicated extractor
     "UNETLoaderLM": UNETLoaderExtractor,  # LoRA Manager
@@ -1543,7 +1534,6 @@ NODE_EXTRACTORS = {
     "FluxGuidance": FluxGuidanceExtractor,      # Add FluxGuidance
     "CFGGuider": CFGGuiderExtractor,            # Add CFGGuider
     # Cyclers
-    "CheckpointCyclerCU": CheckpointCyclerExtractor,
     "LoraCyclerCU": LoraCyclerExtractor,
     "PromptSelectionCU": PromptSelectionExtractor,
     # Image
