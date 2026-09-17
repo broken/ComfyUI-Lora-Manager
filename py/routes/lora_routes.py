@@ -253,6 +253,102 @@ class LoraRoutes(BaseModelRoutes):
             logger.error(f"Error getting view image: {e}")
             return web.json_response({"success": False, "error": str(e)}, status=500)
 
+    async def get_views_list(self, request: web.Request) -> web.Response:
+        """Get list of available alternative views for LoRAs"""
+        import os
+        import folder_paths
+        try:
+            views_dir = os.path.join(folder_paths.get_output_directory(), "views")
+            if not os.path.exists(views_dir):
+                return web.json_response({"success": True, "views": []})
+                
+            views = []
+            for root, dirs, files in os.walk(views_dir):
+                for d in dirs:
+                    # Get the full path of the directory
+                    full_dir_path = os.path.join(root, d)
+                    # Get relative path from the base views directory
+                    rel_path = os.path.relpath(full_dir_path, views_dir)
+                    # Using forward slashes for consistency in the frontend
+                    rel_path = rel_path.replace(os.sep, '/')
+                    views.append(rel_path)
+                    
+            views.sort()
+            return web.json_response({"success": True, "views": views})
+        except Exception as e:
+            logger.error(f"Error getting views list: {e}")
+            return web.json_response({"success": False, "error": str(e)}, status=500)
+
+    async def get_view_image(self, request: web.Request) -> web.Response:
+        """Get an alternative view image for a LoRA"""
+        import os
+        import mimetypes
+        import folder_paths
+        try:
+            view_name = request.query.get("view")
+            lora_name = request.query.get("lora")
+            
+            if not view_name or not lora_name:
+                return web.Response(text="View and lora parameters are required", status=400)
+                
+            # Safely resolve path to avoid directory traversal
+            views_dir = os.path.join(folder_paths.get_output_directory(), "views")
+            target_view_dir = os.path.normpath(os.path.join(views_dir, view_name))
+            
+            if not target_view_dir.startswith(os.path.normpath(views_dir)):
+                return web.Response(text="Invalid view parameter", status=400)
+                
+            if not os.path.exists(target_view_dir):
+                return web.Response(text="View not found", status=404)
+                
+            # Extract base name without extension from lora_name
+            base_name_full = os.path.splitext(lora_name)[0]
+            base_name_flat = os.path.basename(base_name_full)
+            
+            # Look for common image extensions
+            extensions = ['.png', '.jpg', '.jpeg', '.webp', '.gif']
+            
+            # We'll try to find the image in two ways:
+            # 1. Matching the exact path structure (e.g. views/ViewName/subfolder/my_lora.png)
+            # 2. Stripping the path and just looking in the root of the view (e.g. views/ViewName/my_lora.png)
+            search_names = [(base_name_full, os.path.dirname(os.path.join(target_view_dir, base_name_full)))]
+            if base_name_flat != base_name_full:
+                search_names.append((base_name_flat, target_view_dir))
+                
+            # First, try to find an exact match
+            for search_name, _ in search_names:
+                for ext in extensions:
+                    image_path = os.path.join(target_view_dir, f"{search_name}{ext}")
+                    if os.path.exists(image_path):
+                        content_type, _ = mimetypes.guess_type(image_path)
+                        return web.FileResponse(image_path, headers={'Content-Type': content_type or 'application/octet-stream'})
+            
+            # Second, if no exact match is found, try to find a prefix match
+            # This handles cases where ComfyUI appends suffixes like _0001 to generated images
+            for search_name, search_dir in search_names:
+                if not os.path.exists(search_dir):
+                    continue
+                    
+                target_prefix = os.path.basename(search_name) + "_"
+                target_prefix_alt = os.path.basename(search_name) + " " # Sometimes spaces instead of underscores
+                
+                try:
+                    for filename in os.listdir(search_dir):
+                        if filename.startswith(target_prefix) or filename.startswith(target_prefix_alt) or filename.startswith(os.path.basename(search_name) + "."):
+                            # Check if it has a valid image extension
+                            if any(filename.lower().endswith(ext) for ext in extensions):
+                                image_path = os.path.join(search_dir, filename)
+                                content_type, _ = mimetypes.guess_type(image_path)
+                                return web.FileResponse(image_path, headers={'Content-Type': content_type or 'application/octet-stream'})
+                except OSError:
+                    pass
+                    
+            return web.Response(text="Image not found for this LoRA in the selected view", status=404)
+            
+        except Exception as e:
+            logger.error(f"Error getting view image: {e}")
+            return web.json_response({"success": False, "error": str(e)}, status=500)
+
     async def get_random_loras(self, request: web.Request) -> web.Response:
         """Get random LoRAs based on filters and strength ranges"""
         try:

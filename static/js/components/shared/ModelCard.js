@@ -598,6 +598,10 @@ export function createModelCard(model, modelType) {
     const fallbackUrl = version ? `${defaultPreviewUrl}${defaultPreviewUrl.includes('?') ? '&' : '?'}t=${version}` : defaultPreviewUrl;
     const imgAttributes = previewUrl !== defaultPreviewUrl ? `onerror="this.onerror=null; this.src='${fallbackUrl}'"` : '';
 
+    // Store original versioned preview url if we're using a custom view, for fallback
+    const fallbackUrl = version ? `${defaultPreviewUrl}${defaultPreviewUrl.includes('?') ? '&' : '?'}t=${version}` : defaultPreviewUrl;
+    const imgAttributes = previewUrl !== defaultPreviewUrl ? `onerror="this.onerror=null; this.src='${fallbackUrl}'"` : '';
+
     // Determine NSFW warning text based on level with i18n support
     let nsfwText = translate('modelCard.nsfw.matureContent', {}, 'Mature Content');
     if (nsfwLevel >= NSFW_LEVELS.XXX) {
@@ -699,7 +703,7 @@ export function createModelCard(model, modelType) {
         <div class="card-preview ${shouldBlur ? 'blurred' : ''}">
             ${isVideo ?
             `<video ${videoAttrs.join(' ')} style="pointer-events: none;"></video>` :
-            `<img draggable="false" src="${versionedPreviewUrl}" alt="${model.model_name}" ${imgAttributes} onerror="this.onerror=null; this.src='/loras_static/images/no-preview.png'">`
+            `<img draggable="false" src="${versionedPreviewUrl}" alt="${model.model_name}" ${imgAttributes} onerror="this.onerror=null; this.src='/loras_static/images/no-preview.png'" ${imgAttributes}>`
         }
             <div class="card-header">
                 ${shouldBlur ?
