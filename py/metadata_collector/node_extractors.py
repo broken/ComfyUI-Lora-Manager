@@ -127,6 +127,27 @@ class GenericNodeExtractor(NodeMetadataExtractor):
 class CheckpointCyclerExtractor(NodeMetadataExtractor):
     """Extract metadata from CheckpointCyclerCU nodes using their specific outputs."""
 
+
+    @staticmethod
+    def extract(node_id, inputs, outputs, metadata):
+        # Initial guess from widgets if available
+        if inputs and "ckpt_name" in inputs:
+            _store_checkpoint_metadata(metadata, node_id, inputs.get("ckpt_name"))
+
+    @staticmethod
+    def update(node_id, outputs, metadata):
+        # Post-execution truth from outputs
+        # CheckpointCyclerCU returns (target_name, tags, total_models)
+        output_tuple = _first_output_tuple(outputs)
+        if output_tuple and len(output_tuple) > 0:
+            model_name = output_tuple[0]
+            if isinstance(model_name, str) and model_name:
+                _store_checkpoint_metadata(metadata, node_id, model_name)
+
+
+class CheckpointCyclerExtractor(NodeMetadataExtractor):
+    """Extract metadata from CheckpointCyclerCU nodes using their specific outputs."""
+
     @staticmethod
     def extract(node_id, inputs, outputs, metadata):
         # Initial guess from widgets if available
@@ -1234,6 +1255,64 @@ class LoraTextLoaderManagerExtractor(NodeMetadataExtractor):
                 "node_id": node_id
             }
 
+
+
+class LoraCyclerExtractor(NodeMetadataExtractor):
+    """Extract metadata from LoraCyclerCU nodes using their specific outputs."""
+
+    @staticmethod
+    def extract(node_id, inputs, outputs, metadata):
+        # Initial state from inputs if possible
+        if not inputs:
+            return
+        
+        # Note: We prioritize the update() method for these dynamic nodes
+        pass
+
+    @staticmethod
+    def update(node_id, outputs, metadata):
+        # Post-execution truth from outputs
+        # LoraCyclerCU returns (lora_stack, total_models)
+        # lora_stack is a list of tuples: [(lora_name, model_strength, clip_strength), ...]
+        output_tuple = _first_output_tuple(outputs)
+        if not output_tuple or len(output_tuple) == 0:
+            return
+
+        lora_stack = output_tuple[0]
+        if not isinstance(lora_stack, list):
+            return
+
+        active_loras = []
+        for lora in lora_stack:
+            if isinstance(lora, (list, tuple)) and len(lora) >= 2:
+                lora_name = lora[0]
+                model_strength = lora[1]
+                # Extract basename without extension
+                lora_name = os.path.splitext(os.path.basename(lora_name))[0]
+                active_loras.append({
+                    "name": lora_name,
+                    "strength": model_strength
+                })
+
+        if active_loras:
+            metadata[LORAS][node_id] = {
+                "lora_list": active_loras,
+                "node_id": node_id
+            }
+
+class PromptSelectionExtractor(NodeMetadataExtractor):
+    """Extract metadata from PromptSelectionCU nodes using their specific outputs."""
+
+    @staticmethod
+    def update(node_id, outputs, metadata):
+        # PromptSelectionCU returns (positive, negative, count)
+        if outputs and isinstance(outputs, (list, tuple)) and len(outputs) >= 2:
+            pos_text = outputs[0]
+            neg_text = outputs[1]
+            if isinstance(pos_text, str) or isinstance(neg_text, str):
+                prompt_metadata = _ensure_prompt_metadata(metadata, node_id)
+                prompt_metadata["positive_text"] = pos_text
+                prompt_metadata["negative_text"] = neg_text
 
 class FluxGuidanceExtractor(NodeMetadataExtractor):
     @staticmethod
